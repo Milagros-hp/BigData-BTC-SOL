@@ -968,7 +968,7 @@
 <li><strong>Nombre del proyecto:</strong> CryptoPulse, monitoreo de riesgo de BTC y SOL.</li>
 <li><strong>Problema:</strong> quien opera o analiza criptomonedas necesita saber, minuto a minuto, si el mercado entra en una condición de riesgo (movimientos fuertes, caídas, actividad anormal o desacople entre activos). Mirar solo el precio no basta: hace falta comparar con el histórico y anticipar los próximos minutos.</li>
 <li><strong>Dominio:</strong> finanzas, mercado spot de criptomonedas (Binance). Se registra precio, volumen y operaciones de cada minuto.</li>
-<li><strong>Pregunta central de negocio:</strong> <em>¿cómo integrar datos históricos y en tiempo real de BTC y SOL para detectar condiciones de riesgo y estimar su evolución a corto plazo?</em></li>
+<li><strong>Pregunta central de negocio:</strong> <em>¿Cómo puede un analista de riesgo anticipar, con 5 a 30 minutos de antelación, condiciones de riesgo en BTC y SOL: volatilidad alta, caídas fuertes, actividad anómala y desacople entre ambos activos?</em></li>
 <li><strong>Usuarios:</strong> analista de riesgo o trader que vigila el tablero; el propio sistema, que emite señales de vigilancia y alerta.</li>
 <li><strong>Arquitectura:</strong> <strong>Lambda</strong>. La capa batch procesa 4,99 millones de velas históricas para describir el pasado y entrenar los modelos. La capa de velocidad procesa cada vela en vivo con Kafka y Spark Structured Streaming y aplica esos mismos modelos. Se elige Lambda porque el entrenamiento necesita el histórico completo en bloque, mientras que la vigilancia necesita reaccionar en segundos.</li>
 <li><strong>Fuente batch:</strong> <a href="https://data.binance.vision/">Binance Public Data</a>, velas de 1 minuto BTCUSDT y SOLUSDT, enero 2022 – septiembre 2026: 114 archivos ZIP mensuales verificados con SHA256.</li>
@@ -996,7 +996,7 @@
 <tr>
 <td>Franck</td>
 <td>Predictiva (U1, batch)</td>
-<td>¿Cuánta volatilidad tuvieron BTC y SOL por mes y por hora, y qué volatilidad se puede esperar a 15 min?</td>
+<td>¿Cuánta volatilidad tuvieron BTC y SOL por mes y por hora del día (2022–2026), y qué volatilidad se puede esperar en los próximos 15 minutos?</td>
 <td>Volatilidad realizada 15 min (%): media y P95 mensual; volatilidad estimada por regresión</td>
 <td>Velas históricas 2022–2026</td>
 <td>Mismas velas en vivo, acumuladas</td>
@@ -1012,7 +1012,7 @@
 <tr>
 <td>Julmer</td>
 <td>Predictiva (U1, batch)</td>
-<td>¿Con qué frecuencia hubo caídas fuertes a 30 min y en qué condiciones ocurren más?</td>
+<td>¿Con qué frecuencia BTC y SOL tuvieron caídas fuertes a 30 minutos (dentro del 5 % de peores caídas de su historial) y en qué condiciones de mercado ocurren más?</td>
 <td>% mensual de caídas ≤ P5 histórico; probabilidad estimada por clasificación</td>
 <td>Velas históricas</td>
 <td>Mismas velas en vivo, acumuladas</td>
@@ -1020,7 +1020,7 @@
 <tr>
 <td>Julmer</td>
 <td>Predictiva (U2, streaming)</td>
-<td>¿Qué probabilidad hay de una caída fuerte en los próximos 30 minutos?</td>
+<td>¿Qué probabilidad hay de que BTC o SOL tengan una caída fuerte (dentro del 5 % de peores caídas históricas) en los próximos 30 minutos?</td>
 <td>Probabilidad calibrada de caída, actualizada cada minuto</td>
 <td>Histórico, para entrenar</td>
 <td>Velas cerradas en vivo</td>
@@ -1028,7 +1028,7 @@
 <tr>
 <td>Abdul</td>
 <td>Predictiva (U1, batch)</td>
-<td>¿Cuándo hubo picos anómalos de volumen u operaciones, por mes y por hora UTC?</td>
+<td>¿Cuándo hubo volumen u operaciones inusualmente altos (mayores que el 95 % de lo normal a esa misma hora del día), por mes y por hora?</td>
 <td>% mensual de ventanas sobre P95; probabilidad estimada por clasificación</td>
 <td>Velas históricas</td>
 <td>Mismas velas en vivo, acumuladas</td>
@@ -1036,7 +1036,7 @@
 <tr>
 <td>Abdul</td>
 <td>Predictiva (U2, streaming)</td>
-<td>¿Qué probabilidad hay de actividad anómala en los próximos 5 minutos?</td>
+<td>¿Qué probabilidad hay de que en los próximos 5 minutos el volumen o las operaciones sean inusualmente altos para esa hora del día?</td>
 <td>Probabilidad calibrada de actividad anómala, cada minuto</td>
 <td>Histórico, para entrenar</td>
 <td>Velas cerradas en vivo</td>
@@ -1044,7 +1044,7 @@
 <tr>
 <td>Luz Milagros</td>
 <td>Predictiva (U1, batch)</td>
-<td>¿Cuánto se separaron los rendimientos de SOL y BTC y cuándo se desacoplan más?</td>
+<td>¿Cuánto se separaron los rendimientos de SOL y BTC en ventanas de 15 minutos, y cuándo se desacoplan más?</td>
 <td>Separación |SOL − BTC| a 15 min (p.p.): media y P95 mensual; separación estimada por regresión</td>
 <td>Velas históricas de ambos activos</td>
 <td>Mismas velas en vivo, acumuladas</td>
@@ -1052,7 +1052,7 @@
 <tr>
 <td>Luz Milagros</td>
 <td>Predictiva (U2, streaming)</td>
-<td>¿Qué tamaño de separación entre SOL y BTC se espera en los próximos 15 minutos?</td>
+<td>¿Qué tamaño de separación entre los rendimientos de SOL y BTC se espera en los próximos 15 minutos?</td>
 <td>Separación pronosticada a 15 min, cada minuto</td>
 <td>Histórico, para entrenar</td>
 <td>Velas de ambos activos en vivo</td>
