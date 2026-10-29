@@ -14,7 +14,7 @@
 
 Quien analiza criptomonedas necesita saber, minuto a minuto, si BTC o SOL entran en una condición de riesgo y qué puede pasar en los próximos minutos. CryptoPulse responde la pregunta central del equipo:
 
-> ¿Cómo integrar datos históricos y en tiempo real de BTC y SOL para detectar condiciones de riesgo y estimar su evolución a corto plazo?
+> ¿Cómo puede un analista de riesgo anticipar, con 5 a 30 minutos de antelación, condiciones de riesgo en BTC y SOL: volatilidad alta, caídas fuertes, actividad anómala y desacople entre ambos activos?
 
 ## Solución
 

@@ -23,7 +23,7 @@ El sistema entrega señales de seguimiento. No compra ni vende criptomonedas, no
 
 ### 1.1 Pregunta central
 
-¿Cómo integrar datos históricos y en tiempo real de BTC y SOL para detectar condiciones de riesgo y estimar su evolución a corto plazo, distinguiendo intensidad de movimiento, dirección bajista, actividad inusual y separación entre activos?
+¿Cómo puede un analista de riesgo anticipar, con 5 a 30 minutos de antelación, condiciones de riesgo en BTC y SOL: volatilidad alta, caídas fuertes, actividad anómala y desacople entre ambos activos?
 
 ### 1.2 Alcance concreto
 
