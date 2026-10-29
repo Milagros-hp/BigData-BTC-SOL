@@ -5,8 +5,6 @@ __pycache__/
 pyspark/sesiones/*/data/raw/
 pyspark/sesiones/*/artifacts/*
 !pyspark/sesiones/*/artifacts/.gitkeep
-docs/evidencias/*.png
-docs/evidencias/*.jpg
 docs/evidencias/*.log
 
 pyspark/sesiones/_runtime/
