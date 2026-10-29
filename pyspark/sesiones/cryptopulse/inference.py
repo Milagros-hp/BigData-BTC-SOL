@@ -32,7 +32,7 @@ class ModelBundle:
         if name == "volatility":
             baseline = F.col("rv15")
         elif name == "divergence":
-            baseline = F.lit(0.0)
+            baseline = F.lit(float(item.get("baseline_value", 0.0)))
         else:
             rate_map = F.create_map(*[x for symbol,value in item["training_prevalence"].items()
                                      for x in (F.lit(symbol),F.lit(value))])
@@ -43,7 +43,7 @@ class ModelBundle:
         result = self.models[name].transform(result)
         if item["kind"] == "classification":
             return result.withColumn("_forecast", calibrate(item["calibration_platt"], vector_to_array("probability")[1]))
-        if name == "volatility":
+        if name in ("volatility","divergence"):
             return result.withColumn("_forecast", F.greatest(F.lit(0.0),F.col("prediction")))
         return result.withColumn("_forecast",F.col("prediction"))
 
@@ -97,8 +97,8 @@ class ModelBundle:
                 "btc_close_ms","current_spread15","correlation_60m","_forecast","_baseline").first()
             if row:
                 mode="live" if all(latest[s]["source_mode"]=="live" for s in ("BTCUSDT","SOLUSDT")) else "replay" if all(latest[s]["source_mode"]=="replay" for s in ("BTCUSDT","SOLUSDT")) else "backfill"
-                outputs.append(("divergence","BTC-SOL",row.btc_close_ms,15,float(row._forecast),0.0,
-                    float(row.current_spread15),version,self.registry["models"]["divergence"]["selected"],mode,
+                outputs.append(("divergence","BTC-SOL",row.btc_close_ms,15,float(row._forecast),float(row._baseline),
+                    abs(float(row.current_spread15)),version,self.registry["models"]["divergence"]["selected"],mode,
                     bool(abs(row._forecast)>=self.thresholds["divergence_alert_pp"])))
                 pair_kpi=("BTC-SOL",row.btc_close_ms,{"correlation_60m":row.correlation_60m,"current_spread15":row.current_spread15,"source_mode":mode})
                 db.insert_kpis([pair_kpi])
@@ -130,7 +130,7 @@ def actual_for(prediction, registry, candles):
         btc,sol=series("BTCUSDT"),series("SOLUSDT")
         if not btc or not sol:
             return None
-        return 100*(float(sol[-1]["close"])/float(sol[0]["close"])-float(btc[-1]["close"])/float(btc[0]["close"]))
+        return abs(100*(float(sol[-1]["close"])/float(sol[0]["close"])-float(btc[-1]["close"])/float(btc[0]["close"])))
     points=series(symbol)
     if not points:
         return None

@@ -113,7 +113,7 @@ def build_signals(registry, kpis, predictions):
         else:
             threshold, trigger = thresholds["divergence_alert_pp"], abs(forecast) >= thresholds["divergence_alert_pp"]
             unit, title = "pp", "Vigilancia de divergencia a 15 min"
-            explanation = "Pronóstico de la diferencia futura SOL menos BTC: se compara su valor absoluto con el umbral positivo en puntos porcentuales; el signo indica qué activo rinde más."
+            explanation = "Pronóstico del tamaño de la separación |SOL menos BTC| en los próximos 15 min, en puntos porcentuales, frente al P95 histórico. No indica qué activo rendirá más."
         available = method != "baseline"
         if not available:
             explanation = "Se utiliza una referencia sencilla porque el candidato ML no la mejoró en validación. No se emite alerta predictiva basada en esa referencia; revisar las señales observadas."

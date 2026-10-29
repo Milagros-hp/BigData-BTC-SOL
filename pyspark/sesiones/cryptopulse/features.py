@@ -75,6 +75,9 @@ def pair_features(df, with_target=False):
         F.try_divide(F.covar_pop("btc_r1", "sol_r1").over(win), F.stddev_pop("btc_r1").over(win) * F.stddev_pop("sol_r1").over(win))))
     if with_target:
         result = result.withColumn("target_divergence", F.col("sol_future_r15") - F.col("btc_future_r15"))
-    return result.withColumn("current_spread15", F.col("sol_r15") - F.col("btc_r15"))
+    return (result.withColumn("current_spread15", F.col("sol_r15") - F.col("btc_r15"))
+        .withColumn("abs_spread15", F.abs(F.col("current_spread15"))))
 
 PAIR_FEATURES = ["btc_" + f for f in FEATURES] + ["sol_" + f for f in FEATURES] + ["correlation_60m", "current_spread15"]
+# El tamaño de la divergencia se predice mejor con su magnitud reciente; la dirección no es predecible.
+DIVERGENCE_FEATURES = PAIR_FEATURES + ["abs_spread15"]

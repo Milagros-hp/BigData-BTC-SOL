@@ -14,10 +14,11 @@ from pyspark.ml.classification import LogisticRegression
 from pyspark.ml.functions import vector_to_array
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from .core import ROOT, ML, CLEAN, FEATURES, TRAIN_END, CALIBRATION_END, VALIDATION_END, get_spark, status, save_json
-from .features import supervised, pair_features, PAIR_FEATURES
+from .features import supervised, pair_features, PAIR_FEATURES, DIVERGENCE_FEATURES
 
 CALIBRATION_EMBARGO_MINUTES=30
 CALIBRATION_EMBARGO_MS=CALIBRATION_EMBARGO_MINUTES*60000
+NON_NEGATIVE=("volatility","divergence")
 
 def regression_metrics(df, score):
     result = df.agg(F.count("*").alias("n"),
@@ -154,7 +155,7 @@ def train_regression(df, columns, target, baseline_col, name, version, compare_r
         print(f"Entrenando {name}/{candidate_name}...", flush=True)
         model = pipeline.fit(train)
         scored = model.transform(val)
-        if name == "volatility":
+        if name in NON_NEGATIVE:
             scored = scored.withColumn("prediction", F.greatest(F.lit(0.0), F.col("prediction")))
         metrics = regression_metrics(scored, "prediction")
         candidate_results[candidate_name] = metrics
@@ -168,7 +169,7 @@ def train_regression(df, columns, target, baseline_col, name, version, compare_r
     candidate_path = ML / "models" / version / (name + "_" + candidate_name)
     loaded = PipelineModel.load(str(candidate_path))
     test_scored = loaded.transform(test).withColumn("baseline", baseline_col)
-    if name == "volatility":
+    if name in NON_NEGATIVE:
         test_scored = test_scored.withColumn("prediction", F.greatest(F.lit(0.0), F.col("prediction")))
     test_scored = test_scored.withColumn("deployed", F.col("baseline") if best_name == "baseline" else F.col("prediction"))
     report = {"kind": "regression", "feature_columns": columns, "target": target,
@@ -181,6 +182,18 @@ def train_regression(df, columns, target, baseline_col, name, version, compare_r
         "open_ms", "label", "prediction", "baseline", "deployed").write.mode("overwrite").parquet(str(ML / "test_predictions" / name))
     report["split_rows"] = {"train": train.count(), "validation": val.count(), "test": test.count()}
     dataset.unpersist()
+    return report
+
+def train_divergence(pairs, version):
+    """Magnitud |SOL - BTC| a 15 min. La referencia es el promedio historico de entrenamiento,
+    que en validacion resulto mas exigente que repetir la separacion actual."""
+    dataset = (pairs.withColumn("target_divergence_abs", F.abs("target_divergence"))
+        .withColumn("abs_spread15", F.abs("current_spread15")))
+    mean_abs = dataset.filter(F.col("open_ms") + 1800000 < TRAIN_END).agg(F.avg("target_divergence_abs")).first()[0]
+    report = train_regression(dataset, DIVERGENCE_FEATURES, "target_divergence_abs", F.lit(mean_abs),
+        "divergence", version, compare_rf=True)
+    report["baseline_value"] = float(mean_abs)
+    report["baseline_name"] = "promedio_historico_entrenamiento"
     return report
 
 def train_classifier(df, target, name, version, prefit=None):
@@ -247,7 +260,7 @@ def run():
     reports["volatility"] = train_regression(common, FEATURES, "target_volatility", F.col("rv15"), "volatility", version, True)
     reports["crash"] = train_classifier(common, "target_crash", "crash", version)
     reports["anomaly"] = train_classifier(common, "target_anomaly", "anomaly", version)
-    reports["divergence"] = train_regression(pairs, PAIR_FEATURES, "target_divergence", F.lit(0.0), "divergence", version)
+    reports["divergence"] = train_divergence(pairs, version)
     hist_pair = pairs.filter(F.col("open_ms") + 1800000 < TRAIN_END)
     thresholds["divergence_alert_pp"] = float(hist_pair.select(F.abs("target_divergence").alias("value")).approxQuantile("value", [0.95], 0.001)[0])
     save_json(ML / "thresholds.json", thresholds)
@@ -310,6 +323,40 @@ def recalibrate():
     save_json(current_path,registry)
     return report
 
+def retrain_divergence():
+    """Reentrena solo la dimension de divergencia (magnitud) y publica un registro nuevo.
+
+    Los demas modelos, umbrales y calibraciones se conservan tal como estaban.
+    """
+    current_path=ML/"model_registry.json"
+    base=json.loads(current_path.read_text(encoding="utf-8"))
+    if not (ML/"pair_dataset"/"_SUCCESS").exists():
+        raise ValueError("Falta pair_dataset; ejecuta primero el entrenamiento completo")
+    snapshots=ML/"registries"
+    snapshots.mkdir(parents=True,exist_ok=True)
+    old_snapshot=snapshots/(base["model_version"]+".json")
+    if not old_snapshot.exists():
+        save_json(old_snapshot,base)
+    version=datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+".div"
+    registry=deepcopy(base)
+    registry.update({"model_version":version,"created_at_utc":datetime.now(timezone.utc).isoformat(),
+        "base_model_version":base["model_version"],
+        "divergence_scope":"Divergencia reformulada como magnitud |SOL - BTC| a 15 min. Otros modelos conservados."})
+    spark=get_spark("s04-divergencia",memory="3g",cores=4)
+    try:
+        registry["models"]["divergence"]=train_divergence(spark.read.parquet(str(ML/"pair_dataset")),version)
+    finally:
+        spark.stop()
+    save_json(snapshots/(version+".json"),registry)
+    report=status("S04",model_version=version,base_model_version=base["model_version"],
+        dimensions=list(registry["models"]),
+        test_metrics={name:item["test_deployed"] for name,item in registry["models"].items()},
+        deployed={name:item["selected"] for name,item in registry["models"].items()},
+        temporal_validation=True,models_reloaded=True)
+    save_json(ML/"verificacion_s04.json",report)
+    save_json(current_path,registry)
+    return report
+
 def verify_u1():
     registry = json.loads((ML / "model_registry.json").read_text(encoding="utf-8"))
     quality = json.loads((ROOT / "_runtime/s03.json").read_text(encoding="utf-8"))
@@ -324,5 +371,6 @@ def verify_u1():
 
 if __name__ == "__main__":
     import sys
-    result = verify_u1() if "--verify-u1" in sys.argv else recalibrate() if "--recalibrate" in sys.argv else run()
+    result = (verify_u1() if "--verify-u1" in sys.argv else recalibrate() if "--recalibrate" in sys.argv
+        else retrain_divergence() if "--divergence" in sys.argv else run())
     print(json.dumps(result, indent=2, default=str))
