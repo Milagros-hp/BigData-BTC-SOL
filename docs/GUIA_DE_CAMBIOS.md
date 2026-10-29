@@ -12,7 +12,7 @@ Qué se corrigió y qué se agregó para alinear CryptoPulse con la guía del Pr
 | 4 | Divergencia reformulada: ahora tiene un modelo real | `cryptopulse/training.py`, panel *Separación BTC–SOL* | U1 · 5 ML; U2 · 7 Series de tiempo |
 | 5 | Cuatro notebooks U1, uno por integrante | `pyspark/sesiones/u1-dimensiones/` | U1 · criterios 2, 3, 4, 5 y 6 |
 | 6 | Eventos empresariales por Kafka | `cryptopulse/trades.py`, sección final del tablero | U2 · 1 Ingesta de eventos empresariales |
-| 7 | Brief del equipo con 8 dimensiones | `docs/brief.md` | Hito S2; subaspecto *Aporte individual* |
+| 7 | Brief del equipo con 8 dimensiones | `docs/proyecto-sello/brief.md` | Hito S2; subaspecto *Aporte individual* |
 | 8 | Sitio MkDocs | `mkdocs.yml`, `docs/` | Subaspecto *MkDocs*; U3 · 3 |
 | 9 | CI en GitHub Actions | `.github/workflows/` | U3 · 2 DataOps |
 | 10 | Páginas de equipo, hardening, limitaciones y repositorio | `docs/equipo.md`, `docs/hardening.md`, `docs/limitaciones.md`, `docs/repositorio.md` | U3 · 3 y 4; subaspectos de sustentación |
@@ -74,7 +74,7 @@ Contrato documentado en `schemas/market-trade-v1.schema.json`; pruebas en `crypt
 
 ### 7. Brief del equipo
 
-`docs/brief.md` llena la plantilla de S2: pregunta central, arquitectura Lambda justificada, fuentes, la tabla de 8 filas (U1 y U2 de cada integrante) y una ficha con requisitos por dimensión.
+`docs/proyecto-sello/brief.md` llena la plantilla de S2: pregunta central, arquitectura Lambda justificada, fuentes, la tabla de 8 filas (U1 y U2 de cada integrante) y una ficha con requisitos por dimensión.
 
 **Pendiente del equipo:** completar la **sección** y revisar los **roles** de la tabla de integrantes (los asignó Claude; cámbienlos si no coinciden).
 
@@ -96,7 +96,7 @@ Sitio de documentación con la estructura de la plantilla de U3: Inicio, Instala
 ## Lo que falta y solo puede hacer el equipo
 
 1. Topics del repositorio en GitHub.
-2. Sección y roles en `docs/brief.md` y `docs/equipo.md`.
+2. Sección y roles en `docs/proyecto-sello/brief.md` y `docs/equipo.md`.
 3. Activar GitHub Pages: *Settings → Pages → Branch: `gh-pages`*.
 4. Que **cada integrante haga commits propios** (por ejemplo, revisar su notebook o su ficha del brief). La rúbrica revisa el aporte individual en el historial.
 5. Llenar la tabla *Registro de tareas* en `docs/equipo.md`.

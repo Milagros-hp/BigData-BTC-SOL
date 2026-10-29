@@ -7,20 +7,26 @@ docs_dir: docs
 
 nav:
   - Inicio: index.md
-  - Guía de cambios: GUIA_DE_CAMBIOS.md
+  - Proyecto Sello:
+      - Guía del proyecto: proyecto-sello/index.md
+      - Brief técnico-analítico: proyecto-sello/brief.md
+      - Producto U1: proyecto-sello/u1-producto.md
+      - Producto U2: proyecto-sello/u2-producto.md
+      - Producto U3 / Producto final: proyecto-sello/u3-producto.md
   - Instalación y ejecución: instalacion.md
-  - Brief técnico-analítico: brief.md
-  - Unidad 1 · Batch:
+  - 1. Batch distribuido:
       - Notebooks U1 por integrante: notebooks-u1.md
       - Trabajo por sesión S01–S12: INFORME_SESIONES_S01_S12.md
-  - Unidad 2 · Tiempo real:
+  - 2. Sistema en tiempo real:
       - Uso del tablero: PRODUCTO_FINAL.md
       - Informe técnico y arquitectura: INFORME_PROYECTO_CRYPTOPULSE.md
-  - Unidad 3 · Integración y DataOps:
+  - 3. Integración y DataOps:
       - Pruebas, hardening y DataOps: hardening.md
       - Limitaciones y mejoras: limitaciones.md
+      - Evidencias: evidencias/README.md
   - Equipo y aporte individual: equipo.md
   - Repositorio y estándares: repositorio.md
+  - Guía de cambios: GUIA_DE_CAMBIOS.md
   - Anexos:
       - Guía de inicio local: GUIA_INICIO_LOCAL.md
       - Revisión del tablero: REVISION_PROYECTO_Y_GUIA_GRAFANA.md

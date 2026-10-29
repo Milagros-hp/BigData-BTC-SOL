@@ -51,7 +51,7 @@ Las cuatro dimensiones U2 se muestran en **un solo tablero Grafana** (*CryptoPul
 
 ### Ficha · Volatilidad (Franck Albertson Coaquira Justo)
 
-- **U1:** notebook [`01_volatilidad.ipynb`](notebooks-u1.md). Media y P95 mensual, perfil por hora UTC; regresión Ridge, Lasso y Random Forest contra la referencia de persistencia (`rv15` actual), con métricas RMSE, MAE y R².
+- **U1:** notebook [`01_volatilidad.ipynb`](../notebooks-u1.md). Media y P95 mensual, perfil por hora UTC; regresión Ridge, Lasso y Random Forest contra la referencia de persistencia (`rv15` actual), con métricas RMSE, MAE y R².
 - **U2:** Random Forest desplegado en Spark; pronóstico de volatilidad a 15 min por activo en cada cierre de minuto. Alerta si supera el P95 histórico.
 - **Decisión:** ajustar el tamaño de una posición o el margen de stop.
 - **Panel:** *Volatilidad · observada y futura a 15 min*.
@@ -63,7 +63,7 @@ Las cuatro dimensiones U2 se muestran en **un solo tablero Grafana** (*CryptoPul
 
 ### Ficha · Caídas (Julmer Quispe Apaza)
 
-- **U1:** notebook [`02_caidas.ipynb`](notebooks-u1.md). Porcentaje mensual de caídas y su relación con la volatilidad previa (quintiles); regresión logística L2, logística elastic-net y Random Forest contra la prevalencia histórica, con métricas AUC-ROC, AUC-PR, Brier, precisión, recall y F1.
+- **U1:** notebook [`02_caidas.ipynb`](../notebooks-u1.md). Porcentaje mensual de caídas y su relación con la volatilidad previa (quintiles); regresión logística L2, logística elastic-net y Random Forest contra la prevalencia histórica, con métricas AUC-ROC, AUC-PR, Brier, precisión, recall y F1.
 - **U2:** regresión logística calibrada (Platt) en Spark; probabilidad de caída a 30 min por activo. El umbral de alerta se elige en validación.
 - **Decisión:** reducir exposición o vigilar de cerca cuando la probabilidad supera el umbral.
 - **Panel:** *Caída significativa · probabilidad a 30 min*.
@@ -75,7 +75,7 @@ Las cuatro dimensiones U2 se muestran en **un solo tablero Grafana** (*CryptoPul
 
 ### Ficha · Actividad anómala (Abdul Quispe Condori)
 
-- **U1:** notebook [`03_actividad_anomala.ipynb`](notebooks-u1.md). Porcentaje mensual de ventanas anómalas y perfil por hora UTC; los mismos tres clasificadores y métricas que en caídas.
+- **U1:** notebook [`03_actividad_anomala.ipynb`](../notebooks-u1.md). Porcentaje mensual de ventanas anómalas y perfil por hora UTC; los mismos tres clasificadores y métricas que en caídas.
 - **U2:** regresión logística calibrada; probabilidad de que el volumen o las operaciones de los próximos 5 min superen su P95 por activo y hora UTC.
 - **Decisión:** anticipar momentos de liquidez extrema (noticias, liquidaciones).
 - **Panel:** *Actividad anómala · probabilidad a 5 min*.
@@ -87,7 +87,7 @@ Las cuatro dimensiones U2 se muestran en **un solo tablero Grafana** (*CryptoPul
 
 ### Ficha · Divergencia BTC–SOL (Luz Milagros Huanca Pacco)
 
-- **U1:** notebook [`04_divergencia.ipynb`](notebooks-u1.md). Separación \|SOL − BTC\| media y P95 mensual y su relación con la correlación de 60 min; Ridge, Lasso y Random Forest contra el promedio histórico, con métricas RMSE, MAE y R².
+- **U1:** notebook [`04_divergencia.ipynb`](../notebooks-u1.md). Separación \|SOL − BTC\| media y P95 mensual y su relación con la correlación de 60 min; Ridge, Lasso y Random Forest contra el promedio histórico, con métricas RMSE, MAE y R².
 - **U2:** regresión Ridge desplegada en Spark; tamaño esperado de la separación a 15 min en cada cierre de minuto. Alerta si supera el P95 histórico.
 - **Hallazgo:** predecir la **dirección** de la diferencia (SOL − BTC con signo) no mejoró la referencia cero. Predecir su **tamaño** sí la mejora: RMSE de prueba 2026 de 0,149 frente a 0,198 del promedio histórico.
 - **Decisión:** revisar coberturas o rotación cuando se espera que los activos se desacoplen.

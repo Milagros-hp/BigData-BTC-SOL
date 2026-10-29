@@ -48,7 +48,7 @@ El sistema no ejecuta órdenes ni da recomendaciones de inversión: entrega señ
 ## Por dónde empezar
 
 - [Instalación y ejecución](instalacion.md): levantar todo desde cero.
-- [Brief técnico-analítico](brief.md): pregunta central, dimensiones y fichas por integrante.
+- [Brief técnico-analítico](proyecto-sello/brief.md): pregunta central, dimensiones y fichas por integrante.
 - [Notebooks U1](notebooks-u1.md): el análisis batch de cada integrante.
 - [Uso del tablero](PRODUCTO_FINAL.md): cómo leer Grafana.
 - [Pruebas y hardening](hardening.md): qué se verificó y cómo.

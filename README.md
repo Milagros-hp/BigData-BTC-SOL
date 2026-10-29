@@ -4,7 +4,7 @@
 
 **Pregunta central:** ¿Cómo puede un analista de riesgo anticipar, con 5 a 30 minutos de antelación, condiciones de riesgo en BTC y SOL: volatilidad alta, caídas fuertes, actividad anómala y desacople entre ambos activos?
 
-Documentación completa (MkDocs): <https://milagros-hp.github.io/BigData-BTC-SOL/>. Instalación desde cero: [docs/instalacion.md](docs/instalacion.md). Brief del equipo: [docs/brief.md](docs/brief.md). Notebooks U1 por integrante: [pyspark/sesiones/u1-dimensiones/](pyspark/sesiones/u1-dimensiones/).
+Documentación completa (MkDocs): <https://milagros-hp.github.io/BigData-BTC-SOL/>. Instalación desde cero: [docs/instalacion.md](docs/instalacion.md). Brief del equipo: [docs/proyecto-sello/brief.md](docs/proyecto-sello/brief.md). Notebooks U1 por integrante: [pyspark/sesiones/u1-dimensiones/](pyspark/sesiones/u1-dimensiones/).
 
 La versión operativa corregida y su guía de uso están en [docs/PRODUCTO_FINAL.md](docs/PRODUCTO_FINAL.md). El tablero distingue **NORMAL**, **VIGILANCIA**, **ALERTA**, **REFERENCIA** y datos ausentes o atrasados. No genera alertas artificiales para llenar una tabla. `/health` comprueba continuidad y siete pronósticos recientes; `/api/signals` explica las evaluaciones actuales.
 
