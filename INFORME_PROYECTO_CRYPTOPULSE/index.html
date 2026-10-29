@@ -1,0 +1,3111 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Monitoreo de riesgo de BTC y SOL con arquitectura Lambda (Big Data UPeU 2026-2)">
+      
+      
+      
+        <link rel="canonical" href="https://milagros-hp.github.io/BigData-BTC-SOL/INFORME_PROYECTO_CRYPTOPULSE/">
+      
+      
+        <link rel="prev" href="../PRODUCTO_FINAL/">
+      
+      
+        <link rel="next" href="../hardening/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Informe técnico y arquitectura - CryptoPulse · Grupo 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#informe-tecnico-y-operativo-de-cryptopulse" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="CryptoPulse · Grupo 3" class="md-header__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CryptoPulse · Grupo 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Informe técnico y arquitectura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CryptoPulse · Grupo 3" class="md-nav__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CryptoPulse · Grupo 3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instalacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalación y ejecución
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brief/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Brief técnico-analítico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 1 · Batch
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 1 · Batch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks-u1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notebooks U1 por integrante
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INFORME_SESIONES_S01_S12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trabajo por sesión S01–S12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 2 · Tiempo real
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 2 · Tiempo real
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRODUCTO_FINAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uso del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Informe técnico y arquitectura
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Informe técnico y arquitectura
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-resultado-y-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Resultado y propósito
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Resultado y propósito">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-pregunta-central" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Pregunta central
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-alcance-concreto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Alcance concreto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-implementada" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Arquitectura implementada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitectura implementada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-componentes-y-versiones-fijadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Componentes y versiones fijadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fuentes-y-significado-de-los-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Fuentes y significado de los datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Fuentes y significado de los datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-historico" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Histórico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-flujo-en-vivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Flujo en vivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-campos-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Campos principales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-normalizacion-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Normalización temporal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-proceso-batch-y-calidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Proceso batch y calidad
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Proceso batch y calidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-reglas-de-calidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Reglas de calidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-resultado-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Resultado real
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Almacenamiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-variables-y-objetivos-de-aprendizaje-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Variables y objetivos de aprendizaje automático
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Variables y objetivos de aprendizaje automático">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-variables-retrospectivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Variables retrospectivas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-objetivos-futuros" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Objetivos futuros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-entrenamiento-seleccion-y-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Entrenamiento selección y evaluación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Entrenamiento selección y evaluación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-separacion-cronologica" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Separación cronológica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-tamanos-supervisados" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Tamaños supervisados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-candidatos-y-politica-de-seleccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Candidatos y política de selección
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-metricas-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Métricas de prueba
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-por-que-la-divergencia-aparece-en-cero" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Por qué la divergencia aparece en cero
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-umbrales-guardados" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6 Umbrales guardados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-proceso-en-tiempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Proceso en tiempo real
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Proceso en tiempo real">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-secuencia-de-un-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Secuencia de un evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-topicos-y-contrato" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Tópicos y contrato
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-consultas-spark-y-garantias" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Consultas Spark y garantías
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-persistencia-y-trazabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Persistencia y trazabilidad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-que-muestra-grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Qué muestra Grafana
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Qué muestra Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-lectura-de-los-paneles" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Lectura de los paneles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-como-distinguir-observacion-prediccion-y-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Cómo distinguir observación predicción y evaluación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-observabilidad-alertas-y-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Observabilidad alertas y costos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Observabilidad alertas y costos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-estimacion-de-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 Estimación de costos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-estado-operativo-comprobado" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Estado operativo comprobado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Estado operativo comprobado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-comprobaciones-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 Comprobaciones realizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-guia-para-levantar-el-proyecto-en-este-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Guía para levantar el proyecto en este equipo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Guía para levantar el proyecto en este equipo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.1 Requisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-arranque-habitual" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.2 Arranque habitual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-entrar-a-las-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.3 Entrar a las interfaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-levantar-los-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.4 Levantar los notebooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-verificar-el-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.5 Verificar el producto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#126-inspeccionar-servicios-y-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.6 Inspeccionar servicios y logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#127-detener-y-volver-a-iniciar" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.7 Detener y volver a iniciar
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-reconstruccion-y-actualizacion-del-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Reconstrucción y actualización del batch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Reconstrucción y actualización del batch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-cambiar-el-intervalo" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.1 Cambiar el intervalo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-descargar-aplicar-calidad-y-entrenar" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2 Descargar aplicar calidad y entrenar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-publicar-resultados-batch-y-repetir-comprobaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.3 Publicar resultados batch y repetir comprobaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-si-se-parte-de-archivos-de-codigo-sin-imagenes-ni-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.4 Si se parte de archivos de código sin imágenes ni dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-problemas-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Problemas frecuentes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-organizacion-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Organización de archivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-cambios-de-contrasena-y-validacion-del-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Cambios de contraseña y validación del acceso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-limites-del-alcance-alcanzado" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Límites del alcance alcanzado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-fuentes-y-evidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Fuentes y evidencia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Fuentes y evidencia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#material-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-local-inspeccionada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evidencia local inspeccionada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 3 · Integración y DataOps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 3 · Integración y DataOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pruebas, hardening y DataOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitaciones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limitaciones y mejoras
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equipo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Equipo y aporte individual
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositorio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repositorio y estándares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Anexos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GUIA_INICIO_LOCAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía de inicio local
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REVISION_PROYECTO_Y_GUIA_GRAFANA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Revisión del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-resultado-y-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Resultado y propósito
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Resultado y propósito">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-pregunta-central" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Pregunta central
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-alcance-concreto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Alcance concreto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-implementada" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Arquitectura implementada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitectura implementada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-componentes-y-versiones-fijadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Componentes y versiones fijadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fuentes-y-significado-de-los-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Fuentes y significado de los datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Fuentes y significado de los datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-historico" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Histórico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-flujo-en-vivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Flujo en vivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-campos-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Campos principales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-normalizacion-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Normalización temporal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-proceso-batch-y-calidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Proceso batch y calidad
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Proceso batch y calidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-reglas-de-calidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Reglas de calidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-resultado-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Resultado real
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-almacenamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Almacenamiento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-variables-y-objetivos-de-aprendizaje-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Variables y objetivos de aprendizaje automático
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Variables y objetivos de aprendizaje automático">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-variables-retrospectivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Variables retrospectivas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-objetivos-futuros" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Objetivos futuros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-entrenamiento-seleccion-y-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Entrenamiento selección y evaluación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Entrenamiento selección y evaluación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-separacion-cronologica" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Separación cronológica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-tamanos-supervisados" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Tamaños supervisados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-candidatos-y-politica-de-seleccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Candidatos y política de selección
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-metricas-de-prueba" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Métricas de prueba
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-por-que-la-divergencia-aparece-en-cero" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Por qué la divergencia aparece en cero
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-umbrales-guardados" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.6 Umbrales guardados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-proceso-en-tiempo-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Proceso en tiempo real
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Proceso en tiempo real">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-secuencia-de-un-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Secuencia de un evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-topicos-y-contrato" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Tópicos y contrato
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-consultas-spark-y-garantias" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Consultas Spark y garantías
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-persistencia-y-trazabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Persistencia y trazabilidad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-que-muestra-grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Qué muestra Grafana
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Qué muestra Grafana">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-lectura-de-los-paneles" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Lectura de los paneles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-como-distinguir-observacion-prediccion-y-evaluacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Cómo distinguir observación predicción y evaluación
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-observabilidad-alertas-y-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Observabilidad alertas y costos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Observabilidad alertas y costos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-estimacion-de-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 Estimación de costos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-estado-operativo-comprobado" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Estado operativo comprobado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Estado operativo comprobado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-comprobaciones-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 Comprobaciones realizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-guia-para-levantar-el-proyecto-en-este-equipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Guía para levantar el proyecto en este equipo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Guía para levantar el proyecto en este equipo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.1 Requisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-arranque-habitual" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.2 Arranque habitual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-entrar-a-las-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.3 Entrar a las interfaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-levantar-los-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.4 Levantar los notebooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-verificar-el-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.5 Verificar el producto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#126-inspeccionar-servicios-y-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.6 Inspeccionar servicios y logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#127-detener-y-volver-a-iniciar" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.7 Detener y volver a iniciar
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-reconstruccion-y-actualizacion-del-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Reconstrucción y actualización del batch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Reconstrucción y actualización del batch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-cambiar-el-intervalo" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.1 Cambiar el intervalo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-descargar-aplicar-calidad-y-entrenar" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2 Descargar aplicar calidad y entrenar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-publicar-resultados-batch-y-repetir-comprobaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.3 Publicar resultados batch y repetir comprobaciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-si-se-parte-de-archivos-de-codigo-sin-imagenes-ni-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.4 Si se parte de archivos de código sin imágenes ni dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-problemas-frecuentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Problemas frecuentes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-organizacion-de-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Organización de archivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-cambios-de-contrasena-y-validacion-del-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Cambios de contraseña y validación del acceso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-limites-del-alcance-alcanzado" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Límites del alcance alcanzado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-fuentes-y-evidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Fuentes y evidencia
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Fuentes y evidencia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#material-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-local-inspeccionada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evidencia local inspeccionada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<blockquote>
+<p>Estado histórico: este documento conserva los resultados y hallazgos de su fecha. Las correcciones y la operación vigente están en <a href="../PRODUCTO_FINAL/">PRODUCTO_FINAL.md</a>.</p>
+</blockquote>
+<h1 id="informe-tecnico-y-operativo-de-cryptopulse">Informe técnico y operativo de CryptoPulse<a class="headerlink" href="#informe-tecnico-y-operativo-de-cryptopulse" title="Permanent link">&para;</a></h1>
+<p><strong>Proyecto:</strong> CryptoPulse, plataforma Big Data para Bitcoin y Solana.<br />
+<strong>Ubicación activa:</strong> la carpeta del repositorio.<br />
+<strong>Alcance realizado:</strong> implementación funcional de las sesiones 1 a 12, hasta el cierre de la unidad 2.<br />
+<strong>Fecha del informe:</strong> 26 de octubre de 2026, zona America/Lima.<br />
+<strong>Corte de la captura operativa:</strong> 26 de octubre de 2026 a las 21:54:29, UTC−05:00; equivale al 27 de octubre a las 02:54:29 UTC.<br />
+<strong>Versión de modelos inspeccionada:</strong> <code>20261026T223241Z</code>.</p>
+<p>Este informe explica qué construye CryptoPulse, cómo se procesaron los datos, qué significan las salidas de Grafana y cómo arrancar, verificar y detener el proyecto. Se basa en el código y la configuración de la carpeta del repositorio, el registro de modelos, las verificaciones de las sesiones y una consulta real de los servicios. Los contadores operativos son una fotografía de ese corte y seguirán cambiando mientras el sistema esté encendido.</p>
+<p>El detalle del trabajo por sesión está en el documento complementario <code>docs\INFORME_SESIONES_S01_S12.md</code>.</p>
+<h2 id="1-resultado-y-proposito">1. Resultado y propósito<a class="headerlink" href="#1-resultado-y-proposito" title="Permanent link">&para;</a></h2>
+<p>CryptoPulse integra datos históricos y velas cerradas en vivo de los pares Spot <strong>BTCUSDT</strong> y <strong>SOLUSDT</strong> para observar cuatro condiciones diferentes: volatilidad, riesgo de caída, actividad de negociación anómala y divergencia entre los rendimientos de ambos activos.</p>
+<p>El producto tiene un pipeline batch reproducible, un pipeline streaming persistente y un tablero compartido. La última comprobación integral S12 volvió a producir <strong>PASS</strong> después del cambio de contraseña de Grafana. También se verificó que las cuatro dimensiones ya tienen predicciones en vivo cuyo resultado futuro ha podido evaluarse.</p>
+<p>El sistema entrega señales de seguimiento. No compra ni vende criptomonedas, no genera órdenes y no promete rentabilidad. Es un laboratorio funcional local; no se ha desplegado como servicio de alta disponibilidad.</p>
+<h3 id="11-pregunta-central">1.1 Pregunta central<a class="headerlink" href="#11-pregunta-central" title="Permanent link">&para;</a></h3>
+<p>¿Cómo integrar datos históricos y en tiempo real de BTC y SOL para detectar condiciones de riesgo y estimar su evolución a corto plazo, distinguiendo intensidad de movimiento, dirección bajista, actividad inusual y separación entre activos?</p>
+<h3 id="12-alcance-concreto">1.2 Alcance concreto<a class="headerlink" href="#12-alcance-concreto" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Qué responde</th>
+<th>Horizonte</th>
+<th>Salidas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volatilidad</td>
+<td>Cuánto movimiento se espera, sin asumir una dirección</td>
+<td>15 minutos</td>
+<td>Volatilidad actual, pronóstico, resultado futuro y alerta</td>
+</tr>
+<tr>
+<td>Caídas</td>
+<td>Probabilidad de que el rendimiento al cabo del horizonte esté bajo el umbral histórico del activo</td>
+<td>30 minutos</td>
+<td>Probabilidad, referencia y alerta</td>
+</tr>
+<tr>
+<td>Actividad anómala</td>
+<td>Probabilidad de que el volumen o las operaciones de los próximos cinco minutos excedan la referencia histórica</td>
+<td>5 minutos</td>
+<td>Probabilidad, actividad actual, percentiles y z-score</td>
+</tr>
+<tr>
+<td>Divergencia</td>
+<td>Diferencia prevista entre el rendimiento de SOL y el de BTC</td>
+<td>15 minutos</td>
+<td>Diferencia reciente, pronóstico, correlación y resultado futuro</td>
+</tr>
+</tbody>
+</table>
+<p>Se generan hasta <strong>siete salidas por cierre de minuto</strong>: volatilidad, caídas y anomalías para cada activo, más una divergencia conjunta BTC–SOL. Las variables deben estar completas y los datos temporales necesarios deben estar disponibles.</p>
+<h2 id="2-arquitectura-implementada">2. Arquitectura implementada<a class="headerlink" href="#2-arquitectura-implementada" title="Permanent link">&para;</a></h2>
+<p>La arquitectura es <strong>Lambda</strong>: el histórico se procesa y se usa para entrenar fuera de línea, mientras los eventos nuevos se procesan de forma continua. Ambas rutas reutilizan las definiciones de variables y convergen en datos consultables por Grafana.</p>
+<pre class="mermaid"><code>flowchart TB
+    Hist["Binance Public Data&lt;br/&gt;CSV mensuales reales"] --&gt; Quality["PySpark&lt;br/&gt;calidad y normalización"]
+    Quality --&gt; Lake["Parquet por activo año y mes"]
+    Lake --&gt; Training["Variables y entrenamiento MLlib"]
+    Training --&gt; Registry["Modelos umbrales y métricas versionados"]
+
+    Live["Binance WebSocket&lt;br/&gt;velas cerradas + respaldo REST"] --&gt; Producer["Productor Python"]
+    Producer --&gt; Kafka["Kafka&lt;br/&gt;topics BTC y SOL"]
+    Kafka --&gt; Archive["Spark query archive&lt;br/&gt;validación y archivo idempotente"]
+    Archive --&gt; Candles["PostgreSQL&lt;br/&gt;market_candles"]
+    Candles --&gt; Features["Contexto reciente&lt;br/&gt;variables comunes batch y streaming"]
+    Registry --&gt; Inference["Inferencia por cierre de vela"]
+    Features --&gt; Inference
+    Inference --&gt; Predictions["PostgreSQL&lt;br/&gt;predictions y market_kpis"]
+
+    Kafka --&gt; Windows["Spark queries fixed y sliding&lt;br/&gt;watermark y deduplicación"]
+    Windows --&gt; WindowDB["PostgreSQL&lt;br/&gt;stream_windows"]
+    Lake --&gt; BatchBI["KPIs batch y métricas de modelos"]
+    BatchBI --&gt; PostgreSQL["PostgreSQL&lt;br/&gt;batch_kpis y model_metrics"]
+
+    Predictions --&gt; Grafana["Grafana&lt;br/&gt;tablero único"]
+    PostgreSQL --&gt; Grafana
+    Exporters["Exportador CryptoPulse&lt;br/&gt;Kafka exporter"] --&gt; Prometheus["Prometheus&lt;br/&gt;métricas y reglas"]
+    Prometheus --&gt; Grafana</code></pre>
+<p>Las ventanas S08 también se guardan en PostgreSQL. Los paneles de riesgo consultan principalmente <code>predictions</code> y <code>market_kpis</code>; no debe confundirse la existencia de <code>stream_windows</code> con un panel que necesariamente consulte esa tabla.</p>
+<h3 id="21-componentes-y-versiones-fijadas">2.1 Componentes y versiones fijadas<a class="headerlink" href="#21-componentes-y-versiones-fijadas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Función</th>
+<th>Versión o configuración observada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Desktop y Compose</td>
+<td>Aislamiento y ejecución local</td>
+<td>Motor 29.7.2 en la comprobación del equipo</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Productor, consultas, verificadores y módulos</td>
+<td>3.10 dentro de las imágenes</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>JVM de Spark</td>
+<td>OpenJDK 21</td>
+</tr>
+<tr>
+<td>Apache Spark y PySpark</td>
+<td>ETL, variables, MLlib y streaming</td>
+<td>4.2.0</td>
+</tr>
+<tr>
+<td>Jupyter Notebook</td>
+<td>Exploración y notebooks</td>
+<td>7.6.2; interfaz JupyterLab disponible</td>
+</tr>
+<tr>
+<td>Apache Kafka</td>
+<td>Transporte y retención de eventos</td>
+<td>4.3.1; un broker, tres particiones por topic de mercado</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Archivo operativo, resultados y datos para BI</td>
+<td>17.6</td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td>Captura de métricas y evaluación de reglas</td>
+<td>v3.14.0</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>Tablero, consultas y visualización</td>
+<td>11.4.0</td>
+</tr>
+<tr>
+<td>Kafka UI</td>
+<td>Inspección de tópicos, particiones y mensajes</td>
+<td>Kafbat v1.5.0</td>
+</tr>
+<tr>
+<td>Kafka exporter</td>
+<td>Métricas del broker</td>
+<td>v1.10.0</td>
+</tr>
+<tr>
+<td>Cliente Kafka Python</td>
+<td>Publicación y pruebas</td>
+<td>kafka-python 3.0.12</td>
+</tr>
+<tr>
+<td>Cliente PostgreSQL Python</td>
+<td>Persistencia</td>
+<td>psycopg2-binary 2.9.13</td>
+</tr>
+</tbody>
+</table>
+<p>El runtime añade los clientes Kafka y PostgreSQL a la imagen PySpark del curso. El conector oficial <code>spark-sql-kafka-0-10_2.13:4.2.0</code> y sus dependencias se descargan desde Maven y se conservan en caché local.</p>
+<p>Spark batch utiliza <code>local[4]</code>; el proceso streaming utiliza <code>local[2]</code> y 3 GB de heap. Los notebooks iniciales usan su propia configuración local. Hay procesamiento paralelo, pero <strong>no se ha desplegado un clúster Spark de múltiples máquinas</strong>.</p>
+<h2 id="3-fuentes-y-significado-de-los-datos">3. Fuentes y significado de los datos<a class="headerlink" href="#3-fuentes-y-significado-de-los-datos" title="Permanent link">&para;</a></h2>
+<h3 id="31-historico">3.1 Histórico<a class="headerlink" href="#31-historico" title="Permanent link">&para;</a></h3>
+<p>La fuente es Binance Public Data, mercado Spot, velas de un minuto en archivos ZIP mensuales.</p>
+<ul>
+<li>Activos: BTCUSDT y SOLUSDT.</li>
+<li>Intervalo consolidado: enero de 2022 a septiembre de 2026.</li>
+<li>Archivos mensuales: 114.</li>
+<li>Filas descargadas: <strong>4 993 759</strong>.</li>
+<li>Filas válidas finales: <strong>4 993 757</strong>.</li>
+<li>El volumen base está expresado en BTC o SOL, según el par.</li>
+<li>El importe negociado o <code>quote_asset_volume</code> está expresado en USDT.</li>
+</ul>
+<p>Cada ZIP se comprueba contra su archivo oficial <code>.CHECKSUM</code>. También se registra el hash del CSV extraído y se vuelve a comprobar antes de su lectura para S03. El manifiesto conserva URLs, hashes, cantidad de filas, mes y unidad temporal.</p>
+<h3 id="32-flujo-en-vivo">3.2 Flujo en vivo<a class="headerlink" href="#32-flujo-en-vivo" title="Permanent link">&para;</a></h3>
+<p>El productor se suscribe a los streams públicos <code>btcusdt@kline_1m</code> y <code>solusdt@kline_1m</code>. Solo publica una vela cuando el mensaje confirma que ha cerrado. Las actualizaciones parciales no se tratan como velas finales.</p>
+<p>El acceso WebSocket y REST es público: no se configuró una clave privada de Binance. REST se usa para recuperar contexto reciente y completar eventos omitidos durante una desconexión; no produce datos simulados.</p>
+<h3 id="33-campos-principales">3.3 Campos principales<a class="headerlink" href="#33-campos-principales" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>symbol</code></td>
+<td>Par de mercado</td>
+</tr>
+<tr>
+<td><code>open_ms</code></td>
+<td>Inicio de vela en milisegundos UTC</td>
+</tr>
+<tr>
+<td><code>close_ms</code></td>
+<td>Fin de vela en milisegundos UTC</td>
+</tr>
+<tr>
+<td><code>open, high, low, close</code></td>
+<td>Apertura, máximo, mínimo y cierre en USDT</td>
+</tr>
+<tr>
+<td><code>volume</code></td>
+<td>Cantidad negociada del activo base</td>
+</tr>
+<tr>
+<td><code>quote_asset_volume</code></td>
+<td>Importe negociado en USDT</td>
+</tr>
+<tr>
+<td><code>number_of_trades</code></td>
+<td>Cantidad de operaciones</td>
+</tr>
+<tr>
+<td><code>event_id</code></td>
+<td>Identificador determinista del par, intervalo e inicio de vela</td>
+</tr>
+<tr>
+<td><code>source_mode</code></td>
+<td><code>live</code>, <code>backfill</code> o <code>replay</code></td>
+</tr>
+<tr>
+<td><code>transport</code></td>
+<td>WebSocket, REST o replay</td>
+</tr>
+<tr>
+<td><code>published_ms</code></td>
+<td>Momento de publicación del productor</td>
+</tr>
+<tr>
+<td><code>is_closed</code></td>
+<td>Confirmación de cierre</td>
+</tr>
+<tr>
+<td><code>synthetic</code></td>
+<td>En el contrato de mercado utilizado, <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-normalizacion-temporal">3.4 Normalización temporal<a class="headerlink" href="#34-normalizacion-temporal" title="Permanent link">&para;</a></h3>
+<p>Los archivos históricos Spot anteriores a 2025 usan milisegundos y los de 2025 en adelante usan microsegundos. La transformación usa el mes de procedencia para identificar la escala y convierte a <code>open_ms</code> y <code>close_ms</code>.</p>
+<p>El sistema trabaja en UTC. El tablero también está configurado en UTC. Para interpretar sus horas en Perú, se restan cinco horas. Por ejemplo, 02:00 UTC del día siguiente corresponde a 21:00 del día anterior en Lima.</p>
+<h2 id="4-proceso-batch-y-calidad">4. Proceso batch y calidad<a class="headerlink" href="#4-proceso-batch-y-calidad" title="Permanent link">&para;</a></h2>
+<p>El recorrido real fue descargar, verificar procedencia, leer con esquema explícito, clasificar registros, guardar cuarentena, resolver duplicados, identificar huecos y escribir el dataset válido.</p>
+<h3 id="41-reglas-de-calidad">4.1 Reglas de calidad<a class="headerlink" href="#41-reglas-de-calidad" title="Permanent link">&para;</a></h3>
+<p>Se comprueban campos obligatorios, símbolos admitidos, precios positivos, coherencia OHLC, actividad no negativa, inicio alineado a minuto y duración canónica. La duración normalizada entre inicio y cierre es 59 999 milisegundos.</p>
+<p>Si una clave temporal tiene valores de mercado incompatibles, la política excluye esas versiones y las conserva para inspección. Los duplicados compatibles se reducen a una vela por <code>symbol + open_ms</code>. En la ejecución observada no hubo claves conflictivas ni filas retiradas por duplicación.</p>
+<h3 id="42-resultado-real">4.2 Resultado real<a class="headerlink" href="#42-resultado-real" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th style="text-align: right;">Cantidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entrada</td>
+<td style="text-align: right;">4 993 759</td>
+</tr>
+<tr>
+<td>Registros válidos</td>
+<td style="text-align: right;">4 993 757</td>
+</tr>
+<tr>
+<td>Registros en cuarentena</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Claves con versiones conflictivas</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Filas retiradas por duplicados o conflictos</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Huecos temporales después de calidad</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>Minutos ausentes, sumados entre activos</td>
+<td style="text-align: right;">163</td>
+</tr>
+</tbody>
+</table>
+<p>Los dos registros en cuarentena corresponden a BTCUSDT y SOLUSDT con inicio <strong>2023-03-24 12:39 UTC</strong>. La regla que no superaron fue <code>invalid_interval</code>. Sus precios no se describen como nulos o erróneos: el motivo identificado fue el intervalo temporal.</p>
+<p>Los huecos se desglosan así:</p>
+<table>
+<thead>
+<tr>
+<th>Activo</th>
+<th>Inicio de la siguiente vela disponible</th>
+<th style="text-align: right;">Minutos ausentes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOLUSDT</td>
+<td>2023-02-14 16:40 UTC</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>BTCUSDT</td>
+<td>2023-03-24 14:00 UTC</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr>
+<td>SOLUSDT</td>
+<td>2023-03-24 14:00 UTC</td>
+<td style="text-align: right;">81</td>
+</tr>
+</tbody>
+</table>
+<p>Los 163 minutos son una suma por activo, no necesariamente 163 minutos distintos del calendario. La cifra incluye el efecto de excluir los dos intervalos inválidos. No se rellenan huecos con precios inventados.</p>
+<h3 id="43-almacenamiento">4.3 Almacenamiento<a class="headerlink" href="#43-almacenamiento" title="Permanent link">&para;</a></h3>
+<p>La salida válida se conserva en:</p>
+<p><code>pyspark\sesiones\s03-calidad\artifacts\clean_parquet</code></p>
+<p>Se particiona por <code>symbol/year/month</code>. Las consultas por activo y periodo pueden omitir carpetas ajenas al filtro. La verificación encontró <code>PartitionFilters</code> en el plan físico y comprobó una lectura filtrada real.</p>
+<p>La cuarentena, el detalle de huecos y el informe JSON de calidad quedan en la misma carpeta de artefactos de S03.</p>
+<h2 id="5-variables-y-objetivos-de-aprendizaje-automatico">5. Variables y objetivos de aprendizaje automático<a class="headerlink" href="#5-variables-y-objetivos-de-aprendizaje-automatico" title="Permanent link">&para;</a></h2>
+<p>Las funciones compartidas están en <code>pyspark\sesiones\cryptopulse\features.py</code>. Se utilizan tanto en batch como en streaming para mantener la misma definición de predictores.</p>
+<h3 id="51-variables-retrospectivas">5.1 Variables retrospectivas<a class="headerlink" href="#51-variables-retrospectivas" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Grupo</th>
+<th>Variables o criterio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rendimiento</td>
+<td>Cambios de 1, 5, 15 y 30 minutos; solo cuando coincide el intervalo temporal</td>
+</tr>
+<tr>
+<td>Volatilidad</td>
+<td>Volatilidad realizada de 15 y 60 minutos</td>
+</tr>
+<tr>
+<td>Actividad</td>
+<td>Importe y operaciones de ventanas recientes, transformación <code>log1p</code></td>
+</tr>
+<tr>
+<td>Actividad relativa</td>
+<td>Relación entre la actividad media de cinco minutos y la de sesenta</td>
+</tr>
+<tr>
+<td>Vela</td>
+<td>Rango porcentual y cuerpo porcentual</td>
+</tr>
+<tr>
+<td>Estacionalidad</td>
+<td>Seno y coseno de la hora UTC</td>
+</tr>
+<tr>
+<td>Identificación</td>
+<td>Indicador de SOL frente a BTC</td>
+</tr>
+<tr>
+<td>Relación entre activos</td>
+<td>Variables de ambos, correlación móvil y spread reciente</td>
+</tr>
+</tbody>
+</table>
+<p>Los precios originales se conservan con tipo decimal. Para rendimientos y cocientes derivados se convierten los operandos a doble precisión <strong>antes</strong> de dividir, evitando un redondeo prematuro de la aritmética decimal.</p>
+<p>La volatilidad se calcula como:</p>
+<div class="highlight"><pre><span></span><code>r_t = ln(cierre_t / cierre_(t-1))
+RV_15 = 100 × raíz( suma de r_t² de 15 retornos consecutivos )
+</code></pre></div>
+<p>Es una magnitud porcentual sin anualizar. No es la misma definición que una desviación estándar anualizada.</p>
+<p>Una ventana de volatilidad de 15 retornos necesita 16 cierres. Las funciones comprueban continuidad temporal; no convierten un salto de varios minutos en un rendimiento de un minuto. Si la correlación tiene varianza cero y no se puede definir, se conserva como dato no disponible.</p>
+<h3 id="52-objetivos-futuros">5.2 Objetivos futuros<a class="headerlink" href="#52-objetivos-futuros" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Volatilidad:</strong> volatilidad realizada de los siguientes 15 retornos.</li>
+<li><strong>Caídas:</strong> rendimiento final de 30 minutos bajo el percentil 5 del entrenamiento por activo.</li>
+<li><strong>Anomalías:</strong> importe o número de operaciones de los siguientes cinco minutos sobre el percentil 95 de entrenamiento del activo y hora UTC correspondientes.</li>
+<li><strong>Divergencia:</strong> rendimiento futuro de SOL a 15 minutos menos el de BTC al mismo horizonte, en puntos porcentuales.</li>
+</ul>
+<p>Las etiquetas futuras se calculan para entrenamiento y evaluación offline. No se incorporan como predictores del flujo en vivo.</p>
+<h2 id="6-entrenamiento-seleccion-y-evaluacion">6. Entrenamiento selección y evaluación<a class="headerlink" href="#6-entrenamiento-seleccion-y-evaluacion" title="Permanent link">&para;</a></h2>
+<h3 id="61-separacion-cronologica">6.1 Separación cronológica<a class="headerlink" href="#61-separacion-cronologica" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Uso</th>
+<th>Periodo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entrenamiento</td>
+<td>2022–2024</td>
+</tr>
+<tr>
+<td>Validación</td>
+<td>2025</td>
+</tr>
+<tr>
+<td>Ajuste del calibrador de clasificadores</td>
+<td>Enero–agosto de 2025</td>
+</tr>
+<tr>
+<td>Selección y umbrales de alerta de clasificadores</td>
+<td>Septiembre–diciembre de 2025</td>
+</tr>
+<tr>
+<td>Prueba final</td>
+<td>Enero–septiembre de 2026</td>
+</tr>
+</tbody>
+</table>
+<p>Hay un embargo explícito de 30 minutos en los límites entrenamiento/validación y validación/prueba. No se aplica una división aleatoria para evaluar las series. La subdivisión interna de calibración y selección en 2025 se hace por fecha; el código no añade un embargo separado en ese límite interno.</p>
+<p>Las variables y etiquetas se calculan sobre velas de un minuto. Para ajustar y evaluar modelos se toman observaciones cada 15 minutos; en operación la inferencia se calcula en cada cierre de un minuto.</p>
+<h3 id="62-tamanos-supervisados">6.2 Tamaños supervisados<a class="headerlink" href="#62-tamanos-supervisados" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th style="text-align: right;">Entrenamiento</th>
+<th style="text-align: right;">Validación</th>
+<th style="text-align: right;">Prueba</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimensiones por activo, BTC y SOL conjuntamente</td>
+<td style="text-align: right;">210 392</td>
+<td style="text-align: right;">70 076</td>
+<td style="text-align: right;">52 412</td>
+</tr>
+<tr>
+<td>Divergencia del par sincronizado</td>
+<td style="text-align: right;">105 195</td>
+<td style="text-align: right;">35 038</td>
+<td style="text-align: right;">26 207</td>
+</tr>
+</tbody>
+</table>
+<p>Los tamaños son menores que el histórico porque requieren contexto previo, objetivos futuros disponibles, sincronización, separación temporal y muestreo por tiempo.</p>
+<h3 id="63-candidatos-y-politica-de-seleccion">6.3 Candidatos y política de selección<a class="headerlink" href="#63-candidatos-y-politica-de-seleccion" title="Permanent link">&para;</a></h3>
+<p>Para volatilidad se compararon regresión lineal regularizada, Random Forest y persistencia de la volatilidad actual. Ganó Random Forest.</p>
+<p>Para caídas y actividad anómala se entrenó regresión logística con ensamblado de variables y escalado. Se ajustó una calibración de tipo Platt sobre probabilidades del periodo de calibración. La decisión de desplegar usa Brier en selección frente a la frecuencia histórica por activo.</p>
+<p>Para divergencia se comparó un regresor lineal regularizado con el pronóstico cero. La selección usa RMSE. El candidato no mejoró la referencia y se desplegó el baseline.</p>
+<p>Los umbrales de alerta de clasificadores se seleccionan en validación por F1. El conjunto de prueba no interviene en la selección del método. Los candidatos, incluidos los no seleccionados, quedan guardados.</p>
+<h3 id="64-metricas-de-prueba">6.4 Métricas de prueba<a class="headerlink" href="#64-metricas-de-prueba" title="Permanent link">&para;</a></h3>
+<p>Las tablas usan punto decimal. MAE y RMSE de las regresiones están en puntos porcentuales de su variable objetivo.</p>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Método desplegado</th>
+<th style="text-align: right;">Casos</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">RMSE de la referencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volatilidad</td>
+<td>random_forest</td>
+<td style="text-align: right;">52 412</td>
+<td style="text-align: right;">0.078744</td>
+<td style="text-align: right;">0.129191</td>
+<td style="text-align: right;">0.150802</td>
+</tr>
+<tr>
+<td>Divergencia</td>
+<td>baseline</td>
+<td style="text-align: right;">26 207</td>
+<td style="text-align: right;">0.131394</td>
+<td style="text-align: right;">0.199551</td>
+<td style="text-align: right;">0.199551</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th style="text-align: right;">Casos</th>
+<th style="text-align: right;">PR-AUC</th>
+<th style="text-align: right;">Brier</th>
+<th style="text-align: right;">Precisión</th>
+<th style="text-align: right;">Recall</th>
+<th style="text-align: right;">ECE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caídas</td>
+<td style="text-align: right;">52 412</td>
+<td style="text-align: right;">0.103077</td>
+<td style="text-align: right;">0.025002</td>
+<td style="text-align: right;">13.54 %</td>
+<td style="text-align: right;">26.21 %</td>
+<td style="text-align: right;">0.003102</td>
+</tr>
+<tr>
+<td>Actividad anómala</td>
+<td style="text-align: right;">52 412</td>
+<td style="text-align: right;">0.659547</td>
+<td style="text-align: right;">0.039133</td>
+<td style="text-align: right;">56.93 %</td>
+<td style="text-align: right;">63.60 %</td>
+<td style="text-align: right;">0.011731</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación.</strong> Menores MAE, RMSE y Brier son mejores para sus respectivos problemas. PR-AUC mide capacidad de ordenar casos positivos; no debe leerse como porcentaje de aciertos. ECE resume diferencias entre probabilidad media y frecuencia observada por grupos, sin garantizar calibración perfecta.</p>
+<p>El clasificador de caídas tiene una capacidad limitada al umbral seleccionado: en prueba detectó 362 positivos, con 2 312 falsos positivos y 1 019 falsos negativos. El clasificador de anomalías obtuvo 2 362 positivos detectados, 1 787 falsos positivos y 1 352 falsos negativos. Estas cifras ayudan a interpretar las señales y evitan presentar probabilidades como certezas.</p>
+<h3 id="65-por-que-la-divergencia-aparece-en-cero">6.5 Por qué la divergencia aparece en cero<a class="headerlink" href="#65-por-que-la-divergencia-aparece-en-cero" title="Permanent link">&para;</a></h3>
+<p>En validación, el RMSE del baseline fue <strong>0.321614</strong> y el del candidato Ridge <strong>0.321911</strong>. Por la regla fijada, se conservó cero. En prueba, sus RMSE fueron <strong>0.199551</strong> y <strong>0.199867</strong>, respectivamente.</p>
+<p>El cero es el pronóstico de referencia de la diferencia futura, no la afirmación de que ambos activos tengan el mismo precio, la misma evolución o un riesgo nulo. La correlación y el spread reciente siguen siendo indicadores observados diferentes.</p>
+<h3 id="66-umbrales-guardados">6.6 Umbrales guardados<a class="headerlink" href="#66-umbrales-guardados" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Regla</th>
+<th style="text-align: right;">BTCUSDT</th>
+<th style="text-align: right;">SOLUSDT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caída significativa a 30 minutos</td>
+<td style="text-align: right;">Rendimiento ≤ −0.557740 %</td>
+<td style="text-align: right;">Rendimiento ≤ −1.116490 %</td>
+</tr>
+<tr>
+<td>Alerta por volatilidad prevista a 15 minutos</td>
+<td style="text-align: right;">≥ 0.539071 %</td>
+<td style="text-align: right;">≥ 1.009327 %</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Probabilidad de caída que activa alerta: aproximadamente <strong>5.8009 %</strong>.</li>
+<li>Probabilidad de anomalía que activa alerta: aproximadamente <strong>34.2464 %</strong>.</li>
+<li>Umbral absoluto de divergencia: aproximadamente <strong>0.777720 puntos porcentuales</strong>.</li>
+<li>Los percentiles de actividad se conservan por activo y por cada una de las 24 horas UTC.</li>
+</ul>
+<p>El umbral de probabilidad de caída y el umbral de rendimiento que define una caída son cantidades distintas.</p>
+<h2 id="7-proceso-en-tiempo-real">7. Proceso en tiempo real<a class="headerlink" href="#7-proceso-en-tiempo-real" title="Permanent link">&para;</a></h2>
+<h3 id="71-secuencia-de-un-evento">7.1 Secuencia de un evento<a class="headerlink" href="#71-secuencia-de-un-evento" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Binance comunica la vela de un minuto.</li>
+<li>El productor espera la confirmación de cierre.</li>
+<li>Valida el contrato y asigna un identificador estable.</li>
+<li>Publica en el topic del activo con clave <code>BTCUSDT</code> o <code>SOLUSDT</code> y espera confirmación de Kafka.</li>
+<li>Spark lee el evento y el archivo operativo se inserta de forma idempotente.</li>
+<li>Se recupera el contexto reciente de ambos activos desde PostgreSQL.</li>
+<li>Se calculan las variables con las mismas funciones usadas en entrenamiento.</li>
+<li>Se aplica la versión de modelos cargada; no se reentrena por evento.</li>
+<li>Se guardan pronósticos, indicadores y alertas.</li>
+<li>Grafana consulta la base y Prometheus recoge métricas de operación.</li>
+<li>Cuando termina el horizonte, se intenta calcular la verdad futura usando las velas completas y consecutivas disponibles.</li>
+</ol>
+<p>El productor dispone de recuperación REST y reconexión con espera creciente. Distingue <code>live</code>, <code>backfill</code> y <code>replay</code>. Una recuperación puede incorporar velas reales antiguas; eso no implica que se hayan emitido en vivo todas las predicciones correspondientes a un periodo de interrupción.</p>
+<h3 id="72-topicos-y-contrato">7.2 Tópicos y contrato<a class="headerlink" href="#72-topicos-y-contrato" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>market.klines.btcusdt</code>.</li>
+<li><code>market.klines.solusdt</code>.</li>
+<li><code>cryptopulse.integration</code>, para pruebas de publicación y consumo.</li>
+<li>Tópicos <code>cryptopulse.integration.&lt;identificador&gt;</code>, usados por pruebas aisladas.</li>
+<li><code>market.deadletter</code> está creado, pero el rechazo implementado por el consumidor se persiste en la tabla <code>rejected_events</code>; no se afirma que todos los rechazos se publiquen en ese tópico.</li>
+</ul>
+<p>Los topics de mercado tienen tres particiones y el despliegue tiene un broker. Con un símbolo como clave dentro de un topic dedicado a ese símbolo, sus eventos suelen concentrarse en una partición; tres particiones no significan que ese activo se procese en tres flujos independientes.</p>
+<p>El esquema está en <code>schemas\market-kline-v1.schema.json</code> y la validación ejecutable en <code>pyspark\sesiones\cryptopulse\contract.py</code>.</p>
+<h3 id="73-consultas-spark-y-garantias">7.3 Consultas Spark y garantías<a class="headerlink" href="#73-consultas-spark-y-garantias" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Consulta</th>
+<th>Función</th>
+<th>Estado o garantía</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cryptopulse_archive</code></td>
+<td>Archivo, validación, inferencia y evaluación</td>
+<td>Claves únicas en PostgreSQL y checkpoint de offsets</td>
+</tr>
+<tr>
+<td><code>cryptopulse_fixed</code></td>
+<td>Ventanas fijas de cinco minutos</td>
+<td>Watermark y deduplicación temporal</td>
+</tr>
+<tr>
+<td><code>cryptopulse_sliding</code></td>
+<td>Ventanas de cinco minutos con paso de uno</td>
+<td>Watermark y deduplicación temporal</td>
+</tr>
+</tbody>
+</table>
+<p>El trigger configurado es de 15 segundos. No garantiza por sí solo una latencia de 15 segundos: el tiempo real depende del procesamiento y de los servicios. Las velas de mercado se cierran cada minuto.</p>
+<p>El watermark es de dos minutos y depende del máximo tiempo de evento observado, no de un reloj que cierre ventanas cuando no llegan eventos. Una ventana final se emite después de superar su cierre según el watermark.</p>
+<p>El archivo operativo puede aceptar un evento válido muy tardío aunque las consultas de ventanas ya lo excluyan. Las predicciones emitidas se conservan por clave y versión; no se sobreescriben retrospectivamente como si hubieran conocido datos que llegaron después.</p>
+<p>La garantía implementada es entrega al menos una vez con deduplicación y escrituras idempotentes. No hay una transacción distribuida global entre Kafka, Spark y PostgreSQL.</p>
+<h2 id="8-persistencia-y-trazabilidad">8. Persistencia y trazabilidad<a class="headerlink" href="#8-persistencia-y-trazabilidad" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tabla</th>
+<th>Contenido</th>
+<th>Clave principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>market_candles</code></td>
+<td>Velas operativas y procedencia</td>
+<td>Activo e inicio</td>
+</tr>
+<tr>
+<td><code>predictions</code></td>
+<td>Pronóstico, baseline, observado, alerta y resultado futuro</td>
+<td>Dimensión, activo, emisión y versión</td>
+</tr>
+<tr>
+<td><code>market_kpis</code></td>
+<td>Variables observadas, percentiles y correlación</td>
+<td>Activo y emisión</td>
+</tr>
+<tr>
+<td><code>stream_windows</code></td>
+<td>Agregaciones finales fijas y deslizantes</td>
+<td>Tipo, activo e inicio de ventana</td>
+</tr>
+<tr>
+<td><code>model_metrics</code></td>
+<td>Métricas offline del candidato, baseline y método desplegado</td>
+<td>Dimensión, partición, método y versión</td>
+</tr>
+<tr>
+<td><code>batch_kpis</code></td>
+<td>Resumen diario del histórico</td>
+<td>Activo y fecha</td>
+</tr>
+<tr>
+<td><code>stream_batches</code></td>
+<td>Filas y duración de micro-lotes</td>
+<td>Consulta y batch</td>
+</tr>
+<tr>
+<td><code>rejected_events</code></td>
+<td>Payloads rechazados con su causa</td>
+<td>Hash del evento</td>
+</tr>
+</tbody>
+</table>
+<p>Los datos batch, los modelos, el código y los checkpoints se encuentran en la carpeta del repositorio. Kafka, PostgreSQL, Prometheus y Grafana usan volúmenes administrados por Docker; su ubicación física depende del disco virtual de Docker Desktop, no solo de la carpeta del proyecto.</p>
+<h2 id="9-que-muestra-grafana">9. Qué muestra Grafana<a class="headerlink" href="#9-que-muestra-grafana" title="Permanent link">&para;</a></h2>
+<p>El tablero tiene <strong>19 paneles</strong>. PostgreSQL aporta datos de negocio y de evaluación. Prometheus aporta métricas operativas. La actualización está configurada cada diez segundos y la zona es UTC.</p>
+<h3 id="91-lectura-de-los-paneles">9.1 Lectura de los paneles<a class="headerlink" href="#91-lectura-de-los-paneles" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Panel</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Histórico validado</td>
+<td>Número de velas del batch publicado; es estático hasta una nueva publicación</td>
+</tr>
+<tr>
+<td>Último cierre BTCUSDT</td>
+<td>Cierre de la última vela almacenada, no un precio tick a tick</td>
+</tr>
+<tr>
+<td>Último cierre SOLUSDT</td>
+<td>Mismo criterio para SOL</td>
+</tr>
+<tr>
+<td>Antigüedad de la última vela</td>
+<td>Diferencia entre el momento actual y el último cierre disponible</td>
+</tr>
+<tr>
+<td>Volatilidad</td>
+<td>Compara variable actual, pronóstico a 15 minutos y verdad futura cuando madura</td>
+</tr>
+<tr>
+<td>Probabilidad de caída</td>
+<td>Probabilidad del evento definido para el rendimiento final a 30 minutos</td>
+</tr>
+<tr>
+<td>Probabilidad de anomalía</td>
+<td>Pronóstico a cinco minutos y bandera de anomalía actual</td>
+</tr>
+<tr>
+<td>Divergencia</td>
+<td>Spread reciente, pronóstico y valor futuro observado; actualmente usa baseline cero</td>
+</tr>
+<tr>
+<td>Correlación</td>
+<td>Relación móvil de rendimientos en 60 minutos; no prueba causalidad</td>
+</tr>
+<tr>
+<td>Alertas de mercado</td>
+<td>Predicciones que superaron su regla; una tabla vacía puede significar ausencia de señales</td>
+</tr>
+<tr>
+<td>Evaluación histórica</td>
+<td>Métricas sobre la prueba cronológica de 2026, con método desplegado</td>
+</tr>
+<tr>
+<td>Evaluación en vivo</td>
+<td>Error calculado solo para predicciones cuyo resultado futuro está disponible</td>
+</tr>
+<tr>
+<td>WebSocket conectado</td>
+<td>Indicador reportado por el productor</td>
+</tr>
+<tr>
+<td>Edad de heartbeat Spark</td>
+<td>Tiempo desde la actualización de estado del driver</td>
+</tr>
+<tr>
+<td>Kafka pendiente</td>
+<td>Suma de offsets pendientes según broker y progreso de Spark</td>
+</tr>
+<tr>
+<td>Costo ilustrativo mensual</td>
+<td>Estimación configurable, no factura</td>
+</tr>
+<tr>
+<td>Duración de micro-lotes</td>
+<td>Tiempos de ejecución por consulta</td>
+</tr>
+<tr>
+<td>Mensajes por topic</td>
+<td>Offsets actuales reportados por Kafka exporter; no es por sí solo una tasa por segundo</td>
+</tr>
+<tr>
+<td>Actividad y umbrales</td>
+<td>Importe y operaciones de cinco minutos, percentiles históricos y z-score</td>
+</tr>
+</tbody>
+</table>
+<p>Los puntos de pronóstico se sitúan en el momento de emisión de la vela, aunque su horizonte sea futuro. La línea de resultado futuro se completa sobre ese mismo punto cuando la verdad se conoce; así puede compararse pronóstico con resultado.</p>
+<p>El panel de evaluación en vivo combina dimensiones con métricas de distinta naturaleza: en regresión se interpreta MAE/RMSE; en clasificación, el error cuadrático medio es Brier y su raíz no debe llamarse RMSE de precio. Las magnitudes de dimensiones diferentes no se comparan directamente.</p>
+<h3 id="92-como-distinguir-observacion-prediccion-y-evaluacion">9.2 Cómo distinguir observación predicción y evaluación<a class="headerlink" href="#92-como-distinguir-observacion-prediccion-y-evaluacion" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Observado:</strong> una variable calculada con datos ya disponibles.</li>
+<li><strong>Pronóstico:</strong> valor emitido para un horizonte que todavía no se había cumplido al emitirlo.</li>
+<li><strong>Resultado futuro:</strong> valor real incorporado posteriormente.</li>
+<li><strong>Métrica offline:</strong> error en el periodo de prueba histórico.</li>
+<li><strong>Métrica en vivo:</strong> error de las predicciones realmente emitidas y ya evaluables.</li>
+<li><strong>Replay:</strong> prueba con datos reales pasados; no se cuenta como operación en vivo.</li>
+</ul>
+<p>Un dato vacío puede indicar calentamiento, horizonte todavía abierto o falta de contexto temporal completo. Si los paneles permanecen vacíos después del calentamiento, deben revisarse los servicios y la API de estado.</p>
+<h2 id="10-observabilidad-alertas-y-costos">10. Observabilidad alertas y costos<a class="headerlink" href="#10-observabilidad-alertas-y-costos" title="Permanent link">&para;</a></h2>
+<p>Prometheus recoge el exportador de CryptoPulse, Kafka exporter y sus propias métricas. El exportador publica estado de conexión, heartbeats, conteos, duración de lotes, filas descartadas por watermark y diferencia entre offsets finales del broker y los procesados por Spark.</p>
+<p>Las cinco reglas configuradas son:</p>
+<table>
+<thead>
+<tr>
+<th>Regla</th>
+<th>Condición</th>
+<th>Persistencia antes de activarse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exportador no disponible</td>
+<td>Target CryptoPulse abajo</td>
+<td>1 minuto</td>
+</tr>
+<tr>
+<td>Mercado desactualizado</td>
+<td>Última vela con más de 180 segundos de antigüedad</td>
+<td>1 minuto</td>
+</tr>
+<tr>
+<td>Streaming detenido</td>
+<td>Heartbeat Spark con más de 60 segundos</td>
+<td>1 minuto</td>
+</tr>
+<tr>
+<td>Kafka con retraso</td>
+<td>Más de 100 eventos pendientes</td>
+<td>2 minutos</td>
+</tr>
+<tr>
+<td>WebSocket sin mensajes</td>
+<td>Más de 90 segundos sin mensaje</td>
+<td>1 minuto</td>
+</tr>
+</tbody>
+</table>
+<p>Las reglas se consultan en Prometheus. Las alertas de negocio se conservan en predicciones y se muestran en Grafana. No se configuró un canal externo de notificación por correo, Telegram o Slack.</p>
+<h3 id="101-estimacion-de-costos">10.1 Estimación de costos<a class="headerlink" href="#101-estimacion-de-costos" title="Permanent link">&para;</a></h3>
+<p>La estimación ilustrativa usa:</p>
+<div class="highlight"><pre><span></span><code>costo mensual =
+horas × (núcleos × tarifa por núcleo/hora + RAM GiB × tarifa por GiB/hora)
++ almacenamiento GiB × tarifa por GiB/mes
+</code></pre></div>
+<p>Los supuestos actuales son 730 horas, 3.5 núcleos, 5.5 GiB de RAM y 20 GiB de disco. Las tarifas ilustrativas son 0.02, 0.003 y 0.10 USD en sus unidades correspondientes. El cálculo produce <strong>65.145 USD/mes</strong>.</p>
+<p>Son parámetros de un escenario, no una medición facturada, una cotización de nube o el costo eléctrico real del equipo. Se editan en <code>config\cost-assumptions.json</code> y se recalculan con <code>scripts\actualizar_costos.ps1</code>.</p>
+<h2 id="11-estado-operativo-comprobado">11. Estado operativo comprobado<a class="headerlink" href="#11-estado-operativo-comprobado" title="Permanent link">&para;</a></h2>
+<p>La captura de 21:54:29 de Lima contenía:</p>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th style="text-align: right;">Predicciones live guardadas</th>
+<th style="text-align: right;">Con resultado futuro</th>
+<th style="text-align: right;">Todavía sin resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anomaly</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>crash</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">146</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr>
+<td>divergence</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td>volatility</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">176</td>
+<td style="text-align: right;">30</td>
+</tr>
+</tbody>
+</table>
+<p>Los contadores incluyen ambos activos en las dimensiones individuales. El menor número de divergencias se debe a que se guarda una salida conjunta por momento.</p>
+<p>También se observaron 172 ventanas fijas, 860 deslizantes, 3 468 filas de resumen diario batch y cero eventos rechazados persistidos. Cada activo tenía 110 velas etiquetadas <code>live</code>, 324 <code>backfill</code> y 190 <code>replay</code>. Todas proceden de datos reales; su modo describe el contexto de uso, no una simulación de precios.</p>
+<p>Las pruebas aisladas conservaron siete predicciones replay, todas evaluadas: dos de volatilidad, dos de caídas, dos de anomalía y una de divergencia. Estas filas no se mezclan con los paneles de predicción live.</p>
+<h3 id="111-comprobaciones-realizadas">11.1 Comprobaciones realizadas<a class="headerlink" href="#111-comprobaciones-realizadas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Login de Grafana con la contraseña nueva y rechazo de la anterior.</li>
+<li>Comprobación de los servicios y fuentes de Grafana.</li>
+<li>Ejecución real de las 13 consultas de paneles PostgreSQL.</li>
+<li>Targets Prometheus activos y cinco reglas cargadas.</li>
+<li>Frescura de las velas y ausencia de duplicados persistidos.</li>
+<li>Contrato válido y seis variantes inválidas rechazadas.</li>
+<li>Duplicado contado una sola vez en el stream de prueba.</li>
+<li>Evento anterior al watermark descartado.</li>
+<li>Reinicio de la consulta aislada con recuperación de checkpoint y sink.</li>
+<li>Evaluación de las cuatro dimensiones con replay real.</li>
+<li>Modificación de datos futuros sin alteración de las variables del pasado.</li>
+<li>Inserción repetida de pronósticos sin crear duplicados.</li>
+</ul>
+<p><code>PASS</code> significa que esas comprobaciones funcionales terminaron correctamente. No equivale a una nota académica, una garantía de rentabilidad ni una prueba de carga de producción.</p>
+<h2 id="12-guia-para-levantar-el-proyecto-en-este-equipo">12. Guía para levantar el proyecto en este equipo<a class="headerlink" href="#12-guia-para-levantar-el-proyecto-en-este-equipo" title="Permanent link">&para;</a></h2>
+<h3 id="121-requisitos">12.1 Requisitos<a class="headerlink" href="#121-requisitos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Carpeta del proyecto en la carpeta del repositorio.</li>
+<li>Docker Desktop abierto y usando contenedores Linux.</li>
+<li>PowerShell.</li>
+<li>Conexión a Internet para datos públicos y descargas iniciales.</li>
+<li>Puertos de acceso disponibles.</li>
+<li>Memoria suficiente para el laboratorio. El motor inspeccionado dispone de aproximadamente 12 GiB; batch y streaming tienen presupuestos de memoria separados.</li>
+</ul>
+<p>Python y Java están dentro de las imágenes. Para los comandos documentados no es necesario instalarlos en Windows.</p>
+<h3 id="122-arranque-habitual">12.2 Arranque habitual<a class="headerlink" href="#122-arranque-habitual" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Location</span> <span class="p">&lt;</span><span class="n">carpeta-del-repositorio</span><span class="p">&gt;</span>
+<span class="n">docker</span> <span class="n">version</span>
+
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">iniciar_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>El script comprueba Docker y el registro de modelos, crea <code>.env</code> desde el ejemplo si falta, construye imágenes ausentes y levanta la plataforma. Los modelos y datos de este equipo ya existen: <strong>no hay que reentrenar cada vez que se arranca</strong>.</p>
+<p>Después de un arranque frío, espera al calentamiento de Spark y a que llegue un cierre de vela. El tablero consulta cada diez segundos, pero las velas se actualizan por minuto.</p>
+<h3 id="123-entrar-a-las-interfaces">12.3 Entrar a las interfaces<a class="headerlink" href="#123-entrar-a-las-interfaces" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Interfaz</th>
+<th>URL</th>
+<th>Acceso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grafana</td>
+<td>http://localhost:43000/d/cryptopulse-main</td>
+<td>Usuario <code>admin</code> y contraseña <code>admin2026!</code></td>
+</tr>
+<tr>
+<td>Kafka UI</td>
+<td>http://localhost:48085</td>
+<td>Acceso local</td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td>http://localhost:49090</td>
+<td>Acceso local</td>
+</tr>
+<tr>
+<td>Estado JSON</td>
+<td>http://localhost:48000/api/status</td>
+<td>Acceso local</td>
+</tr>
+<tr>
+<td>JupyterLab</td>
+<td>http://localhost:4488/lab?token=sintoken</td>
+<td>Token <code>sintoken</code></td>
+</tr>
+<tr>
+<td>Spark UI del notebook</td>
+<td>http://localhost:4042</td>
+<td>Solo si hay una SparkSession activa en el puerto interno expuesto</td>
+</tr>
+</tbody>
+</table>
+<p>La Spark UI de la tabla corresponde al entorno de notebooks, no necesariamente al proceso streaming. Cuando varios kernels crean SparkSession, pueden ocupar puertos internos adicionales.</p>
+<h3 id="124-levantar-los-notebooks">12.4 Levantar los notebooks<a class="headerlink" href="#124-levantar-los-notebooks" title="Permanent link">&para;</a></h3>
+<p>La plataforma y el servicio de notebooks se gestionan por separado:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">iniciar_s01</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>El script espera que esté disponible la muestra inicial S01. En este equipo está incluida. Para trabajar con S02, el notebook ejecutado se encuentra en <code>pyspark\sesiones\s02-fundamentos\artifacts\02_fundamentos_practica_ejecutado.ipynb</code>.</p>
+<h3 id="125-verificar-el-producto">12.5 Verificar el producto<a class="headerlink" href="#125-verificar-el-producto" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">verificar_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>El cierre se guarda en <code>pyspark\sesiones\_runtime\s12.json</code>. El comando comprueba el producto en funcionamiento y usa también el resultado de las pruebas de integración guardadas; no vuelve a entrenar ni a ejecutar todos los escenarios de prueba.</p>
+<p>Para volver a ejecutar esos escenarios:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">pruebas_integracion</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">verificar_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<h3 id="126-inspeccionar-servicios-y-logs">12.6 Inspeccionar servicios y logs<a class="headerlink" href="#126-inspeccionar-servicios-y-logs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="nb">ps</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">100</span> <span class="n">producer</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">100</span> <span class="n">streaming</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">100</span> <span class="n">exporter</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">100</span> <span class="n">grafana</span>
+
+<span class="nb">Invoke-RestMethod</span> <span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">48000</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">status</span>
+</code></pre></div>
+<p>Para seguir el consumidor mientras trabaja:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="o">-f</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">30</span> <span class="n">streaming</span>
+</code></pre></div>
+<p><code>Ctrl+C</code> deja de seguir los logs; no detiene por sí mismo el contenedor.</p>
+<h3 id="127-detener-y-volver-a-iniciar">12.7 Detener y volver a iniciar<a class="headerlink" href="#127-detener-y-volver-a-iniciar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">detener_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Ese script detiene solo la plataforma CryptoPulse y conserva volúmenes, históricos, modelos y checkpoints. Los notebooks se detienen por separado:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">pyspark</span><span class="p">\</span><span class="n">compose</span><span class="p">.</span><span class="n">yml</span> <span class="n">stop</span>
+</code></pre></div>
+<p>Para volver, ejecuta los comandos de inicio. No se necesita eliminar los volúmenes para un reinicio normal.</p>
+<h2 id="13-reconstruccion-y-actualizacion-del-batch">13. Reconstrucción y actualización del batch<a class="headerlink" href="#13-reconstruccion-y-actualizacion-del-batch" title="Permanent link">&para;</a></h2>
+<h3 id="131-cambiar-el-intervalo">13.1 Cambiar el intervalo<a class="headerlink" href="#131-cambiar-el-intervalo" title="Permanent link">&para;</a></h3>
+<p>El rango de descarga está en <code>config\pipeline.json</code>. El corte actual es <code>2022-01</code> a <code>2026-09</code>. El descargador admite meses cerrados y verifica los archivos disponibles; un archivo ausente no se sustituye con datos inventados.</p>
+<p>Las fechas de entrenamiento, validación y calibración están definidas en <code>pyspark\sesiones\cryptopulse\core.py</code>. Cambiar el rango de descarga no modifica automáticamente esos límites de evaluación.</p>
+<h3 id="132-descargar-aplicar-calidad-y-entrenar">13.2 Descargar aplicar calidad y entrenar<a class="headerlink" href="#132-descargar-aplicar-calidad-y-entrenar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Location</span> <span class="p">&lt;</span><span class="n">carpeta-del-repositorio</span><span class="p">&gt;</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">entrenar_producto</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Descargar</span> <span class="n">-Reprocesar</span> <span class="n">-Reentrenar</span>
+</code></pre></div>
+<p>El script reutiliza el contenedor de notebooks. Si el streaming está activo, pausa ese consumidor para dejar memoria al entrenamiento y lo restaura al terminar. El productor sigue acumulando eventos en Kafka.</p>
+<p>La preparación de variables se reutiliza cuando su firma y las salidas completas coinciden. El registro de modelos se publica de manera atómica cuando termina el entrenamiento y la evaluación; una carpeta de modelo incompleta no se selecciona como registro nuevo.</p>
+<h3 id="133-publicar-resultados-batch-y-repetir-comprobaciones">13.3 Publicar resultados batch y repetir comprobaciones<a class="headerlink" href="#133-publicar-resultados-batch-y-repetir-comprobaciones" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">-</span><span class="n">-no-deps</span> <span class="n">tools</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">publish_batch</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$sesion</span> <span class="k">in</span> <span class="n">6</span><span class="p">..</span><span class="n">11</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">-</span><span class="n">-no-deps</span> <span class="n">tools</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">verify</span> <span class="nv">$sesion</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$LASTEXITCODE</span> <span class="o">-ne</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="s2">"La sesión $sesion no superó la comprobación"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">pruebas_integracion</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">verificar_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>La secuencia también sirve para regenerar los registros funcionales de las sesiones streaming cuando falten. Los servicios deben estar operativos y haber completado su calentamiento.</p>
+<h3 id="134-si-se-parte-de-archivos-de-codigo-sin-imagenes-ni-dataset">13.4 Si se parte de archivos de código sin imágenes ni dataset<a class="headerlink" href="#134-si-se-parte-de-archivos-de-codigo-sin-imagenes-ni-dataset" title="Permanent link">&para;</a></h3>
+<p>Esta es una secuencia de reconstrucción, no un comando necesario para el arranque diario. No borra los volúmenes existentes:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Location</span> <span class="p">&lt;</span><span class="n">carpeta-del-repositorio</span><span class="p">&gt;</span>
+
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">pyspark</span><span class="p">\</span><span class="n">compose</span><span class="p">.</span><span class="n">yml</span> <span class="n">build</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">pyspark</span><span class="p">\</span><span class="n">compose</span><span class="p">.</span><span class="n">yml</span> <span class="n">up</span> <span class="n">-d</span>
+
+<span class="nb">Get-Content</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">descargar_muestra_s01</span><span class="p">.</span><span class="n">py</span> <span class="n">-Raw</span> <span class="p">|</span>
+    <span class="n">docker</span> <span class="n">exec</span> <span class="n">-e</span> <span class="n">CRYPTOPULSE_DATA_DIR</span><span class="p">=/</span><span class="n">opt</span><span class="p">/</span><span class="n">s01-arquitectura</span><span class="p">/</span><span class="n">data</span> <span class="n">-i</span> <span class="n">cryptopulse-pyspark</span> <span class="n">python</span> <span class="p">-</span>
+
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">preparar_s02</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Desde</span> <span class="n">2022</span><span class="p">-</span><span class="n">01</span> <span class="n">-Hasta</span> <span class="n">2026</span><span class="p">-</span><span class="n">09</span>
+
+<span class="n">docker</span> <span class="n">exec</span> <span class="n">-e</span> <span class="n">PYTHONPATH</span><span class="p">=/</span><span class="n">opt</span> <span class="n">cryptopulse-pyspark</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">quality</span>
+<span class="n">docker</span> <span class="n">exec</span> <span class="n">-e</span> <span class="n">PYTHONPATH</span><span class="p">=/</span><span class="n">opt</span> <span class="n">cryptopulse-pyspark</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">training</span>
+<span class="n">docker</span> <span class="n">exec</span> <span class="n">-e</span> <span class="n">PYTHONPATH</span><span class="p">=/</span><span class="n">opt</span> <span class="n">cryptopulse-pyspark</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">training</span> <span class="p">-</span><span class="n">-verify-u1</span>
+
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">build</span> <span class="n">tools</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">iniciar_producto</span><span class="p">.</span><span class="n">ps1</span>
+
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">-</span><span class="n">-no-deps</span> <span class="n">tools</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">publish_batch</span>
+</code></pre></div>
+<p>Después del calentamiento, ejecuta las comprobaciones de 6 a 11 y las pruebas de integración indicadas arriba. En un equipo nuevo, las tablas batch de PostgreSQL se llenan mediante <code>publish_batch</code>; copiar modelos no llena por sí mismo esos volúmenes.</p>
+<p>La descarga y el entrenamiento completos consumen más tiempo y recursos que el arranque habitual. La reconstrucción documenta el orden de las dependencias; la validación de este informe corresponde al entorno existente, no a una segunda instalación ejecutada sobre volúmenes vacíos.</p>
+<h2 id="14-problemas-frecuentes">14. Problemas frecuentes<a class="headerlink" href="#14-problemas-frecuentes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Síntoma</th>
+<th>Comprobación y acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker muestra cliente pero no servidor</td>
+<td>Abrir Docker Desktop y esperar al motor Linux</td>
+</tr>
+<tr>
+<td>Acceso denegado desde una sesión restringida de Codex</td>
+<td>Autorizar la ejecución requerida; comprobar Docker desde PowerShell del usuario</td>
+</tr>
+<tr>
+<td>Grafana no acepta la contraseña</td>
+<td>Usar <code>admin/admin2026!</code>, cerrar una sesión antigua si procede y revisar logs</td>
+</tr>
+<tr>
+<td>Se cambió <code>.env</code> pero un usuario existente sigue con otra contraseña</td>
+<td>El password inicial de entorno no sustituye automáticamente la contraseña ya almacenada; este cambio se realizó también con la CLI de Grafana</td>
+</tr>
+<tr>
+<td>Gráficas sin predicciones al arrancar</td>
+<td>Esperar contexto suficiente y un cierre; revisar el productor, Spark y <code>INFERENCE_ENABLED=true</code></td>
+</tr>
+<tr>
+<td>No hay errores de predicción de 30 minutos todavía</td>
+<td>El resultado solo se conoce al madurar el horizonte y disponer de las velas necesarias</td>
+</tr>
+<tr>
+<td>Divergencia prevista siempre cero</td>
+<td>Es el baseline seleccionado; consultar la tabla de evaluación para verificar el método</td>
+</tr>
+<tr>
+<td>No cambia una gráfica de inmediato</td>
+<td>Los cierres son de un minuto; refrescar Grafana no crea un cierre nuevo</td>
+</tr>
+<tr>
+<td>Falta actividad por desconexión</td>
+<td>Revisar WebSocket y recuperación REST; la recuperación no garantiza reconstruir todas las predicciones no emitidas</td>
+</tr>
+<tr>
+<td>Un puerto ya está ocupado</td>
+<td>Identificar el servicio con <code>docker ps</code> y revisar el mapeo del proyecto</td>
+</tr>
+<tr>
+<td>Primer arranque streaming tarda más</td>
+<td>Puede estar descargando el conector Spark–Kafka y sus dependencias</td>
+</tr>
+<tr>
+<td>Falta una comprobación S06–S11</td>
+<td>Ejecutarla con <code>cryptopulse.verify</code> después del calentamiento</td>
+</tr>
+<tr>
+<td>Error durante un nuevo entrenamiento</td>
+<td>Revisar logs; el registro anterior no se reemplaza hasta completar el nuevo entrenamiento</td>
+</tr>
+</tbody>
+</table>
+<p>El proyecto no detiene globalmente otros contenedores de Docker para resolver conflictos de puertos.</p>
+<h2 id="15-organizacion-de-archivos">15. Organización de archivos<a class="headerlink" href="#15-organizacion-de-archivos" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>&lt;carpeta-del-repositorio&gt;
+├── .env
+├── .env.example
+├── README.md
+├── platform.yml
+├── config
+│   ├── pipeline.json
+│   └── cost-assumptions.json
+├── database
+│   └── init.sql
+├── docs
+│   ├── INFORME_PROYECTO_CRYPTOPULSE.md
+│   └── INFORME_SESIONES_S01_S12.md
+├── observability
+│   ├── prometheus.yml
+│   ├── alerts.yml
+│   └── grafana
+│       ├── provisioning
+│       └── dashboards
+├── runtime
+│   └── Dockerfile
+├── schemas
+│   └── market-kline-v1.schema.json
+├── scripts
+│   ├── iniciar_producto.ps1
+│   ├── detener_producto.ps1
+│   ├── verificar_producto.ps1
+│   ├── entrenar_producto.ps1
+│   └── pruebas_integracion.ps1
+└── pyspark
+    ├── compose.yml
+    ├── Dockerfile
+    └── sesiones
+        ├── cryptopulse
+        ├── s01-arquitectura
+        ├── s02-fundamentos
+        ├── s03-calidad
+        ├── s04-modelos
+        └── _runtime
+</code></pre></div>
+<p>La copia antigua de Documents/Codex queda como respaldo de etapas previas. Los contenedores y configuraciones activos del producto usan la carpeta del repositorio.</p>
+<h2 id="16-cambios-de-contrasena-y-validacion-del-acceso">16. Cambios de contraseña y validación del acceso<a class="headerlink" href="#16-cambios-de-contrasena-y-validacion-del-acceso" title="Permanent link">&para;</a></h2>
+<p>La contraseña de Grafana quedó en <strong>admin2026!</strong> para el usuario <strong>admin</strong>. Se actualizó la contraseña almacenada en la base interna de Grafana mediante su CLI y se sincronizaron <code>.env</code>, <code>.env.example</code>, el valor por defecto de Compose, el verificador y las instrucciones.</p>
+<p>Se recreó únicamente Grafana conservando su volumen. La API autenticada devolvió acceso correcto con la contraseña nueva y rechazó la anterior. El producto completo volvió a pasar S12 después de este cambio.</p>
+<p>La modificación no cambia el token de JupyterLab: sigue siendo <strong>sintoken</strong>.</p>
+<h2 id="17-limites-del-alcance-alcanzado">17. Límites del alcance alcanzado<a class="headerlink" href="#17-limites-del-alcance-alcanzado" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Es una implementación local en contenedores, con un broker Kafka y Spark local; no hay alta disponibilidad ni clúster de varias máquinas.</li>
+<li>La validación es por periodos fijos. No se implementó validación walk-forward ni un estudio de múltiples ciclos de reentrenamiento.</li>
+<li>Los ejemplos de entrenamiento y prueba se toman cada 15 minutos; su distribución no equivale exactamente a la de todas las emisiones de un minuto.</li>
+<li>Los horizontes se solapan en parte. Las observaciones no deben interpretarse como ensayos estadísticos independientes.</li>
+<li>El clasificador de caídas tiene recall y precisión limitados al umbral seleccionado.</li>
+<li>La calibración se ajustó en histórico y puede degradarse con un cambio de régimen.</li>
+<li>El modelo de divergencia no se desplegó porque no mejoró la referencia.</li>
+<li>Un hueco puede impedir el cálculo de una variable o de una verdad futura; no se inventa ese dato.</li>
+<li>Hay reglas y tablas de alertas, pero no canales externos de notificación.</li>
+<li>La sesión 7 se adaptó a telemetría financiera y no constituye una implementación de sensores físicos ni MQTT.</li>
+<li>El costo mostrado es ilustrativo.</li>
+<li>Se completó el alcance funcional solicitado hasta S12. No se presenta este estado como una evaluación académica ni como el cierre de las sesiones 13 a 16.</li>
+</ol>
+<h2 id="18-fuentes-y-evidencia">18. Fuentes y evidencia<a class="headerlink" href="#18-fuentes-y-evidencia" title="Permanent link">&para;</a></h2>
+<h3 id="material-base">Material base<a class="headerlink" href="#material-base" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Brief técnico analítico CryptoPulse proporcionado por el equipo.</li>
+<li><a href="https://262bigdata.github.io/lambda26/">Guía del curso</a>.</li>
+<li><a href="https://github.com/262bigdata/lambda26">Repositorio de referencia lambda26</a>, commit consultado <code>973ac3020b573a7c66fd925f7d07a9f2553411ec</code>.</li>
+<li><a href="https://github.com/binance/binance-public-data">Binance Public Data</a>.</li>
+<li><a href="https://github.com/binance/binance-spot-api-docs/blob/master/faqs/market_data_only.md">Binance Market Data Only</a>.</li>
+<li><a href="https://spark.apache.org/docs/latest/streaming/structured-streaming-kafka-integration.html">Integración oficial Spark Structured Streaming con Kafka</a>.</li>
+</ul>
+<h3 id="evidencia-local-inspeccionada">Evidencia local inspeccionada<a class="headerlink" href="#evidencia-local-inspeccionada" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\s02-fundamentos\data\provenance.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s03.json</code> hasta <code>s12.json</code>.</li>
+<li><code>pyspark\sesiones\s04-modelos\artifacts\model_registry.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\integration_tests.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\report_snapshot.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\report_evidence.json</code>.</li>
+<li><code>observability\grafana\dashboards\cryptopulse.json</code>.</li>
+<li>Código de <code>pyspark\sesiones\cryptopulse</code> y scripts de operación.</li>
+</ul>
+<p>Las cifras históricas se atribuyen al corte de entrenamiento y calidad indicado. Los contadores live pertenecen a la captura operativa y no deben copiarse como valores permanentes del sistema.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1262 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Monitoreo de riesgo de BTC y SOL con arquitectura Lambda (Big Data UPeU 2026-2)">
+      
+      
+      
+        <link rel="canonical" href="https://milagros-hp.github.io/BigData-BTC-SOL/PRODUCTO_FINAL/">
+      
+      
+        <link rel="prev" href="../INFORME_SESIONES_S01_S12/">
+      
+      
+        <link rel="next" href="../INFORME_PROYECTO_CRYPTOPULSE/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Uso del tablero - CryptoPulse · Grupo 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cryptopulse-producto-local-de-vigilancia-de-riesgos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="CryptoPulse · Grupo 3" class="md-header__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CryptoPulse · Grupo 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Uso del tablero
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CryptoPulse · Grupo 3" class="md-nav__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CryptoPulse · Grupo 3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instalacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalación y ejecución
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brief/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Brief técnico-analítico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 1 · Batch
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 1 · Batch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks-u1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notebooks U1 por integrante
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INFORME_SESIONES_S01_S12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trabajo por sesión S01–S12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 2 · Tiempo real
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 2 · Tiempo real
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Uso del tablero
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Uso del tablero
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-de-la-entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado de la entrega
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-que-sirve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para qué sirve
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-del-tablero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso del tablero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso del tablero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estados-del-centro-de-senales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estados del centro de señales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-y-unidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reglas y unidades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datos-y-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datos y proceso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcciones-incorporadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correcciones incorporadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correcciones incorporadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recuperacion-sin-perdida-intermedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recuperación sin pérdida intermedia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-contrato-e-inferencia-coherentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables, contrato e inferencia coherentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senales-y-evaluacion-con-trazabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Señales y evaluación con trazabilidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salud-y-alertas-operativas-reales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salud y alertas operativas reales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluacion-temporal-corregida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluación temporal corregida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operacion-y-persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operación y persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrancar-verificar-y-detener" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arrancar, verificar y detener
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pruebas-reproducibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pruebas reproducibles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limites-que-se-muestran-explicitamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Límites que se muestran explícitamente
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INFORME_PROYECTO_CRYPTOPULSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Informe técnico y arquitectura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 3 · Integración y DataOps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 3 · Integración y DataOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pruebas, hardening y DataOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitaciones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limitaciones y mejoras
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equipo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Equipo y aporte individual
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositorio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repositorio y estándares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Anexos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GUIA_INICIO_LOCAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía de inicio local
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REVISION_PROYECTO_Y_GUIA_GRAFANA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Revisión del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-de-la-entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado de la entrega
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#para-que-sirve" class="md-nav__link">
+    <span class="md-ellipsis">
+      Para qué sirve
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-del-tablero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso del tablero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso del tablero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estados-del-centro-de-senales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estados del centro de señales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-y-unidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reglas y unidades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datos-y-proceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datos y proceso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcciones-incorporadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correcciones incorporadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correcciones incorporadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recuperacion-sin-perdida-intermedia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recuperación sin pérdida intermedia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-contrato-e-inferencia-coherentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variables, contrato e inferencia coherentes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senales-y-evaluacion-con-trazabilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Señales y evaluación con trazabilidad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salud-y-alertas-operativas-reales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salud y alertas operativas reales
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluacion-temporal-corregida" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluación temporal corregida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operacion-y-persistencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operación y persistencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrancar-verificar-y-detener" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arrancar, verificar y detener
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pruebas-reproducibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pruebas reproducibles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limites-que-se-muestran-explicitamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Límites que se muestran explícitamente
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="cryptopulse-producto-local-de-vigilancia-de-riesgos">CryptoPulse: producto local de vigilancia de riesgos<a class="headerlink" href="#cryptopulse-producto-local-de-vigilancia-de-riesgos" title="Permanent link">&para;</a></h1>
+<p>Proyecto activo: la carpeta del repositorio. Esta entrega corrige los fallos de ingesta, inferencia, alertas y verificación detectados en la revisión del 28 de octubre de 2026. Los informes anteriores documentan el estado de sus respectivas fechas; esta guía describe el comportamiento corregido.</p>
+<h2 id="resultado-de-la-entrega">Resultado de la entrega<a class="headerlink" href="#resultado-de-la-entrega" title="Permanent link">&para;</a></h2>
+<p>Versión activa: <strong><code>20261029T011759858407Z.cal</code></strong>. Su identificador usa UTC; la entrega se realizó el 28 de octubre en Lima. Reutiliza los modelos base de <code>20261026T223241Z</code> y corrige la calibración temporal de los clasificadores.</p>
+<ul>
+<li><strong>40 pruebas de regresión aprobadas:</strong> ingesta, cursor REST/WebSocket, estado atómico, contrato, señales, salud y separación temporal de calibración.</li>
+<li><strong>5 pruebas con Spark aprobadas:</strong> modelos guardados y velas reales; 7 series y 14 evaluaciones; hueco y recuperación; par atrasado; continuidad de actividad; variables contrastadas con cálculo independiente.</li>
+<li><strong>Integración actualizada PASS</strong> para esta versión: Kafka, duplicados, watermark, reinicio de checkpoint, siete predicciones de replay evaluadas y prueba de que modificar el futuro no cambia variables del pasado.</li>
+<li><strong>Interrupción real de 75 segundos PASS:</strong> degradación detectada y recuperación del productor sin huecos.</li>
+<li><strong>Arranque normal PASS</strong>, con aplicación de migraciones y espera de salud integral.</li>
+<li><strong>S12 PASS</strong>, con las consultas SQL de los 16 paneles PostgreSQL y siete expresiones de paneles Prometheus comprobadas. El centro de señales devolvió 14 filas y el historial una explicación cuando no hubo cruces.</li>
+<li><strong>Estabilidad final:</strong> las siete series avanzaron tres cierres de minuto entre las muestras de aceptación; todas estaban recientes, sin huecos de contexto ni duplicados de velas.</li>
+</ul>
+<p>En la captura final el estado era <code>no_alerts</code>: 13 evaluaciones normales y una referencia de divergencia. Esto describe ese momento, no garantiza el siguiente estado del mercado. La inspección visual automatizada de la pestaña compartida no estuvo disponible porque no coincidía con la sesión accesible; las consultas y los datos sí se verificaron mediante Grafana y sus API.</p>
+<h2 id="para-que-sirve">Para qué sirve<a class="headerlink" href="#para-que-sirve" title="Permanent link">&para;</a></h2>
+<p>CryptoPulse ayuda a decidir <strong>qué condiciones del mercado requieren revisión</strong>, por qué y con qué datos. Compara BTC y SOL en cuatro dimensiones diferentes: intensidad de variaciones, riesgo de caída, actividad inusual y separación entre rendimientos.</p>
+<p>La utilidad no depende de que haya una alerta encendida siempre. Un analista puede comprobar que los datos están completos, ver si una condición ya ocurre o se está pronosticando, conocer el umbral histórico y contrastarla con las otras dimensiones. También puede comprobar cómo se equivocan los modelos frente a una referencia sencilla.</p>
+<p>Es un producto local de monitoreo, no un sistema de ejecución de órdenes. No genera recomendaciones personales de inversión, atribuciones de fraude ni promesas de rentabilidad. La ausencia de cruces no garantiza ausencia de riesgo.</p>
+<h2 id="uso-del-tablero">Uso del tablero<a class="headerlink" href="#uso-del-tablero" title="Permanent link">&para;</a></h2>
+<p>Abre http://localhost:43000/d/cryptopulse-main con usuario <code>admin</code> y contraseña <code>admin2026!</code>. Recarga la página completa si conservabas abierta la versión anterior; la provisión automática actualiza la definición del dashboard.</p>
+<ol>
+<li><strong>Estado integral:</strong> debe indicar <code>LISTO</code> y el contador debe llegar a <strong>7/7</strong>. Se comprueban el productor, el driver, la continuidad de 61 velas por activo, la versión del modelo y la edad/retraso de las siete series.</li>
+<li><strong>Frescura y continuidad:</strong> revisa BTC y SOL por separado. Los datos de un activo no pueden ocultar el atraso del otro.</li>
+<li><strong>Centro de señales:</strong> compara observaciones con pronósticos y lee valor, unidad, umbral, antigüedad, interpretación y qué conviene revisar.</li>
+<li><strong>Historial:</strong> muestra cruces reales durante el período elegido. Si no hay cruces, presenta un mensaje explicativo y remite al estado actual.</li>
+<li><strong>Gráficos de las cuatro dimensiones:</strong> contrastan evolución reciente, pronóstico y realidad posterior cuando está disponible. No se dibujan resultados futuros antes de que existan.</li>
+<li><strong>Evidencia:</strong> compara el método desplegado con su referencia y revisa precisión, recall, errores y evaluación en vivo por activo.</li>
+<li><strong>Operación:</strong> comprueba conexión, retraso de Kafka, duración de lotes, cobertura de ventanas y el escenario de costos.</li>
+</ol>
+<p>El archivo contiene 32 elementos: cinco encabezados de sección, una guía y 26 paneles de datos. La última sección muestra los eventos empresariales: flujo comprador/vendedor por minuto. La zona horaria predeterminada es la del navegador; una URL antigua con <code>timezone=utc</code> conserva UTC hasta que cambies esa preferencia en Grafana.</p>
+<h3 id="estados-del-centro-de-senales">Estados del centro de señales<a class="headerlink" href="#estados-del-centro-de-senales" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Estado</th>
+<th>Significado</th>
+<th>Qué hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NORMAL</td>
+<td>Evaluación reciente sin cruce de su umbral.</td>
+<td>Seguir la evolución y contrastar dimensiones.</td>
+</tr>
+<tr>
+<td>VIGILANCIA</td>
+<td>Cruce real de referencia observada o predictiva.</td>
+<td>Revisar valor, umbral, origen y contexto.</td>
+</tr>
+<tr>
+<td>ALERTA</td>
+<td>Cruce de una condición de caída significativa.</td>
+<td>Priorizar la revisión; no es una orden de compra o venta.</td>
+</tr>
+<tr>
+<td>REFERENCIA</td>
+<td>Una dimensión usa su referencia sencilla porque el modelo no la mejoró en validación. Desde la versión <code>.div</code>, las cuatro dimensiones usan un modelo.</td>
+<td>Usar la señal observada; no atribuir ventaja predictiva a la referencia.</td>
+</tr>
+<tr>
+<td>SIN EVALUAR / NO DISPONIBLE</td>
+<td>Falta una evaluación o una variable válida.</td>
+<td>Revisar continuidad, sincronización o calentamiento.</td>
+</tr>
+<tr>
+<td>DESACTUALIZADO</td>
+<td>La última evaluación supera tres minutos de edad.</td>
+<td>Revisar salud del pipeline antes de interpretar el riesgo.</td>
+</tr>
+</tbody>
+</table>
+<p>Hay 14 combinaciones: siete observadas y siete predictivas. BTC y SOL tienen volatilidad, caída y actividad; la divergencia es una serie conjunta. Las filas normales son evaluaciones reales y no se guardan como alertas activadas.</p>
+<h3 id="reglas-y-unidades">Reglas y unidades<a class="headerlink" href="#reglas-y-unidades" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Volatilidad observada y prevista: porcentaje de volatilidad realizada de 15 rendimientos de un minuto, sin anualizar. Referencias P95 por activo calculadas con entrenamiento: BTC aproximadamente 0,539 % y SOL 1,009 %.</li>
+<li>Caída observada: rendimiento de los últimos 30 minutos bajo el P5 histórico del activo. Probabilidad futura: estima el evento al finalizar los próximos 30 minutos. El umbral de caída es aproximadamente −0,558 % BTC y −1,116 % SOL; es distinto del umbral de probabilidad que activa vigilancia predictiva.</li>
+<li>Actividad observada: máximo de volumen/P95 y operaciones/P95 de cinco minutos. Un ratio mayor o igual a 1 supera una referencia. Las referencias dependen del activo y la hora UTC del entrenamiento. La probabilidad futura estima esa actividad en los próximos cinco minutos.</li>
+<li>Divergencia observada: rendimiento SOL menos BTC, en puntos porcentuales; se compara su magnitud absoluta con el umbral histórico aproximado de 0,778 puntos. El signo indica cuál rindió más.</li>
+<li>Correlación: Pearson entre rendimientos de un minuto en 60 observaciones consecutivas; no implica causalidad.</li>
+</ul>
+<p>Las probabilidades de los gráficos se formatean como porcentajes; en la tabla detallada se muestran en escala 0–1 y con su unidad. La volatilidad utiliza porcentaje y la divergencia puntos porcentuales. Los precios están expresados en USDT.</p>
+<h2 id="datos-y-proceso">Datos y proceso<a class="headerlink" href="#datos-y-proceso" title="Permanent link">&para;</a></h2>
+<p>La fuente sigue siendo Binance Spot público, BTCUSDT y SOLUSDT. Se usan archivos oficiales mensuales de un minuto desde enero de 2022 hasta septiembre de 2026, con comprobación SHA256: 114 archivos, 4.993.759 registros de entrada y 4.993.757 registros válidos. Dos registros permanecen en cuarentena; no se fabrican velas para cerrar huecos.</p>
+<p>El vivo utiliza <code>wss://data-stream.binance.vision/stream?streams=btcusdt@kline_1m/solusdt@kline_1m</code>, únicamente velas cerradas. REST consulta <code>/api/v3/time</code> y <code>/api/v3/klines</code> en <code>https://data-api.binance.vision</code>. No requiere claves de una cuenta Binance.</p>
+<p>Flujo batch: archivos → validación y normalización → Parquet particionado → variables y etiquetas → entrenamiento/validación/prueba cronológicos → registro versionado.</p>
+<p>Flujo vivo: WebSocket y recuperación REST → Kafka → Spark Structured Streaming → PostgreSQL → Grafana. Los modelos reutilizan las funciones de variables del batch. Prometheus publica el estado operativo.</p>
+<p>La entrega conserva las cuatro dimensiones del brief y el avance funcional S01–S12. Los roles, firmas y evidencias académicas quedan fuera de esta operación del producto, conforme al alcance solicitado.</p>
+<h2 id="correcciones-incorporadas">Correcciones incorporadas<a class="headerlink" href="#correcciones-incorporadas" title="Permanent link">&para;</a></h2>
+<h3 id="recuperacion-sin-perdida-intermedia">Recuperación sin pérdida intermedia<a class="headerlink" href="#recuperacion-sin-perdida-intermedia" title="Permanent link">&para;</a></h3>
+<p>Se separó el máximo recibido del cursor reconciliado por REST. WebSocket ya no hace avanzar ese cursor. La recuperación vuelve a consultar un tramo solapado y acepta una vela intermedia aunque ya haya llegado otra posterior. Los identificadores estables y las claves únicas de PostgreSQL evitan duplicar el registro.</p>
+<p>Se recuperaron desde Binance las dos velas reales con <code>open_ms=1793232420000</code>, ausentes en ambos activos. La herramienta de reparación permite revisar otros huecos internos de las últimas 72 horas. Si el origen no ofrece una vela, informa el faltante y conserva la degradación; no inventa un precio.</p>
+<h3 id="variables-contrato-e-inferencia-coherentes">Variables, contrato e inferencia coherentes<a class="headerlink" href="#variables-contrato-e-inferencia-coherentes" title="Permanent link">&para;</a></h3>
+<p>Las sumas de cinco y sesenta minutos exigen continuidad, no solo una cantidad de filas. Los pares BTC/SOL solo se calculan para el ancla actual sincronizada; no se recicla un par antiguo como si fuera reciente.</p>
+<p>El mismo contrato valida el archivo y las ventanas. Mensajes nulos de Kafka, JSON malformados, precios no finitos, valores incompatibles con PostgreSQL y tipos inválidos se rechazan sin detener por ello la consulta de archivo.</p>
+<p>El guardado de JSON usa temporales únicos, reemplazo atómico y reintentos acotados para bloqueos transitorios de Windows.</p>
+<h3 id="senales-y-evaluacion-con-trazabilidad">Señales y evaluación con trazabilidad<a class="headerlink" href="#senales-y-evaluacion-con-trazabilidad" title="Permanent link">&para;</a></h3>
+<p><code>market_signals</code> conserva valor, umbral, origen, severidad, interpretación, acción de revisión, vigencia y versión. Las señales observadas no se presentan como predicciones. El historial filtra cruces reales; el estado actual no queda vacío.</p>
+<p>Las predicciones conservan su valor original. Al madurar, se evalúan con las reglas de su propia versión mediante <code>model_versions</code>. Las que tienen datos incompletos registran un motivo y se reintentan de forma rotativa para no bloquear otras evaluaciones maduras.</p>
+<h3 id="salud-y-alertas-operativas-reales">Salud y alertas operativas reales<a class="headerlink" href="#salud-y-alertas-operativas-reales" title="Permanent link">&para;</a></h3>
+<p><code>/health</code> y <code>/ready</code> responden HTTP 503 si el producto no está listo; <code>/health/live</code> indica disponibilidad del proceso. <code>/api/status</code> mantiene el detalle del pipeline e incorpora salud y señales; <code>/api/signals</code> devuelve las evaluaciones y su estado explícito.</p>
+<p>Se incorporaron métricas de frescura de pronósticos, continuidad y contexto, y tres reglas adicionales de Prometheus. S10/S12 comprueban las siete series recientes de la versión activa. S11 comprueba errores de consultas, incluso si Grafana devuelve HTTP 200, y exige un estado explicativo en el panel de señales.</p>
+<h3 id="evaluacion-temporal-corregida">Evaluación temporal corregida<a class="headerlink" href="#evaluacion-temporal-corregida" title="Permanent link">&para;</a></h3>
+<p>La calibración de los clasificadores se separa 30 minutos del inicio del tramo utilizado para seleccionar sus umbrales. El comando <code>training --recalibrate</code> reutiliza los clasificadores base y vuelve a calcular calibración, selección y métricas. Los regresores se conservan. La nueva versión solo se publica al terminar el proceso; el test evalúa y no elige el modelo.</p>
+<h3 id="operacion-y-persistencia">Operación y persistencia<a class="headerlink" href="#operacion-y-persistencia" title="Permanent link">&para;</a></h3>
+<p>El arranque aplica migraciones idempotentes sobre volúmenes existentes y publica la versión activa. Los scripts de arranque/entrenamiento ya tratan una imagen o un contenedor ausente como un estado recuperable, sin abortar prematuramente por <code>docker inspect</code>.</p>
+<p>Código, históricos, modelos y checkpoints están en la carpeta del repositorio; Kafka, PostgreSQL, Grafana y Prometheus conservan sus volúmenes administrados por Docker. Ninguna corrección requiere borrar esos volúmenes.</p>
+<h2 id="arrancar-verificar-y-detener">Arrancar, verificar y detener<a class="headerlink" href="#arrancar-verificar-y-detener" title="Permanent link">&para;</a></h2>
+<p>Abre Docker Desktop y espera a que el motor Linux esté disponible. Desde PowerShell:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Location</span> <span class="p">&lt;</span><span class="n">carpeta-del-repositorio</span><span class="p">&gt;</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">iniciar_producto</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">verificar_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Jupyter es independiente y opcional para consultar el producto:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">pyspark</span><span class="p">\</span><span class="n">compose</span><span class="p">.</span><span class="n">yml</span> <span class="n">up</span> <span class="n">-d</span>
+</code></pre></div>
+<p>Acceso: http://localhost:4488/lab?token=sintoken.</p>
+<p>Detener conservando datos:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">detener_producto</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">pyspark</span><span class="p">\</span><span class="n">compose</span><span class="p">.</span><span class="n">yml</span> <span class="n">stop</span>
+</code></pre></div>
+<p>Consultar logs:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">60</span> <span class="n">producer</span> <span class="n">streaming</span> <span class="n">exporter</span>
+</code></pre></div>
+<p>Reparar huecos disponibles en la fuente:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">-</span><span class="n">-no-deps</span> <span class="n">tools</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">producer</span> <span class="p">-</span><span class="n">-repair-gaps</span> <span class="p">-</span><span class="n">-hours</span> <span class="n">72</span>
+</code></pre></div>
+<p>El resultado de esa herramienta confirma publicaciones; la verificación de producto confirma además que el sink recuperó continuidad y pronósticos.</p>
+<h2 id="pruebas-reproducibles">Pruebas reproducibles<a class="headerlink" href="#pruebas-reproducibles" title="Permanent link">&para;</a></h2>
+<p>Regresiones de ingesta, señales, salud y contrato:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">-</span><span class="n">-no-deps</span> <span class="n">tools</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">unittest</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">test_ingestion</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">test_signals</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">test_health</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">test_stream_contract</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">test_training_calibration</span>
+</code></pre></div>
+<p>Pruebas con Spark, modelos guardados y velas reales (sinks aislados):</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="p">-</span><span class="n">-no-deps</span> <span class="n">-e</span> <span class="n">CRYPTOPULSE_SPARK_TESTS</span><span class="p">=</span><span class="n">1</span> <span class="n">-e</span> <span class="s1">'PYSPARK_SUBMIT_ARGS=--master local[2] --driver-memory 1g pyspark-shell'</span> <span class="n">tools</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">unittest</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">test_inference_spark</span> <span class="n">-v</span>
+</code></pre></div>
+<p>Integración Kafka, watermark, checkpoint y evaluación futura con replay identificado:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">pruebas_integracion</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Interrupción controlada real del productor y recuperación automática:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">prueba_recuperacion</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Esta última pausa únicamente el productor del proyecto durante 75 segundos, exige detectar degradación y lo restaura en un bloque <code>finally</code>. Ejecutarla interrumpe brevemente la ingesta en vivo de forma intencional; no detiene servicios ajenos.</p>
+<p>Los resultados operativos se guardan en <code>pyspark/sesiones/_runtime/</code>, incluidos <code>ingestion_repair.json</code>, <code>recovery_acceptance.json</code>, <code>integration_tests.json</code> y <code>s12.json</code>. El archivo <code>aceptacion_producto.json</code> recoge la comprobación final de esta entrega.</p>
+<h2 id="limites-que-se-muestran-explicitamente">Límites que se muestran explícitamente<a class="headerlink" href="#limites-que-se-muestran-explicitamente" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Un único broker y Spark local dentro de Docker no proporcionan alta disponibilidad ni garantía de operación ininterrumpida.</li>
+<li>Los clasificadores pueden fallar; el de caídas ha mostrado baja precisión/recall. Las métricas vigentes aparecen en el tablero y en el registro, con referencia comparativa.</li>
+<li>El regresor candidato de divergencia no mejoró su referencia; el pronóstico desplegado es cero. La utilidad de esa dimensión incluye detectar divergencia observada y cambios de correlación, sin fingir capacidad predictiva adicional.</li>
+<li>El entrenamiento/evaluación históricos usan observaciones cada 15 minutos y el vivo cada minuto. Las métricas en vivo se presentan aparte para comprobar esa diferencia de frecuencia.</li>
+<li>Las ventanas finalizadas por watermark pueden tener cobertura incompleta; se muestra cuántas no contienen cinco velas. Una reparación antigua restaura el archivo y los modelos, pero no reabre automáticamente estados de ventana ya cerrados.</li>
+<li>Las reglas operativas se consultan en Prometheus; no se ha configurado envío externo por correo o mensajería.</li>
+<li>El costo es un escenario ilustrativo configurable, no una factura de Docker.</li>
+</ul>
+<p>Fuentes públicas: <a href="https://github.com/binance/binance-public-data">Binance Public Data</a> y <a href="https://github.com/binance/binance-spot-api-docs/blob/master/faqs/market_data_only.md">Binance Market Data Only</a>. Alcance: brief técnico CryptoPulse entregado por el usuario y guía del curso hasta S12.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>

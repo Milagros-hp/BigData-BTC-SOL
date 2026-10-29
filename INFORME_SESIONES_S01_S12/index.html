@@ -1,0 +1,2776 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Monitoreo de riesgo de BTC y SOL con arquitectura Lambda (Big Data UPeU 2026-2)">
+      
+      
+      
+        <link rel="canonical" href="https://milagros-hp.github.io/BigData-BTC-SOL/INFORME_SESIONES_S01_S12/">
+      
+      
+        <link rel="prev" href="../notebooks-u1/">
+      
+      
+        <link rel="next" href="../PRODUCTO_FINAL/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Trabajo por sesión S01–S12 - CryptoPulse · Grupo 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#informe-del-trabajo-realizado-por-sesion-en-cryptopulse" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="CryptoPulse · Grupo 3" class="md-header__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CryptoPulse · Grupo 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trabajo por sesión S01–S12
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CryptoPulse · Grupo 3" class="md-nav__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CryptoPulse · Grupo 3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../instalacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalación y ejecución
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brief/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Brief técnico-analítico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 1 · Batch
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 1 · Batch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks-u1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notebooks U1 por integrante
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Trabajo por sesión S01–S12
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Trabajo por sesión S01–S12
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-vista-general-del-avance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Vista general del avance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sesion-1-arquitectura-y-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Sesión 1 — Arquitectura y entorno
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Sesión 1 — Arquitectura y entorno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos-y-aportacion-al-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos y aportación al producto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sesion-2-fundamentos-de-pyspark-aplicados-a-cryptopulse" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sesión 2 — Fundamentos de PySpark aplicados a CryptoPulse
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sesión 2 — Fundamentos de PySpark aplicados a CryptoPulse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos-y-alcance-de-la-evidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos y alcance de la evidencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sesion-3-calidad-y-almacenamiento-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Sesión 3 — Calidad y almacenamiento analítico
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Sesión 3 — Calidad y almacenamiento analítico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-comprobado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado comprobado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-salidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y salidas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sesion-4-modelos-distribuidos-y-evaluacion-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Sesión 4 — Modelos distribuidos y evaluación temporal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Sesión 4 — Modelos distribuidos y evaluación temporal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hallazgos-y-correcciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hallazgos y correcciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-selecciono" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se seleccionó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-salidas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y salidas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sesion-5-integracion-del-producto-batch-de-unidad-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Sesión 5 — Integración del producto batch de unidad 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sesión 5 — Integración del producto batch de unidad 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-y-aportacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado y aportación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reproducción
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-sesion-6-kafka-y-contrato-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Sesión 6 — Kafka y contrato de eventos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Sesión 6 — Kafka y contrato de eventos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-sesion-7-ingesta-continua-de-telemetria-de-mercado" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Sesión 7 — Ingesta continua de telemetría de mercado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Sesión 7 — Ingesta continua de telemetría de mercado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adaptacion-al-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adaptación al brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-estado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y estado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sesion-8-ventanas-watermark-y-recuperacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Sesión 8 — Ventanas watermark y recuperación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Sesión 8 — Ventanas watermark y recuperación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-implemento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se implementó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aportacion-y-limites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aportación y límites
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sesion-9-observabilidad-y-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Sesión 9 — Observabilidad y costos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Sesión 9 — Observabilidad y costos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Costos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico-y-donde-esta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó y dónde está
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-sesion-10-inferencia-en-series-de-tiempo" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Sesión 10 — Inferencia en series de tiempo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Sesión 10 — Inferencia en series de tiempo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-implemento_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se implementó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-sesion-11-bi-y-visualizacion-integrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Sesión 11 — BI y visualización integrada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Sesión 11 — BI y visualización integrada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-corrigio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se corrigió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-sesion-12-verificacion-integral-de-unidad-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Sesión 12 — Verificación integral de unidad 2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Sesión 12 — Verificación integral de unidad 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobaciones-de-integracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobaciones de integración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobaciones-del-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobaciones del producto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-artefactos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y artefactos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-guia-rapida-para-iniciar-y-revisar-el-resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Guía rápida para iniciar y revisar el resultado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Guía rápida para iniciar y revisar el resultado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicio-habitual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio habitual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detencion-sin-eliminar-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detención sin eliminar datos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-que-se-entrego-y-que-queda-fuera" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Qué se entregó y qué queda fuera
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-evidencias-consultadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Evidencias consultadas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 2 · Tiempo real
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 2 · Tiempo real
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRODUCTO_FINAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uso del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INFORME_PROYECTO_CRYPTOPULSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Informe técnico y arquitectura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 3 · Integración y DataOps
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 3 · Integración y DataOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pruebas, hardening y DataOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitaciones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limitaciones y mejoras
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equipo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Equipo y aporte individual
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositorio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repositorio y estándares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Anexos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GUIA_INICIO_LOCAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía de inicio local
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REVISION_PROYECTO_Y_GUIA_GRAFANA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Revisión del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-vista-general-del-avance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Vista general del avance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sesion-1-arquitectura-y-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Sesión 1 — Arquitectura y entorno
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Sesión 1 — Arquitectura y entorno">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos-y-aportacion-al-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos y aportación al producto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sesion-2-fundamentos-de-pyspark-aplicados-a-cryptopulse" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sesión 2 — Fundamentos de PySpark aplicados a CryptoPulse
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sesión 2 — Fundamentos de PySpark aplicados a CryptoPulse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos-y-alcance-de-la-evidencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos y alcance de la evidencia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sesion-3-calidad-y-almacenamiento-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Sesión 3 — Calidad y almacenamiento analítico
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Sesión 3 — Calidad y almacenamiento analítico">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-comprobado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado comprobado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-salidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y salidas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sesion-4-modelos-distribuidos-y-evaluacion-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Sesión 4 — Modelos distribuidos y evaluación temporal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Sesión 4 — Modelos distribuidos y evaluación temporal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hallazgos-y-correcciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hallazgos y correcciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-selecciono" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se seleccionó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-salidas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y salidas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sesion-5-integracion-del-producto-batch-de-unidad-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Sesión 5 — Integración del producto batch de unidad 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sesión 5 — Integración del producto batch de unidad 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado-y-aportacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado y aportación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reproducción
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-sesion-6-kafka-y-contrato-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Sesión 6 — Kafka y contrato de eventos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Sesión 6 — Kafka y contrato de eventos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-sesion-7-ingesta-continua-de-telemetria-de-mercado" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Sesión 7 — Ingesta continua de telemetría de mercado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Sesión 7 — Ingesta continua de telemetría de mercado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adaptacion-al-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adaptación al brief
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-estado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y estado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sesion-8-ventanas-watermark-y-recuperacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Sesión 8 — Ventanas watermark y recuperación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Sesión 8 — Ventanas watermark y recuperación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-implemento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se implementó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aportacion-y-limites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aportación y límites
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sesion-9-observabilidad-y-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Sesión 9 — Observabilidad y costos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Sesión 9 — Observabilidad y costos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Costos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico-y-donde-esta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó y dónde está
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-sesion-10-inferencia-en-series-de-tiempo" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Sesión 10 — Inferencia en series de tiempo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Sesión 10 — Inferencia en series de tiempo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-implemento_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se implementó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-comprobo_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se comprobó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-sesion-11-bi-y-visualizacion-integrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Sesión 11 — BI y visualización integrada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Sesión 11 — BI y visualización integrada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-anadio_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se añadió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-corrigio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se corrigió
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-verifico_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se verificó
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-sesion-12-verificacion-integral-de-unidad-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Sesión 12 — Verificación integral de unidad 2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Sesión 12 — Verificación integral de unidad 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objetivo_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-se-hizo_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qué se hizo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobaciones-de-integracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobaciones de integración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobaciones-del-producto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprobaciones del producto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigo-y-artefactos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Código y artefactos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-guia-rapida-para-iniciar-y-revisar-el-resultado" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Guía rápida para iniciar y revisar el resultado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Guía rápida para iniciar y revisar el resultado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicio-habitual" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio habitual
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detencion-sin-eliminar-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detención sin eliminar datos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-que-se-entrego-y-que-queda-fuera" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Qué se entregó y qué queda fuera
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-evidencias-consultadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Evidencias consultadas
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<blockquote>
+<p>Estado histórico: este documento conserva los resultados y hallazgos de su fecha. Las correcciones y la operación vigente están en <a href="../PRODUCTO_FINAL/">PRODUCTO_FINAL.md</a>.</p>
+</blockquote>
+<h1 id="informe-del-trabajo-realizado-por-sesion-en-cryptopulse">Informe del trabajo realizado por sesión en CryptoPulse<a class="headerlink" href="#informe-del-trabajo-realizado-por-sesion-en-cryptopulse" title="Permanent link">&para;</a></h1>
+<p><strong>Proyecto:</strong> CryptoPulse.<br />
+<strong>Directorio de trabajo:</strong> la carpeta del repositorio.<br />
+<strong>Cobertura:</strong> sesiones 1 a 12, unidades 1 y 2.<br />
+<strong>Fecha:</strong> 26 de octubre de 2026, America/Lima.<br />
+<strong>Criterio:</strong> capacidades funcionales adaptadas al brief de BTCUSDT y SOLUSDT, con evidencia de ejecución.</p>
+<p>Este documento explica qué se añadió, qué procesa y qué resultado dejó cada sesión. El informe general <code>docs\INFORME_PROYECTO_CRYPTOPULSE.md</code> desarrolla la arquitectura, los paneles de Grafana, las métricas y la guía completa para levantar el proyecto.</p>
+<p>La implementación no reprodujo los datasets de H&amp;M, la Biblia, los microservicios de órdenes ni los sensores físicos de los ejemplos. Conservó las capacidades técnicas del curso y las aplicó a CryptoPulse. Algunas funciones compartidas se consolidaron durante la integración; la clasificación siguiente expresa a qué capacidad de sesión corresponde cada parte, no que cada archivo aislado se escribiera exclusivamente en un único momento.</p>
+<h2 id="1-vista-general-del-avance">1. Vista general del avance<a class="headerlink" href="#1-vista-general-del-avance" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Sesión</th>
+<th>Objetivo funcional</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>Entorno y primera lectura real</td>
+<td>Docker, Jupyter, Spark y muestra BTC/SOL</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>Transformar datos con PySpark</td>
+<td>Lectura, funciones, agregaciones, ventanas, RDD y formatos</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>Preparar datos confiables</td>
+<td>Calidad, cuarentena, huecos y Parquet particionado</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>Entrenar y evaluar</td>
+<td>Cuatro dimensiones analíticas, candidatos y referencias guardados</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>Integrar el batch</td>
+<td>Verificación funcional de unidad 1</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>Publicar y consumir eventos</td>
+<td>Kafka, topics, contrato y prueba real de ida y vuelta</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>Ingerir datos de mayor frecuencia</td>
+<td>WebSocket de mercado con recuperación REST</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>Procesar con estado</td>
+<td>Ventanas, watermark, deduplicación y checkpoints</td>
+</tr>
+<tr>
+<td>S09</td>
+<td>Observar el pipeline</td>
+<td>Prometheus, exportadores, reglas y costos ilustrativos</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>Aplicar modelos a eventos nuevos</td>
+<td>Inferencia sin reentrenamiento por evento y evaluación diferida</td>
+</tr>
+<tr>
+<td>S11</td>
+<td>Integrar BI y ML</td>
+<td>Un tablero Grafana con 19 paneles</td>
+</tr>
+<tr>
+<td>S12</td>
+<td>Cerrar la integración</td>
+<td>Pruebas de recuperación, temporalidad e idempotencia; PASS</td>
+</tr>
+</tbody>
+</table>
+<p>La última comprobación integral posterior al cambio de contraseña se registró el <strong>26 de octubre de 2026 a las 21:54:34 de Lima</strong>, equivalente al 27 de octubre a las 02:54:34 UTC.</p>
+<h2 id="2-sesion-1-arquitectura-y-entorno">2. Sesión 1 — Arquitectura y entorno<a class="headerlink" href="#2-sesion-1-arquitectura-y-entorno" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S01_Arquitectura_Big_Data_Lambda_Kappa/">Guía de referencia S01</a>.</p>
+<h3 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h3>
+<p>Verificar que el motor de procesamiento funciona y decidir una arquitectura coherente con el proyecto.</p>
+<h3 id="que-se-hizo">Qué se hizo<a class="headerlink" href="#que-se-hizo" title="Permanent link">&para;</a></h3>
+<p>Se leyó el brief de CryptoPulse y se mantuvo la arquitectura Lambda: una ruta histórica para preparación y aprendizaje, otra para eventos nuevos y una salida compartida.</p>
+<p>Se preparó una imagen basada en el entorno del curso con Python 3.10, OpenJDK 21, PySpark 4.2.0, Notebook 7.6.2 y pandas 2.3.3. Se añadió nbclient para poder ejecutar notebooks automáticamente.</p>
+<p>Se crearon la configuración Compose, el script de inicio, un descargador y un notebook de verificación. El dataset mínimo pasó a ser una muestra real de velas BTCUSDT y SOLUSDT del 1 de enero de 2025: 1 440 por activo.</p>
+<p>El proyecto se preparó inicialmente en el workspace de Documents/Codex. A solicitud del usuario se copió a la carpeta del repositorio, se comprobaron los archivos y se recreó el contenedor para montar <code>pyspark\sesiones</code> en <code>/opt</code>.</p>
+<h3 id="que-se-verifico">Qué se verificó<a class="headerlink" href="#que-se-verifico" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Descarga real y hashes oficiales.</li>
+<li>2 880 filas leídas por Spark.</li>
+<li>Una SparkSession activa y respuesta de Spark UI.</li>
+<li>Esquema y campos esenciales de las velas.</li>
+<li>Resultado funcional PASS.</li>
+</ul>
+<p>El acceso inicial de la sesión restringida al motor Docker fue un bloqueo del entorno de ejecución, no una avería del Docker del usuario. Se resolvió usando ejecución con permisos adicionales.</p>
+<h3 id="archivos-y-aportacion-al-producto">Archivos y aportación al producto<a class="headerlink" href="#archivos-y-aportacion-al-producto" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\Dockerfile</code>.</li>
+<li><code>pyspark\compose.yml</code>.</li>
+<li><code>scripts\iniciar_s01.ps1</code>.</li>
+<li><code>scripts\descargar_muestra_s01.py</code>.</li>
+<li><code>pyspark\sesiones\s01-arquitectura\01_arquitectura_practica.ipynb</code>.</li>
+<li><code>pyspark\sesiones\s01-arquitectura\artifacts\verificacion_s01.json</code>.</li>
+</ul>
+<p>Esta sesión dejó el entorno reutilizable para el resto del proyecto. El token de JupyterLab es <code>sintoken</code>.</p>
+<h2 id="3-sesion-2-fundamentos-de-pyspark-aplicados-a-cryptopulse">3. Sesión 2 — Fundamentos de PySpark aplicados a CryptoPulse<a class="headerlink" href="#3-sesion-2-fundamentos-de-pyspark-aplicados-a-cryptopulse" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S02_Fundamentos_PySpark_Transformaciones_Lazy_Evaluation/">Guía de referencia S02</a>.</p>
+<h3 id="objetivo_1">Objetivo<a class="headerlink" href="#objetivo_1" title="Permanent link">&para;</a></h3>
+<p>Construir las primeras transformaciones reales y comprender cuándo Spark solo define un plan y cuándo ejecuta trabajo.</p>
+<h3 id="que-se-anadio">Qué se añadió<a class="headerlink" href="#que-se-anadio" title="Permanent link">&para;</a></h3>
+<p>Se creó el descargador mensual parametrizable con verificación de ZIP y CSV, manifiesto de procedencia, caché y selección de meses cerrados.</p>
+<p>Para la primera ejecución se descargaron diciembre de 2024 y enero de 2025 para ambos activos: cuatro archivos y <strong>178 560 velas</strong>. Ese intervalo prueba tanto la escala de milisegundos como la de microsegundos.</p>
+<p>El notebook implementó:</p>
+<ul>
+<li>Lectura por inferencia y lectura con esquema explícito.</li>
+<li>Selecciones y filtros.</li>
+<li>Conversión temporal UTC.</li>
+<li>Columnas de fecha, hora, tipo de día y dirección de vela.</li>
+<li>Rendimientos y volatilidad realizada.</li>
+<li>Agregaciones por activo y fecha.</li>
+<li>OHLC horario ordenado por tiempo, VWAP y conteo de operaciones.</li>
+<li>Muestra reproducible, escritura y relectura CSV/Parquet.</li>
+<li>RDD con <code>map</code>, <code>filter</code>, <code>flatMap</code> y <code>reduceByKey</code>, contrastado con DataFrame.</li>
+</ul>
+<h3 id="que-se-comprobo">Qué se comprobó<a class="headerlink" href="#que-se-comprobo" title="Permanent link">&para;</a></h3>
+<p>La construcción de transformaciones no creó nuevos jobs; una acción <code>count()</code> sí los creó. Se conservó el plan de ejecución.</p>
+<p>Las agregaciones horarias se contrastaron contra 60 filas originales. Se verificaron continuidad, hashes, transición temporal 2024/2025, lectura de archivos y coincidencia RDD/DataFrame.</p>
+<p>Una comprobación independiente detectó pérdida de precisión al dividir columnas Decimal antes del logaritmo. Se corrigió convirtiendo los operandos derivados a doble precisión, sin cambiar los precios originales. También se ajustó el calentamiento de las ventanas para no publicar resultados parciales como si cubrieran todo el horizonte.</p>
+<h3 id="archivos-y-alcance-de-la-evidencia">Archivos y alcance de la evidencia<a class="headerlink" href="#archivos-y-alcance-de-la-evidencia" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>scripts\descargar_historicos_s02.py</code>.</li>
+<li><code>scripts\preparar_s02.ps1</code>.</li>
+<li><code>scripts\verificar_s02.ps1</code>.</li>
+<li><code>pyspark\sesiones\s02-fundamentos\02_fundamentos_practica.ipynb</code>.</li>
+<li><code>pyspark\sesiones\s02-fundamentos\artifacts\02_fundamentos_practica_ejecutado.ipynb</code>.</li>
+<li>Carpetas de muestras, datos transformados y resúmenes en los artefactos de S02.</li>
+</ul>
+<p>La verificación inicial de dos meses produjo PASS. En la inspección para este informe, el notebook ejecutado conserva celdas sin salidas de error; el archivo JSON suelto de verificación S02 no está presente. No se recreó un PASS artificial para sustituirlo.</p>
+<p>El manifiesto de datos compartido se amplió después a 2022–2026 para S03 y S04. Por eso el intervalo actual del manifiesto y la cifra de la primera verificación S02 no son el mismo corte.</p>
+<h2 id="4-sesion-3-calidad-y-almacenamiento-analitico">4. Sesión 3 — Calidad y almacenamiento analítico<a class="headerlink" href="#4-sesion-3-calidad-y-almacenamiento-analitico" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S03_Procesamiento_Calidad_Datos_Particionamiento/">Guía de referencia S03</a>.</p>
+<h3 id="objetivo_2">Objetivo<a class="headerlink" href="#objetivo_2" title="Permanent link">&para;</a></h3>
+<p>Dejar un dataset con reglas explícitas de validez, trazabilidad de exclusiones y almacenamiento eficiente.</p>
+<h3 id="que-se-hizo_1">Qué se hizo<a class="headerlink" href="#que-se-hizo_1" title="Permanent link">&para;</a></h3>
+<p>Se descargaron los 114 archivos mensuales del periodo enero de 2022 a septiembre de 2026. El módulo de calidad verifica hashes, utiliza esquema explícito y normaliza los tiempos.</p>
+<p>Se aplicaron controles de:</p>
+<ul>
+<li>Campos requeridos y símbolos.</li>
+<li>Precios positivos y consistencia OHLC.</li>
+<li>Volumen, importe y operaciones no negativos.</li>
+<li>Alineación temporal y duración de vela.</li>
+<li>Duplicados por activo e inicio.</li>
+<li>Versiones conflictivas de una misma vela.</li>
+<li>Huecos después de la depuración.</li>
+</ul>
+<p>Se guardó cuarentena en lugar de eliminar sin rastro. Los datos válidos se escribieron en Parquet por activo, año y mes. Se registraron los huecos sin imputar precios.</p>
+<h3 id="resultado-comprobado">Resultado comprobado<a class="headerlink" href="#resultado-comprobado" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th style="text-align: right;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filas de entrada</td>
+<td style="text-align: right;">4 993 759</td>
+</tr>
+<tr>
+<td>Filas válidas</td>
+<td style="text-align: right;">4 993 757</td>
+</tr>
+<tr>
+<td>Intervalos inválidos en cuarentena</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Claves con conflicto de valores</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Retiro de filas por duplicados o conflictos</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Huecos</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>Minutos faltantes sumados por activo</td>
+<td style="text-align: right;">163</td>
+</tr>
+</tbody>
+</table>
+<p>Los dos intervalos inválidos tienen inicio 2023-03-24 12:39 UTC, uno por activo. El campo que motivó la exclusión fue el intervalo, no la ausencia de precios.</p>
+<p>Se verificó una consulta real con <code>PartitionFilters</code> en el plan físico. La salida se leyó de vuelta y sus conteos se comprobaron.</p>
+<h3 id="codigo-y-salidas">Código y salidas<a class="headerlink" href="#codigo-y-salidas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\cryptopulse\quality.py</code>.</li>
+<li><code>pyspark\sesiones\s03-calidad\artifacts\clean_parquet</code>.</li>
+<li>Carpetas <code>quarantine</code> y <code>gaps</code> bajo los artefactos de S03.</li>
+<li><code>pyspark\sesiones\_runtime\s03.json</code>.</li>
+</ul>
+<p>Esta sesión proporcionó la entrada confiable para los modelos y dejó evidencia del costo de excluir un registro: la serie puede necesitar recalentar sus ventanas al atravesar un hueco.</p>
+<h2 id="5-sesion-4-modelos-distribuidos-y-evaluacion-temporal">5. Sesión 4 — Modelos distribuidos y evaluación temporal<a class="headerlink" href="#5-sesion-4-modelos-distribuidos-y-evaluacion-temporal" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S04_ML_Distribuido_Regresion_Spark_MLlib/">Guía de referencia S04</a>.</p>
+<h3 id="objetivo_3">Objetivo<a class="headerlink" href="#objetivo_3" title="Permanent link">&para;</a></h3>
+<p>Entrenar modelos reutilizables y comprobar si aportan valor frente a una referencia simple.</p>
+<h3 id="que-se-anadio_1">Qué se añadió<a class="headerlink" href="#que-se-anadio_1" title="Permanent link">&para;</a></h3>
+<p>Se creó un módulo común de variables para evitar diferencias entre entrenamiento e inferencia. Calcula rendimientos, volatilidad realizada, actividad reciente, rango, cuerpo, estacionalidad horaria y variables conjuntas BTC–SOL.</p>
+<p>Se prepararon cuatro objetivos:</p>
+<ol>
+<li>Volatilidad futura a 15 minutos.</li>
+<li>Caída al cabo de 30 minutos.</li>
+<li>Actividad anómala de los próximos cinco minutos.</li>
+<li>Diferencia de rendimientos SOL menos BTC a 15 minutos.</li>
+</ol>
+<p>Se ajustaron cinco candidatos ML para cuatro dimensiones: dos candidatos para volatilidad, un clasificador de caídas, uno de anomalías y un regresor de divergencia.</p>
+<p>Se empleó 2022–2024 para entrenamiento, 2025 para validación y 2026 hasta septiembre para prueba. Se purgaron los 30 minutos finales antes de los límites principales. Dentro de validación, los clasificadores usan un tramo para calibración y otro para selección.</p>
+<h3 id="hallazgos-y-correcciones">Hallazgos y correcciones<a class="headerlink" href="#hallazgos-y-correcciones" title="Permanent link">&para;</a></h3>
+<p>El cálculo de correlación encontró ventanas de varianza cero. Se sustituyó la división que fallaba por una división tolerante que conserva NULL cuando la correlación no puede definirse.</p>
+<p>Los periodos no se mezclaron aleatoriamente. Las etiquetas futuras se limitaron a aprendizaje y evaluación. Las filas de entrenamiento se muestrearon cada 15 minutos después de construir las variables sobre la serie de un minuto.</p>
+<h3 id="que-se-selecciono">Qué se seleccionó<a class="headerlink" href="#que-se-selecciono" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dimensión</th>
+<th>Método elegido</th>
+<th>Criterio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volatilidad</td>
+<td>Random Forest</td>
+<td>Menor RMSE de validación</td>
+</tr>
+<tr>
+<td>Caídas</td>
+<td>Regresión logística calibrada</td>
+<td>Menor Brier frente a frecuencia histórica</td>
+</tr>
+<tr>
+<td>Anomalías</td>
+<td>Regresión logística calibrada</td>
+<td>Menor Brier frente a frecuencia histórica</td>
+</tr>
+<tr>
+<td>Divergencia</td>
+<td>Baseline cero</td>
+<td>Ridge no mejoró el RMSE de referencia</td>
+</tr>
+</tbody>
+</table>
+<p>Los modelos guardados se recargaron para puntuar el conjunto de prueba. Se conservaron predicciones, métricas, umbrales, versiones y métodos no seleccionados.</p>
+<p>La referencia de divergencia no es un modelo omitido: es una decisión de selección explícita respaldada por la comparación. Las probabilidades de clasificación tampoco se presentan como aciertos garantizados.</p>
+<h3 id="codigo-y-salidas_1">Código y salidas<a class="headerlink" href="#codigo-y-salidas_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\cryptopulse\features.py</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\training.py</code>.</li>
+<li><code>pyspark\sesiones\s04-modelos\artifacts\model_registry.json</code>.</li>
+<li>Carpetas <code>models</code>, <code>model_dataset</code>, <code>pair_dataset</code> y <code>test_predictions</code> bajo S04.</li>
+<li><code>pyspark\sesiones\_runtime\s04.json</code>.</li>
+</ul>
+<p>La versión inspeccionada es <code>20261026T223241Z</code>. Las métricas detalladas se incluyen en el informe general.</p>
+<h2 id="6-sesion-5-integracion-del-producto-batch-de-unidad-1">6. Sesión 5 — Integración del producto batch de unidad 1<a class="headerlink" href="#6-sesion-5-integracion-del-producto-batch-de-unidad-1" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S05_Evaluacion_Unidad_1/">Guía de referencia S05</a>.</p>
+<h3 id="objetivo_4">Objetivo<a class="headerlink" href="#objetivo_4" title="Permanent link">&para;</a></h3>
+<p>Comprobar que los componentes batch forman un recorrido integrado y persistido.</p>
+<h3 id="que-se-hizo_2">Qué se hizo<a class="headerlink" href="#que-se-hizo_2" title="Permanent link">&para;</a></h3>
+<p>Se implementó <code>verify_u1()</code> en el módulo de entrenamiento. Comprueba la verificación de calidad, la existencia del dataset válido, las cuatro dimensiones, los metadatos de modelos guardados, las particiones con filas y las métricas de prueba.</p>
+<h3 id="resultado-y-aportacion">Resultado y aportación<a class="headerlink" href="#resultado-y-aportacion" title="Permanent link">&para;</a></h3>
+<p>El cierre produjo <strong>PASS</strong> sobre 4 993 757 filas de calidad y cuatro dimensiones persistidas y evaluadas. Confirmó que la plataforma podía pasar de datos públicos a salidas analíticas y artefactos de modelo.</p>
+<p>No se realizó una prueba teórica ni se asignó una calificación de la asignatura. Este cierre es funcional.</p>
+<h3 id="reproduccion">Reproducción<a class="headerlink" href="#reproduccion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Location</span> <span class="p">&lt;</span><span class="n">carpeta-del-repositorio</span><span class="p">&gt;</span>
+<span class="n">docker</span> <span class="n">exec</span> <span class="n">-e</span> <span class="n">PYTHONPATH</span><span class="p">=/</span><span class="n">opt</span> <span class="n">cryptopulse-pyspark</span> <span class="n">python</span> <span class="n">-m</span> <span class="n">cryptopulse</span><span class="p">.</span><span class="n">training</span> <span class="p">-</span><span class="n">-verify-u1</span>
+</code></pre></div>
+<p>El registro está en <code>pyspark\sesiones\_runtime\s05.json</code>.</p>
+<h2 id="7-sesion-6-kafka-y-contrato-de-eventos">7. Sesión 6 — Kafka y contrato de eventos<a class="headerlink" href="#7-sesion-6-kafka-y-contrato-de-eventos" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S06_Ingesta_Eventos_Empresariales_Kafka/">Guía de referencia S06</a>.</p>
+<h3 id="objetivo_5">Objetivo<a class="headerlink" href="#objetivo_5" title="Permanent link">&para;</a></h3>
+<p>Transmitir eventos de mercado con un contrato que pueda validar un consumidor independiente.</p>
+<h3 id="que-se-anadio_2">Qué se añadió<a class="headerlink" href="#que-se-anadio_2" title="Permanent link">&para;</a></h3>
+<p>Se configuró Kafka en modo KRaft, Kafka UI y una red Docker propia. Se crearon los topics de BTC y SOL con tres particiones, además de tópicos separados para pruebas.</p>
+<p>El evento de negocio adaptado es <code>market.candle.closed</code>, versión de esquema 1. Su clave temporal identifica activo, intervalo e inicio. El contrato incluye precios, actividad, tiempos, confirmación de cierre, modo de origen y transporte.</p>
+<p>Se añadió el esquema JSON y una función ejecutable que valida antes de publicar y al recibir. La política de publicación espera confirmación del broker.</p>
+<h3 id="que-se-comprobo_1">Qué se comprobó<a class="headerlink" href="#que-se-comprobo_1" title="Permanent link">&para;</a></h3>
+<p>El verificador publicó un mensaje de prueba con identificador único y lo leyó en la partición y offset devueltos por Kafka. Esta prueba se realiza fuera de los topics de mercado.</p>
+<p>Se comprobó también la validación del esquema sobre una vela histórica real. El despliegue usa un broker y no ofrece replicación de alta disponibilidad.</p>
+<h3 id="archivos">Archivos<a class="headerlink" href="#archivos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>platform.yml</code>.</li>
+<li><code>schemas\market-kline-v1.schema.json</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\contract.py</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\verify.py</code>, opción <code>6</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s06.json</code>.</li>
+</ul>
+<h2 id="8-sesion-7-ingesta-continua-de-telemetria-de-mercado">8. Sesión 7 — Ingesta continua de telemetría de mercado<a class="headerlink" href="#8-sesion-7-ingesta-continua-de-telemetria-de-mercado" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S07_Ingesta_Eventos_IoT_Sensores_Tiempo_Real/">Guía de referencia S07</a>.</p>
+<h3 id="adaptacion-al-brief">Adaptación al brief<a class="headerlink" href="#adaptacion-al-brief" title="Permanent link">&para;</a></h3>
+<p>La guía utiliza sensores IoT. CryptoPulse necesita cotizaciones y actividad de mercado. Se adaptó la capacidad de ingesta continua al WebSocket público de Binance; no se crearon lecturas de temperatura, dispositivos falsos ni un flujo MQTT ajeno al proyecto.</p>
+<p>Esta adaptación implementa la funcionalidad del producto y no acredita por sí sola un requisito académico específico de hardware físico.</p>
+<h3 id="que-se-hizo_3">Qué se hizo<a class="headerlink" href="#que-se-hizo_3" title="Permanent link">&para;</a></h3>
+<p>Se construyó un productor separado del notebook. Al iniciar, recupera contexto con REST; después escucha ambos streams WebSocket. Solo publica cierres confirmados.</p>
+<p>Se añadieron recuperación periódica por REST, reconexión con espera creciente, validación, identificadores estables, clave de particionado por activo y estado persistido del último inicio publicado.</p>
+<p>Los modos <code>live</code> y <code>backfill</code> distinguen un evento reciente del contexto recuperado. No equivalen a dato real frente a dato simulado: ambos usan velas reales.</p>
+<h3 id="que-se-verifico_1">Qué se verificó<a class="headerlink" href="#que-se-verifico_1" title="Permanent link">&para;</a></h3>
+<p>Se recibió tráfico WebSocket, se publicaron cierres reales, se consumió un último evento de cada topic y se verificaron contrato, símbolo, clave, partición y offset. La comprobación identificó mensajes cuyo transporte era WebSocket.</p>
+<h3 id="codigo-y-estado">Código y estado<a class="headerlink" href="#codigo-y-estado" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\cryptopulse\producer.py</code>.</li>
+<li>Servicio <code>producer</code> de Compose.</li>
+<li><code>pyspark\sesiones\_runtime\producer_status.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s07.json</code>.</li>
+</ul>
+<h2 id="9-sesion-8-ventanas-watermark-y-recuperacion">9. Sesión 8 — Ventanas watermark y recuperación<a class="headerlink" href="#9-sesion-8-ventanas-watermark-y-recuperacion" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S08_Procesamiento_Streaming_Spark_Ventanas_Watermarking/">Guía de referencia S08</a>.</p>
+<h3 id="objetivo_6">Objetivo<a class="headerlink" href="#objetivo_6" title="Permanent link">&para;</a></h3>
+<p>Consumir continuamente con semántica temporal definida y capacidad de retomar después de una interrupción.</p>
+<h3 id="que-se-implemento">Qué se implementó<a class="headerlink" href="#que-se-implemento" title="Permanent link">&para;</a></h3>
+<p>El proceso <code>streaming</code> usa el conector oficial Spark–Kafka y tres consultas:</p>
+<ol>
+<li>Archivo validado en PostgreSQL.</li>
+<li>Ventanas fijas de cinco minutos.</li>
+<li>Ventanas deslizantes de cinco minutos con paso de un minuto.</li>
+</ol>
+<p>Las consultas de ventanas usan watermark de dos minutos y deduplicación por identificador. Se guardan offsets, commits y estado en checkpoints de <code>pyspark\sesiones\_runtime\checkpoints</code>.</p>
+<p>El archivo principal conserva eventos válidos aunque una consulta de ventanas los considere demasiado tardíos. Las claves de PostgreSQL impiden duplicados persistidos.</p>
+<h3 id="que-se-comprobo_2">Qué se comprobó<a class="headerlink" href="#que-se-comprobo_2" title="Permanent link">&para;</a></h3>
+<p>La verificación revisó suficientes velas por activo, filas de los dos tipos de ventana y existencia de commits y estado.</p>
+<p>En el cierre integrado se ejecutó además esta secuencia aislada:</p>
+<ul>
+<li>Se envió dos veces una vela real: quedó una fila.</li>
+<li>Se envió otra diez minutos posterior: quedaron dos.</li>
+<li>Se envió un nuevo evento anterior al watermark: siguieron dos.</li>
+<li>Se detuvo la consulta.</li>
+<li>Se envió otro evento y se reinició con el mismo checkpoint y sink: quedaron tres.</li>
+</ul>
+<p>Se verificó al menos una fila descartada por watermark. La prueba se realizó con un topic exclusivo, sin sustituir precios del flujo en vivo.</p>
+<h3 id="aportacion-y-limites">Aportación y límites<a class="headerlink" href="#aportacion-y-limites" title="Permanent link">&para;</a></h3>
+<p>Quedó comprobada la entrega al menos una vez con escrituras idempotentes, no una transacción global exactamente una vez. El trigger de 15 segundos es una configuración de procesamiento; no cambia la frecuencia de cierre de las velas.</p>
+<p>Código: <code>pyspark\sesiones\cryptopulse\stream.py</code>. Evidencia: <code>pyspark\sesiones\_runtime\s08.json</code> e <code>integration_tests.json</code>.</p>
+<h2 id="10-sesion-9-observabilidad-y-costos">10. Sesión 9 — Observabilidad y costos<a class="headerlink" href="#10-sesion-9-observabilidad-y-costos" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S09_Observabilidad_Pipeline_Grafana_Costos/">Guía de referencia S09</a>.</p>
+<h3 id="objetivo_7">Objetivo<a class="headerlink" href="#objetivo_7" title="Permanent link">&para;</a></h3>
+<p>Distinguir un pipeline sano de otro que dejó de recibir, procesar o actualizar información.</p>
+<h3 id="que-se-anadio_3">Qué se añadió<a class="headerlink" href="#que-se-anadio_3" title="Permanent link">&para;</a></h3>
+<p>Se levantaron Prometheus, Kafka exporter, el exportador propio de CryptoPulse y Grafana.</p>
+<p>El exportador proporciona conexión WebSocket, heartbeats, eventos publicados, antigüedad de velas, duración de lotes, ritmo de entrada y descartes por watermark. El lag se estima comparando offsets del broker con los procesados por Spark, en lugar de asumir que el consumidor Spark confirma offsets de un consumer group convencional.</p>
+<p>Se configuraron cinco reglas operativas: exportador no disponible, velas antiguas, heartbeat Spark detenido, lag alto y ausencia de mensajes WebSocket.</p>
+<h3 id="costos">Costos<a class="headerlink" href="#costos" title="Permanent link">&para;</a></h3>
+<p>Se añadió una calculadora parametrizable de CPU, RAM y almacenamiento. Los supuestos iniciales producen 65.145 USD/mes, expresamente como ejemplo ilustrativo. No es una factura del equipo ni un precio actual de un proveedor.</p>
+<h3 id="que-se-verifico-y-donde-esta">Qué se verificó y dónde está<a class="headerlink" href="#que-se-verifico-y-donde-esta" title="Permanent link">&para;</a></h3>
+<p>Los tres targets de Prometheus estuvieron <code>up</code> y las cinco reglas se cargaron. La configuración está en:</p>
+<ul>
+<li><code>observability\prometheus.yml</code>.</li>
+<li><code>observability\alerts.yml</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\exporter.py</code>.</li>
+<li><code>config\cost-assumptions.json</code>.</li>
+<li><code>scripts\actualizar_costos.ps1</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s09.json</code>.</li>
+</ul>
+<p>No se configuró un canal externo de envío de alertas.</p>
+<h2 id="11-sesion-10-inferencia-en-series-de-tiempo">11. Sesión 10 — Inferencia en series de tiempo<a class="headerlink" href="#11-sesion-10-inferencia-en-series-de-tiempo" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S10_Series_Tiempo_Inferencia_Streaming_MLlib/">Guía de referencia S10</a>.</p>
+<h3 id="objetivo_8">Objetivo<a class="headerlink" href="#objetivo_8" title="Permanent link">&para;</a></h3>
+<p>Reutilizar los modelos validados sobre información nueva y medir el pronóstico cuando se conozca el futuro.</p>
+<h3 id="que-se-implemento_1">Qué se implementó<a class="headerlink" href="#que-se-implemento_1" title="Permanent link">&para;</a></h3>
+<p>El bundle carga modelos y umbrales del registro. Cada micro-lote con eventos nuevos consulta hasta 180 velas recientes por activo, calcula variables con las funciones comunes y selecciona el último contexto válido.</p>
+<p>Se generan las siete salidas del sistema sin reentrenar los modelos. Se guardan emisión, horizonte, versión, método, valor pronosticado, baseline, indicador observado y bandera de alerta.</p>
+<p>La verdad futura se calcula solo cuando se dispone del cierre final y de todas las velas consecutivas necesarias. Entonces se completan <code>actual</code> y <code>evaluated_at</code>.</p>
+<h3 id="que-se-comprobo_3">Qué se comprobó<a class="headerlink" href="#que-se-comprobo_3" title="Permanent link">&para;</a></h3>
+<p>Se verificó que el streaming tenía inferencia habilitada y que las cuatro dimensiones estaban presentes en las siete combinaciones esperadas.</p>
+<p>Las pruebas posteriores generaron siete predicciones replay reales y evaluaron sus resultados. Cambiar los cierres posteriores al momento de emisión no modificó las variables anteriores. Insertar otra vez los mismos pronósticos no aumentó la cantidad de filas.</p>
+<p>En la captura actual las cuatro dimensiones ya cuentan con predicciones live evaluadas, además de las de replay.</p>
+<h3 id="codigo">Código<a class="headerlink" href="#codigo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\cryptopulse\inference.py</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\db.py</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\features.py</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s10.json</code>.</li>
+</ul>
+<p>La divergencia usa el baseline elegido en validación. Que su valor sea cero no es una falla del motor ni una garantía de que ambos activos no divergirán.</p>
+<h2 id="12-sesion-11-bi-y-visualizacion-integrada">12. Sesión 11 — BI y visualización integrada<a class="headerlink" href="#12-sesion-11-bi-y-visualizacion-integrada" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S11_BI_ML_Distribuido_Spark_Grafana/">Guía de referencia S11</a>.</p>
+<h3 id="objetivo_9">Objetivo<a class="headerlink" href="#objetivo_9" title="Permanent link">&para;</a></h3>
+<p>Unir los indicadores históricos, las predicciones y la salud técnica en una historia consultable.</p>
+<h3 id="que-se-anadio_4">Qué se añadió<a class="headerlink" href="#que-se-anadio_4" title="Permanent link">&para;</a></h3>
+<p>Se publicaron en PostgreSQL <strong>3 468 resúmenes diarios</strong> correspondientes al histórico válido y <strong>12 filas de métricas</strong>: cuatro dimensiones por las variantes de comparación candidato, referencia y método desplegado en prueba.</p>
+<p>Se configuraron una fuente PostgreSQL de solo lectura y una fuente Prometheus en Grafana. El tablero unificado tiene 19 paneles: 13 consultan PostgreSQL y seis usan Prometheus.</p>
+<p>Los paneles muestran precios de cierre, frescura, cuatro dimensiones, correlación, alertas, evaluación histórica, evaluación en vivo, actividad y percentiles, estado de conexión, lag, duración de lotes y costo ilustrativo.</p>
+<p>No se usó Pushgateway para publicar las predicciones persistentes: los resultados de negocio se consultan en PostgreSQL y las métricas operativas se exponen mediante scraping.</p>
+<h3 id="que-se-corrigio">Qué se corrigió<a class="headerlink" href="#que-se-corrigio" title="Permanent link">&para;</a></h3>
+<p>Las macros de tiempo de Grafana no interpretaron correctamente una expresión anidada. Se sustituyeron por límites de epoch sobre el campo en milisegundos. También se forzó aritmética de 64 bits para evitar el desbordamiento al multiplicar segundos por mil.</p>
+<h3 id="que-se-verifico_2">Qué se verificó<a class="headerlink" href="#que-se-verifico_2" title="Permanent link">&para;</a></h3>
+<p>Se comprobó la salud de ambas fuentes y se ejecutaron las 13 consultas SQL de los paneles. No se dio por válida una petición HTTP fallida solo porque no hubiera un campo de error en una respuesta incompleta.</p>
+<h3 id="archivos_1">Archivos<a class="headerlink" href="#archivos_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\cryptopulse\publish_batch.py</code>.</li>
+<li><code>observability\grafana\provisioning</code>.</li>
+<li><code>observability\grafana\dashboards\cryptopulse.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s11.json</code>.</li>
+</ul>
+<h2 id="13-sesion-12-verificacion-integral-de-unidad-2">13. Sesión 12 — Verificación integral de unidad 2<a class="headerlink" href="#13-sesion-12-verificacion-integral-de-unidad-2" title="Permanent link">&para;</a></h2>
+<p><a href="https://262bigdata.github.io/lambda26/sesiones/S12_Evaluacion_Unidad_2/">Guía de referencia S12</a>.</p>
+<h3 id="objetivo_10">Objetivo<a class="headerlink" href="#objetivo_10" title="Permanent link">&para;</a></h3>
+<p>Comprobar el recorrido completo desde fuente pública a visualización y recuperación.</p>
+<h3 id="que-se-hizo_4">Qué se hizo<a class="headerlink" href="#que-se-hizo_4" title="Permanent link">&para;</a></h3>
+<p>Se creó una batería de integración con velas históricas reales en un topic separado. También se creó un verificador del producto que consulta los servicios y los registros de las sesiones anteriores.</p>
+<h3 id="comprobaciones-de-integracion">Comprobaciones de integración<a class="headerlink" href="#comprobaciones-de-integracion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Prueba</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evento real válido</td>
+<td>Aceptado</td>
+</tr>
+<tr>
+<td>Seis variantes inválidas</td>
+<td>Rechazadas</td>
+</tr>
+<tr>
+<td>Duplicado</td>
+<td>Contado una vez</td>
+</tr>
+<tr>
+<td>Evento anterior al watermark</td>
+<td>Descartado</td>
+</tr>
+<tr>
+<td>Recuperación de checkpoint y sink</td>
+<td>Correcta</td>
+</tr>
+<tr>
+<td>Cuatro dimensiones en replay</td>
+<td>Siete pronósticos generados y evaluados</td>
+</tr>
+<tr>
+<td>Modificar futuro sin alterar variables pasadas</td>
+<td>Correcto</td>
+</tr>
+<tr>
+<td>Repetir inserción de pronósticos</td>
+<td>Sin duplicar filas</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comprobaciones-del-producto">Comprobaciones del producto<a class="headerlink" href="#comprobaciones-del-producto" title="Permanent link">&para;</a></h3>
+<p>Se revisaron los PASS de S03 a S11, tráfico de ambos activos, ventanas, checkpoints, inferencia, frescura, duplicados, targets, reglas, fuentes de Grafana, consultas de paneles y resultado de integración.</p>
+<p>El verificador reutiliza la evidencia de integración guardada; ejecutar solo <code>verificar_producto.ps1</code> no vuelve a ejecutar todos los escenarios de la batería ni reentrena.</p>
+<h3 id="resultado">Resultado<a class="headerlink" href="#resultado" title="Permanent link">&para;</a></h3>
+<p><strong>S12: PASS.</strong> El registro más reciente inspeccionado es posterior al cambio de contraseña de Grafana y muestra resultados futuros live evaluados en las cuatro dimensiones.</p>
+<p>La comprobación es funcional. No sustituye una sustentación individual, una evaluación teórica ni la aprobación del docente.</p>
+<h3 id="codigo-y-artefactos">Código y artefactos<a class="headerlink" href="#codigo-y-artefactos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pyspark\sesiones\cryptopulse\integration.py</code>.</li>
+<li><code>pyspark\sesiones\cryptopulse\verify.py</code>.</li>
+<li><code>scripts\pruebas_integracion.ps1</code>.</li>
+<li><code>scripts\verificar_producto.ps1</code>.</li>
+<li><code>pyspark\sesiones\_runtime\integration_tests.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\s12.json</code>.</li>
+</ul>
+<h2 id="14-guia-rapida-para-iniciar-y-revisar-el-resultado">14. Guía rápida para iniciar y revisar el resultado<a class="headerlink" href="#14-guia-rapida-para-iniciar-y-revisar-el-resultado" title="Permanent link">&para;</a></h2>
+<p>La guía completa de requisitos, reconstrucción, entrenamiento y solución de problemas está en el informe general.</p>
+<h3 id="inicio-habitual">Inicio habitual<a class="headerlink" href="#inicio-habitual" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Abrir Docker Desktop y esperar al motor Linux.</li>
+<li>Abrir PowerShell.</li>
+<li>Ejecutar:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-Location</span> <span class="p">&lt;</span><span class="n">carpeta-del-repositorio</span><span class="p">&gt;</span>
+
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">iniciar_producto</span><span class="p">.</span><span class="n">ps1</span>
+<span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">verificar_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Si se acaba de iniciar desde frío, esperar al contexto de datos y al cierre de una vela antes de considerar definitiva una primera comprobación.</p>
+<h3 id="acceso">Acceso<a class="headerlink" href="#acceso" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://localhost:43000/d/cryptopulse-main">Tablero Grafana</a>: usuario <strong>admin</strong>, contraseña <strong>admin2026!</strong>.</li>
+<li><a href="http://localhost:48085">Kafka UI</a>.</li>
+<li><a href="http://localhost:49090">Prometheus</a>.</li>
+<li><a href="http://localhost:48000/api/status">Estado JSON</a>.</li>
+<li><a href="http://localhost:4488/lab?token=sintoken">JupyterLab</a>: token <strong>sintoken</strong>.</li>
+</ul>
+<h3 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="nb">ps</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">100</span> <span class="n">producer</span>
+<span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">platform</span><span class="p">.</span><span class="n">yml</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">100</span> <span class="n">streaming</span>
+</code></pre></div>
+<h3 id="detencion-sin-eliminar-datos">Detención sin eliminar datos<a class="headerlink" href="#detencion-sin-eliminar-datos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-NoProfile</span> <span class="n">-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-File</span> <span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">detener_producto</span><span class="p">.</span><span class="n">ps1</span>
+</code></pre></div>
+<p>Los notebooks son un servicio separado:</p>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="p">.\</span><span class="n">pyspark</span><span class="p">\</span><span class="n">compose</span><span class="p">.</span><span class="n">yml</span> <span class="n">stop</span>
+</code></pre></div>
+<h2 id="15-que-se-entrego-y-que-queda-fuera">15. Qué se entregó y qué queda fuera<a class="headerlink" href="#15-que-se-entrego-y-que-queda-fuera" title="Permanent link">&para;</a></h2>
+<p>Se entregó un producto local que integra las capacidades funcionales previstas hasta la unidad 2: preparación histórica, modelos evaluados, ingesta pública, streaming con estado, persistencia, observabilidad y BI.</p>
+<p>Los resultados no equivalen a haber ejecutado hardware IoT, desplegado un clúster de alta disponibilidad o completado las sesiones 13 a 16. Tampoco se añadieron capturas, diapositivas, asignaciones individuales ni calificaciones, porque el alcance solicitado priorizó el producto.</p>
+<p>La configuración de arranque, los scripts y el código permanecen en la carpeta del repositorio. Los informes describen el estado implementado y dejan explícitas las diferencias frente a los ejemplos del curso.</p>
+<h2 id="16-evidencias-consultadas">16. Evidencias consultadas<a class="headerlink" href="#16-evidencias-consultadas" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Brief técnico analítico CryptoPulse proporcionado por el equipo.</li>
+<li><a href="https://262bigdata.github.io/lambda26/">Sitio del curso</a>.</li>
+<li><a href="https://github.com/262bigdata/lambda26">Repositorio del curso</a>, base consultada <code>973ac3020b573a7c66fd925f7d07a9f2553411ec</code>.</li>
+<li>Notebook y verificación inicial S01.</li>
+<li>Notebook ejecutado de S02 y artefactos presentes.</li>
+<li>Manifiesto histórico 2022–2026 y controles de S03.</li>
+<li>Registro de modelos y predicciones de prueba de S04.</li>
+<li>JSON funcionales de S03 a S12.</li>
+<li>Estado de los servicios, consultas PostgreSQL y configuración real de Grafana.</li>
+<li><code>pyspark\sesiones\_runtime\report_snapshot.json</code>.</li>
+<li><code>pyspark\sesiones\_runtime\report_evidence.json</code>.</li>
+</ul>
+<p>Los contadores live se atribuyen al corte operativo indicado en el informe general. Los resultados históricos y los PASS se presentan con su alcance, sin convertir pruebas funcionales en aprobaciones académicas.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
