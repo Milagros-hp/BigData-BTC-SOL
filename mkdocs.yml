@@ -1,0 +1,50 @@
+site_name: CryptoPulse · Grupo 3
+site_description: Monitoreo de riesgo de BTC y SOL con arquitectura Lambda (Big Data UPeU 2026-2)
+site_url: https://milagros-hp.github.io/BigData-BTC-SOL/
+repo_url: https://github.com/Milagros-hp/BigData-BTC-SOL
+repo_name: Milagros-hp/BigData-BTC-SOL
+docs_dir: docs
+
+nav:
+  - Inicio: index.md
+  - Instalación y ejecución: instalacion.md
+  - Brief técnico-analítico: brief.md
+  - Unidad 1 · Batch:
+      - Notebooks U1 por integrante: notebooks-u1.md
+      - Trabajo por sesión S01–S12: INFORME_SESIONES_S01_S12.md
+  - Unidad 2 · Tiempo real:
+      - Uso del tablero: PRODUCTO_FINAL.md
+      - Informe técnico y arquitectura: INFORME_PROYECTO_CRYPTOPULSE.md
+  - Unidad 3 · Integración y DataOps:
+      - Pruebas, hardening y DataOps: hardening.md
+      - Limitaciones y mejoras: limitaciones.md
+  - Equipo y aporte individual: equipo.md
+  - Repositorio y estándares: repositorio.md
+  - Anexos:
+      - Guía de inicio local: GUIA_INICIO_LOCAL.md
+      - Revisión del tablero: REVISION_PROYECTO_Y_GUIA_GRAFANA.md
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+
+plugins:
+  - search

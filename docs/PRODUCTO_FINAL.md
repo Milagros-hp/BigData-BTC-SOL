@@ -45,7 +45,7 @@ El archivo contiene 28 elementos: cuatro encabezados de sección, una guía y 23
 | NORMAL | Evaluación reciente sin cruce de su umbral. | Seguir la evolución y contrastar dimensiones. |
 | VIGILANCIA | Cruce real de referencia observada o predictiva. | Revisar valor, umbral, origen y contexto. |
 | ALERTA | Cruce de una condición de caída significativa. | Priorizar la revisión; no es una orden de compra o venta. |
-| REFERENCIA | Pronóstico constante de divergencia cero seleccionado por validación. | Usar la divergencia observada para detectar desacoplamiento; no atribuir ventaja predictiva al cero. |
+| REFERENCIA | Una dimensión usa su referencia sencilla porque el modelo no la mejoró en validación. Desde la versión `.div`, las cuatro dimensiones usan un modelo. | Usar la señal observada; no atribuir ventaja predictiva a la referencia. |
 | SIN EVALUAR / NO DISPONIBLE | Falta una evaluación o una variable válida. | Revisar continuidad, sincronización o calentamiento. |
 | DESACTUALIZADO | La última evaluación supera tres minutos de edad. | Revisar salud del pipeline antes de interpretar el riesgo. |
 

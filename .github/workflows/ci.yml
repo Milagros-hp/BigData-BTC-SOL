@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Dependencias (mismas versiones que las imágenes)
+        run: pip install pyspark==4.2.0 pandas==2.3.3 kafka-python==3.0.12 psycopg2-binary==2.9.13 nbformat
+      - name: Pruebas unitarias
+        working-directory: pyspark/sesiones
+        env:
+          CRYPTOPULSE_ROOT: ${{ github.workspace }}/pyspark/sesiones
+        run: python -m unittest -v cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion
+      - name: Archivos JSON válidos (tablero, contrato, configuración)
+        run: |
+          for f in observability/grafana/dashboards/*.json schemas/*.json config/*.json; do
+            python -m json.tool "$f" > /dev/null && echo "OK $f"
+          done
+      - name: Notebooks U1 válidos
+        run: python -c "import glob,nbformat; [nbformat.validate(nbformat.read(p, as_version=4)) or print('OK', p) for p in glob.glob('pyspark/sesiones/u1-dimensiones/*.ipynb')]"
+      - name: Compose válido
+        run: |
+          cp .env.example .env
+          docker compose -f platform.yml config --quiet
+          docker compose -f pyspark/compose.yml config --quiet

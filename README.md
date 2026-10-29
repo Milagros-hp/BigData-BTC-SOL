@@ -1,5 +1,9 @@
 # CryptoPulse
 
+**Big Data · UPeU 2026-2 · Grupo 3** — Franck Albertson Coaquira Justo (volatilidad), Julmer Quispe Apaza (caídas), Abdul Quispe Condori (actividad anómala) y Luz Milagros Huanca Pacco (divergencia BTC–SOL).
+
+Documentación completa (MkDocs): <https://milagros-hp.github.io/BigData-BTC-SOL/>. Instalación desde cero: [docs/instalacion.md](docs/instalacion.md). Brief del equipo: [docs/brief.md](docs/brief.md). Notebooks U1 por integrante: [pyspark/sesiones/u1-dimensiones/](pyspark/sesiones/u1-dimensiones/).
+
 La versión operativa corregida y su guía de uso están en [docs/PRODUCTO_FINAL.md](docs/PRODUCTO_FINAL.md). El tablero distingue **NORMAL**, **VIGILANCIA**, **ALERTA**, **REFERENCIA** y datos ausentes o atrasados. No genera alertas artificiales para llenar una tabla. `/health` comprueba continuidad y siete pronósticos recientes; `/api/signals` explica las evaluaciones actuales.
 
 Plataforma funcional de análisis histórico y en vivo para BTCUSDT y SOLUSDT en Binance Spot. Proyecto activo en la carpeta del repositorio, adaptado al brief del equipo y a las capacidades de las sesiones 1 a 12 del curso.
@@ -49,9 +53,9 @@ Los datos de mercado sustituyen el caso de sensores de la guía. No se añaden s
 | Volatilidad | Volatilidad realizada futura en porcentaje sin anualizar | 15 minutos | Random Forest |
 | Caídas | Probabilidad calibrada de rendimiento bajo el umbral histórico del activo | 30 minutos | Regresión logística |
 | Actividad anómala | Probabilidad de actividad futura sobre referencias de volumen y operaciones por activo y hora UTC | 5 minutos | Regresión logística |
-| Divergencia | Rendimiento SOL menos BTC en puntos porcentuales | 15 minutos | Referencia de divergencia cero |
+| Divergencia | Tamaño de la separación \|SOL − BTC\| en puntos porcentuales | 15 minutos | Regresión Ridge |
 
-Se entrenó también un regresor de divergencia. No mejoró la referencia en validación, por lo que la política conservó el baseline. Las métricas del candidato y de la referencia permanecen disponibles en el registro de modelos. El tablero muestra el método que está usando el producto.
+Predecir la dirección de la divergencia (SOL − BTC con signo) no mejoró la referencia cero. Por eso la dimensión se reformuló como el tamaño de la separación: Ridge supera al promedio histórico en validación 2025 (RMSE 0,219 frente a 0,244) y en prueba 2026 (0,149 frente a 0,198). Se reentrena con `python -m cryptopulse.training --divergence`.
 
 La volatilidad retrospectiva y futura se define como 100 por la raíz de la suma de cuadrados de 15 rendimientos logarítmicos de un minuto, sin anualizar. Los precios originales se conservan como decimales y los cocientes derivados se calculan en doble precisión. Las variables solo utilizan datos disponibles al cierre de la vela.
 
