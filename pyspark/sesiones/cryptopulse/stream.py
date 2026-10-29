@@ -14,6 +14,8 @@ from cryptopulse import db
 
 BOOTSTRAP=os.environ.get("KAFKA_BOOTSTRAP","kafka:9092")
 TOPICS="market.klines.btcusdt,market.klines.solusdt"
+TRADE_TOPICS="market.trades.btcusdt,market.trades.solusdt"
+LARGE_TRADE_USDT=100000.0
 INFERENCE=os.environ.get("INFERENCE_ENABLED","false").lower()=="true"
 running=True
 
@@ -24,6 +26,42 @@ def valid_market_payload(raw):
         return True
     except (ValueError,KeyError,TypeError,ArithmeticError):
         return False
+
+def trade_flow_query(spark):
+    """Eventos empresariales: flujo comprador/vendedor por minuto con watermark y deduplicacion."""
+    fields=[StructField(k,StringType()) for k in ["event_id","event_type","symbol","side","source","price","quantity","quote_usdt"]]
+    fields+=[StructField(k,LongType()) for k in ["schema_version","trade_id","trade_ms"]]+[StructField("synthetic",BooleanType())]
+    # Las operaciones son un flujo auxiliar de alto volumen: si la retencion de Kafka ya
+    # descarto offsets, se continua en lugar de detener el streaming de velas.
+    trades=(spark.readStream.format("kafka").option("kafka.bootstrap.servers",BOOTSTRAP)
+        .option("subscribe",TRADE_TOPICS).option("startingOffsets","latest")
+        .option("maxOffsetsPerTrigger",50000).option("failOnDataLoss","false").load()
+        .select(F.from_json(F.col("value").cast("string"),StructType(fields)).alias("t")).select("t.*")
+        .withColumn("_quote",F.expr("try_cast(quote_usdt AS DOUBLE)"))
+        .filter((F.col("schema_version")==1)&(F.col("event_type")=="market.trade.executed")
+            &F.col("symbol").isin("BTCUSDT","SOLUSDT")&F.col("side").isin("buy","sell")
+            &(F.col("source")=="binance_spot")&(F.col("synthetic")==False)&(F.col("_quote")>0)
+            &(F.col("event_id")==F.concat_ws(":",F.col("symbol"),F.lit("trade"),F.col("trade_id").cast("string"))))
+        .withColumn("trade_timestamp",F.timestamp_millis("trade_ms")).withWatermark("trade_timestamp","1 minute")
+        .dropDuplicatesWithinWatermark(["event_id"])
+        .groupBy(F.window("trade_timestamp","1 minute"),"symbol").agg(
+            F.count("*").alias("trades"),
+            F.sum(F.when(F.col("side")=="buy",F.col("_quote")).otherwise(0.0)).alias("buy_usdt"),
+            F.sum(F.when(F.col("side")=="sell",F.col("_quote")).otherwise(0.0)).alias("sell_usdt"),
+            F.max("_quote").alias("max_trade_usdt"),
+            F.sum((F.col("_quote")>=LARGE_TRADE_USDT).cast("int")).alias("large_trades")))
+    def write(batch,batch_id):
+        if batch.isEmpty():
+            return
+        values=[(r.symbol,r.window.start,r.window.end,r.trades,r.buy_usdt,r.sell_usdt,r.max_trade_usdt,r.large_trades)
+                for r in batch.collect()]
+        with db.connect() as connection,connection.cursor() as cursor:
+            execute_values(cursor,"""INSERT INTO trade_flow(symbol,window_start,window_end,trades,buy_usdt,sell_usdt,
+                max_trade_usdt,large_trades) VALUES %s ON CONFLICT(symbol,window_start) DO UPDATE SET
+                trades=EXCLUDED.trades,buy_usdt=EXCLUDED.buy_usdt,sell_usdt=EXCLUDED.sell_usdt,
+                max_trade_usdt=EXCLUDED.max_trade_usdt,large_trades=EXCLUDED.large_trades,updated_at=now()""",values)
+    return (trades.writeStream.queryName("cryptopulse_trades").outputMode("append").foreachBatch(write)
+        .option("checkpointLocation",str(STATE/"checkpoints/trades")).trigger(processingTime="15 seconds").start())
 
 def run():
     global running
@@ -116,6 +154,7 @@ def run():
             .foreachBatch(windows_batch(kind)).option("checkpointLocation",str(STATE/("checkpoints/"+kind)))
             .trigger(processingTime="15 seconds").start())
         queries.append(query)
+    queries.append(trade_flow_query(spark))
     def stop(*_):
         global running
         running=False

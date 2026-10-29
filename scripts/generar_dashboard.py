@@ -77,8 +77,19 @@ row(43,'Operación · recepción, procesamiento y persistencia',78)
 for id,title,x,expr,unit,desc in [(13,'WebSocket · 1 conectado',0,'cryptopulse_producer_connected','short','La conexión no sustituye continuidad e inferencia.'),(14,'Spark · edad de señal de vida',6,'cryptopulse_stream_heartbeat_age_seconds','s','La alerta integral comprueba además pronósticos.'),(15,'Kafka · eventos pendientes',12,'sum(cryptopulse_kafka_checkpoint_lag)','short','Lag de archivo de velas respecto de offsets disponibles.'),(16,'Escenario de costo · sin facturación',18,'cryptopulse_estimated_monthly_cost_usd','currencyUSD','Hipótesis editables; no cobro Docker ni cotización. CPU, memoria, disco y horas configurados.')]:
     panel(id,title,'stat',x,79,6,5,expr,unit,desc,prom=True)
 panel(17,'Spark · duración de micro-lotes','timeseries',0,84,12,7,'cryptopulse_batch_duration_seconds','s','Comparar duración con intervalo de 15 s. Los lotes de recuperación pueden excederlo.',prom=True)
-panel(18,'Kafka · avance acumulado por tópico','timeseries',12,84,12,7,'sum by(topic) (kafka_topic_partition_current_offset{topic=~"market.klines.*"})','short','Suma de offsets. No es tasa de mensajes por segundo ni número retenido.',prom=True)
+panel(18,'Kafka · avance acumulado por tópico','timeseries',12,84,12,7,'sum by(topic) (kafka_topic_partition_current_offset{topic=~"market.(klines|trades).*"})','short','Suma de offsets. No es tasa de mensajes por segundo ni número retenido.',prom=True)
 panel(1,'Histórico limpio · corte batch','stat',0,91,6,5,'SELECT now() AS time,sum(candles)::double precision AS value FROM batch_kpis',description='2022-01 a 2026-09. Archivos públicos con SHA256. Dos registros inválidos excluidos.')
 table(35,'Ventanas finalizadas · cobertura real',91,5,"SELECT kind AS \"Ventana\",symbol AS \"Activo\",max(window_end) AS \"Último cierre finalizado\",count(*) AS \"Ventanas\",count(*) FILTER(WHERE candles<>5) AS \"Incompletas\" FROM stream_windows GROUP BY kind,symbol ORDER BY kind,symbol",'Fijas 5 min y deslizantes 5 min/paso 1 min. Watermark 2 min: una ventana finalizada puede estar incompleta; el archivo conserva reparaciones tardías.',x=6,w=18)
+row(44,'Eventos empresariales · operaciones ejecutadas (Kafka → Spark, ventana 1 min)',96)
+TFW='$__timeFilter(window_start)'
+panel(45,'Flujo neto comprador − vendedor por minuto','timeseries',0,97,12,8,
+ f"SELECT window_start AS time,symbol||' · flujo neto' AS metric,buy_usdt-sell_usdt AS value FROM trade_flow WHERE {TFW} ORDER BY 1",'currencyUSD',
+ 'Cada operación de Binance (aggTrade) es un evento empresarial publicado en Kafka (market.trades.*). Spark agrupa por minuto con watermark de 1 min y deduplicación por event_id. Positivo: dominaron las compras agresivas.')
+panel(46,'Presión compradora · % del importe iniciado por compradores','timeseries',12,97,12,8,
+ f"SELECT window_start AS time,symbol AS metric,100*buy_usdt/NULLIF(buy_usdt+sell_usdt,0) AS value FROM trade_flow WHERE {TFW} ORDER BY 1",'percent',
+ '50 % es equilibrio. Valores sostenidos lejos de 50 % acompañan movimientos direccionales; contrastar con caídas y volatilidad.')
+table(47,'Último minuto cerrado · operaciones por activo',105,5,
+ "SELECT DISTINCT ON (symbol) symbol AS \"Activo\",window_end AS \"Cierre\",trades AS \"Operaciones\",round(buy_usdt::numeric,0) AS \"Compras USDT\",round(sell_usdt::numeric,0) AS \"Ventas USDT\",large_trades AS \"Operaciones ≥ 100k USDT\",round(max_trade_usdt::numeric,0) AS \"Mayor operación USDT\" FROM trade_flow ORDER BY symbol,window_start DESC",
+ 'Ventanas finalizadas por watermark: aparecen con 1–2 minutos de retraso respecto al reloj.')
 dashboard={'uid':'cryptopulse-main','title':'CryptoPulse · BTC y SOL','tags':['cryptopulse','bigdata','risk-monitoring'],'schemaVersion':40,'version':2,'refresh':'10s','timezone':'browser','time':{'from':'now-3h','to':'now'},'editable':True,'graphTooltip':1,'panels':panels,'links':[{'title':'Estado técnico JSON','type':'link','url':'http://localhost:48000/api/status','targetBlank':True},{'title':'Kafka UI','type':'link','url':'http://localhost:48085','targetBlank':True}]}
 print(json.dumps(dashboard,ensure_ascii=False,indent=2))

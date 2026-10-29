@@ -23,7 +23,7 @@ jobs:
         working-directory: pyspark/sesiones
         env:
           CRYPTOPULSE_ROOT: ${{ github.workspace }}/pyspark/sesiones
-        run: python -m unittest -v cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion
+        run: python -m unittest -v cryptopulse.test_trades cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion
       - name: Archivos JSON válidos (tablero, contrato, configuración)
         run: |
           for f in observability/grafana/dashboards/*.json schemas/*.json config/*.json; do

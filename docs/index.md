@@ -21,7 +21,7 @@ Quien analiza criptomonedas necesita saber, minuto a minuto, si BTC o SOL entran
 Un sistema Big Data con **arquitectura Lambda**:
 
 - **Capa batch:** 4,99 millones de velas reales de Binance (2022–2026) → calidad con PySpark → Parquet particionado → cuatro modelos Spark MLlib validados en el tiempo.
-- **Capa de velocidad:** WebSocket de Binance → Kafka → Spark Structured Streaming (ventanas, watermark, checkpoints) → inferencia en cada cierre de minuto → PostgreSQL.
+- **Capa de velocidad:** WebSocket de Binance → Kafka → Spark Structured Streaming (ventanas, watermark, checkpoints) → inferencia en cada cierre de minuto → PostgreSQL. Dos flujos: **telemetría** (velas de 1 minuto) y **eventos empresariales** (cada operación ejecutada, agregada en flujo comprador/vendedor).
 - **Consumo:** un solo tablero Grafana con estado, señales, pronósticos, evaluación de modelos, observabilidad y costos.
 
 ```mermaid

@@ -64,6 +64,12 @@ services:
     command: ["python", "-u", "-m", "cryptopulse.producer"]
     depends_on:
       kafka: {condition: service_healthy}
+  trades-producer:
+    <<: *runtime
+    container_name: cryptopulse-trades-producer
+    command: ["python", "-u", "-m", "cryptopulse.trades"]
+    depends_on:
+      kafka: {condition: service_healthy}
   streaming:
     <<: *runtime
     container_name: cryptopulse-streaming

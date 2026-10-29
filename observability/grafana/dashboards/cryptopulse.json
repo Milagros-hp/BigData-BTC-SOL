@@ -1565,7 +1565,7 @@
       "targets": [
         {
           "refId": "A",
-          "expr": "sum by(topic) (kafka_topic_partition_current_offset{topic=~\"market.klines.*\"})",
+          "expr": "sum by(topic) (kafka_topic_partition_current_offset{topic=~\"market.(klines|trades).*\"})",
           "instant": false,
           "legendFormat": "{{query}}{{symbol}}{{topic}}"
         }
@@ -1729,6 +1729,237 @@
             "uid": "cryptopulse-postgres"
           },
           "rawSql": "SELECT kind AS \"Ventana\",symbol AS \"Activo\",max(window_end) AS \"Último cierre finalizado\",count(*) AS \"Ventanas\",count(*) FILTER(WHERE candles<>5) AS \"Incompletas\" FROM stream_windows GROUP BY kind,symbol ORDER BY kind,symbol",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "title": "Eventos empresariales · operaciones ejecutadas (Kafka → Spark, ventana 1 min)",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 96,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 45,
+      "title": "Flujo neto comprador − vendedor por minuto",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 97,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Cada operación de Binance (aggTrade) es un evento empresarial publicado en Kafka (market.trades.*). Spark agrupa por minuto con watermark de 1 min y deduplicación por event_id. Positivo: dominaron las compras agresivas.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 6,
+            "spanNulls": false,
+            "showPoints": "auto"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT window_start AS time,symbol||' · flujo neto' AS metric,buy_usdt-sell_usdt AS value FROM trade_flow WHERE $__timeFilter(window_start) ORDER BY 1",
+          "format": "time_series",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "title": "Presión compradora · % del importe iniciado por compradores",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 97,
+        "w": 12,
+        "h": 8
+      },
+      "description": "50 % es equilibrio. Valores sostenidos lejos de 50 % acompañan movimientos direccionales; contrastar con caídas y volatilidad.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 6,
+            "spanNulls": false,
+            "showPoints": "auto"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT window_start AS time,symbol AS metric,100*buy_usdt/NULLIF(buy_usdt+sell_usdt,0) AS value FROM trade_flow WHERE $__timeFilter(window_start) ORDER BY 1",
+          "format": "time_series",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "title": "Último minuto cerrado · operaciones por activo",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 105,
+        "w": 24,
+        "h": 5
+      },
+      "description": "Ventanas finalizadas por watermark: aparecen con 1–2 minutos de retraso respecto al reloj.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "green"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "green"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "orange"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "red"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "red"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "gray"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "blue"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "red"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "md",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT DISTINCT ON (symbol) symbol AS \"Activo\",window_end AS \"Cierre\",trades AS \"Operaciones\",round(buy_usdt::numeric,0) AS \"Compras USDT\",round(sell_usdt::numeric,0) AS \"Ventas USDT\",large_trades AS \"Operaciones ≥ 100k USDT\",round(max_trade_usdt::numeric,0) AS \"Mayor operación USDT\" FROM trade_flow ORDER BY symbol,window_start DESC",
           "format": "table",
           "rawQuery": true
         }

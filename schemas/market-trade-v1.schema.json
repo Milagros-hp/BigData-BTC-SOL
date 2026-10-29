@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "market-trade-v1",
+  "title": "Operación ejecutada en Binance Spot (evento empresarial)",
+  "description": "Publicada por cryptopulse.trades en los tópicos market.trades.btcusdt y market.trades.solusdt, con clave = symbol.",
+  "type": "object",
+  "required": ["schema_version", "event_type", "event_id", "symbol", "trade_id", "trade_ms", "price", "quantity",
+               "quote_usdt", "side", "source", "transport", "published_ms", "synthetic"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "event_type": {"const": "market.trade.executed"},
+    "event_id": {"type": "string", "pattern": "^(BTCUSDT|SOLUSDT):trade:[0-9]+$", "description": "symbol:trade:trade_id; clave de deduplicación"},
+    "symbol": {"enum": ["BTCUSDT", "SOLUSDT"]},
+    "trade_id": {"type": "integer", "minimum": 0, "description": "Identificador aggTrade de Binance"},
+    "trade_ms": {"type": "integer", "minimum": 1, "description": "Momento de la operación, ms UTC (tiempo de evento)"},
+    "price": {"type": "string", "description": "Precio en USDT, decimal como texto"},
+    "quantity": {"type": "string", "description": "Cantidad del activo base"},
+    "quote_usdt": {"type": "string", "description": "price × quantity, importe en USDT"},
+    "side": {"enum": ["buy", "sell"], "description": "Lado que inició la operación (agresor)"},
+    "source": {"const": "binance_spot"},
+    "transport": {"const": "websocket"},
+    "published_ms": {"type": "integer"},
+    "synthetic": {"const": false}
+  },
+  "additionalProperties": false
+}

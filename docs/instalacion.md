@@ -51,7 +51,7 @@ El script:
 1. Comprueba Docker y construye las imágenes que falten.
 2. Detiene el arranque si otro proyecto ocupa los puertos.
 3. Si Kafka arranca con un volumen nuevo, respalda los checkpoints viejos de Spark en `pyspark/sesiones/_runtime/backups/`.
-4. Levanta los 9 servicios, aplica las migraciones y publica el registro de modelos.
+4. Levanta los 10 servicios, aplica las migraciones y publica el registro de modelos.
 5. Si la base de datos es nueva, publica los KPIs históricos (unos minutos).
 6. Espera hasta que el producto esté **LISTO**: 61 velas consecutivas por activo y 7 pronósticos recientes. La primera vez tarda unos 5 minutos.
 

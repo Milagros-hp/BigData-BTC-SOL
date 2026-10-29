@@ -36,7 +36,7 @@ Abre http://localhost:43000/d/cryptopulse-main con usuario `admin` y contraseña
 6. **Evidencia:** compara el método desplegado con su referencia y revisa precisión, recall, errores y evaluación en vivo por activo.
 7. **Operación:** comprueba conexión, retraso de Kafka, duración de lotes, cobertura de ventanas y el escenario de costos.
 
-El archivo contiene 28 elementos: cuatro encabezados de sección, una guía y 23 paneles de datos. La zona horaria predeterminada es la del navegador; una URL antigua con `timezone=utc` conserva UTC hasta que cambies esa preferencia en Grafana.
+El archivo contiene 32 elementos: cinco encabezados de sección, una guía y 26 paneles de datos. La última sección muestra los eventos empresariales: flujo comprador/vendedor por minuto. La zona horaria predeterminada es la del navegador; una URL antigua con `timezone=utc` conserva UTC hasta que cambies esa preferencia en Grafana.
 
 ### Estados del centro de señales
 

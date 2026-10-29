@@ -28,7 +28,9 @@ El rol es un énfasis de coordinación. Cada integrante construye y sustenta de 
 - **Usuarios:** analista de riesgo o trader que vigila el tablero; el propio sistema, que emite señales de vigilancia y alerta.
 - **Arquitectura:** **Lambda**. La capa batch procesa 4,99 millones de velas históricas para describir el pasado y entrenar los modelos. La capa de velocidad procesa cada vela en vivo con Kafka y Spark Structured Streaming y aplica esos mismos modelos. Se elige Lambda porque el entrenamiento necesita el histórico completo en bloque, mientras que la vigilancia necesita reaccionar en segundos.
 - **Fuente batch:** [Binance Public Data](https://data.binance.vision/), velas de 1 minuto BTCUSDT y SOLUSDT, enero 2022 – septiembre 2026: 114 archivos ZIP mensuales verificados con SHA256.
-- **Fuente en tiempo real:** WebSocket público de Binance (`btcusdt@kline_1m`, `solusdt@kline_1m`), con recuperación REST. Son datos reales, no simulados.
+- **Fuentes en tiempo real (datos reales, no simulados):**
+    - **Telemetría de mercado:** velas cerradas de 1 minuto (`btcusdt@kline_1m`, `solusdt@kline_1m`), con recuperación REST → tópicos `market.klines.*`. Cumplen el papel de los sensores: una lectura periódica del estado del mercado.
+    - **Eventos empresariales:** cada operación ejecutada (`btcusdt@aggTrade`, `solusdt@aggTrade`): precio, cantidad y lado comprador/vendedor → tópicos `market.trades.*`, contrato `schemas/market-trade-v1.schema.json`. Spark los agrega por minuto (flujo neto y presión compradora).
 - **Mismo origen en dos momentos:** el histórico batch es la acumulación de las mismas velas que llegan en vivo (patrón Lambda típico).
 - **Continuidad:** proyecto nuevo del equipo.
 
