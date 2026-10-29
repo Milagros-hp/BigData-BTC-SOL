@@ -18,7 +18,9 @@ jobs:
           distribution: temurin
           java-version: "21"
       - name: Dependencias (mismas versiones que las imágenes)
-        run: pip install pyspark==4.2.0 pandas==2.3.3 kafka-python==3.0.12 psycopg2-binary==2.9.13 nbformat
+        run: >-
+          pip install pyspark==4.2.0 pandas==2.3.3 numpy==2.2.6 kafka-python==3.0.12 psycopg2-binary==2.9.13
+          requests==2.34.2 websocket-client==1.9.2 prometheus_client==0.26.0 nbformat
       - name: Pruebas unitarias
         working-directory: pyspark/sesiones
         env:

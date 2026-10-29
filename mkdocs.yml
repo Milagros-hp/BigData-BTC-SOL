@@ -7,6 +7,7 @@ docs_dir: docs
 
 nav:
   - Inicio: index.md
+  - Guía de cambios: GUIA_DE_CAMBIOS.md
   - Instalación y ejecución: instalacion.md
   - Brief técnico-analítico: brief.md
   - Unidad 1 · Batch:
