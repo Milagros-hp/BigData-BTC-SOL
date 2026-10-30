@@ -10,6 +10,9 @@
 | Abdul Quispe Condori | Actividad anómala |
 | Luz Milagros Huanca Pacco | Divergencia BTC–SOL |
 
+!!! tip "Exposición de la Unidad 2"
+    La presentación y las evidencias por integrante están en [Exposición U2](u2/index.md).
+
 ## Problema
 
 Quien analiza criptomonedas necesita saber, minuto a minuto, si BTC o SOL entran en una condición de riesgo y qué puede pasar en los próximos minutos. CryptoPulse responde la pregunta central del equipo:

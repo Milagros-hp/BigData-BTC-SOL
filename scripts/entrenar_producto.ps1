@@ -30,8 +30,10 @@ if (-not (Test-CryptoPulseContainerRunning -Name 'cryptopulse-pyspark')) {
         throw 'El entorno PySpark no inicio. Revisa docker compose -f pyspark/compose.yml logs.'
     }
 }
-$manifest=Join-Path $projectRoot 'pyspark\sesiones\s02-fundamentos\data\provenance.json'
-if ($Descargar -or -not (Test-Path -LiteralPath $manifest)) {
+# provenance.json esta en Git: lo que indica si ya se descargo son los CSV, excluidos de Git.
+$rawDir=Join-Path $projectRoot 'pyspark\sesiones\s02-fundamentos\data\raw'
+$hasRaw=(Test-Path -LiteralPath $rawDir) -and @(Get-ChildItem -LiteralPath $rawDir -Filter '*.csv').Count -gt 0
+if ($Descargar -or -not $hasRaw) {
     & (Join-Path $PSScriptRoot 'preparar_s02.ps1') -Desde $config.history_from -Hasta $config.history_to
 }
 $resumeStreaming=Test-CryptoPulseContainerRunning -Name 'cryptopulse-streaming'

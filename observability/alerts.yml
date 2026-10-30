@@ -20,11 +20,30 @@ groups:
         annotations:
           summary: El driver Spark no actualiza su heartbeat
       - alert: CryptoPulseKafkaLag
-        expr: cryptopulse_kafka_checkpoint_lag > 100
+        expr: cryptopulse_kafka_checkpoint_lag{topic=~"market.klines.*"} > 100
         for: 2m
         labels: {severity: warning}
         annotations:
           summary: Spark acumula mas de cien eventos pendientes
+      - alert: CryptoPulseTradesLag
+        expr: cryptopulse_kafka_checkpoint_lag{topic=~"market.trades.*"} > 5000
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: Spark acumula mas de cinco mil operaciones pendientes
+          description: El umbral es mayor que el de velas porque un lote normal de 15 s ya contiene cientos de operaciones.
+      - alert: CryptoPulseTradesProducerDown
+        expr: cryptopulse_trades_heartbeat_age_seconds > 60
+        for: 30s
+        labels: {severity: critical}
+        annotations:
+          summary: El productor de operaciones no actualiza su estado
+      - alert: CryptoPulseTradeFlowStale
+        expr: cryptopulse_trade_flow_age_seconds > 300
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Spark no cierra ventanas recientes de operaciones
       - alert: CryptoPulseWebSocketDisconnected
         expr: cryptopulse_websocket_age_seconds > 90
         for: 1m

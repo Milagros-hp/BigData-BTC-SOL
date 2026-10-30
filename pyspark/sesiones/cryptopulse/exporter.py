@@ -14,9 +14,11 @@ EXPECTED_SERIES=[(dimension,symbol) for dimension in ("volatility","crash","anom
                  for symbol in SYMBOLS]+[("divergence","BTC-SOL")]
 MAX_DATA_AGE_SECONDS=180
 MAX_PREDICTION_LAG_MINUTES=2
+MAX_TRADES_HEARTBEAT_SECONDS=60
+MAX_TRADE_FLOW_AGE_SECONDS=300
 
 def build_health(candle_rows, context_rows, prediction_rows, stream, producer, model_version,
-                 current_ms=None, pending_evaluations=None):
+                 current_ms=None, pending_evaluations=None, trades=None):
     """Pure health policy shared by API, monitoring and end-to-end verification.
 
     A live driver and fresh candles do not imply usable inference. Every current
@@ -86,10 +88,17 @@ def build_health(candle_rows, context_rows, prediction_rows, stream, producer, m
                        "status":"ready" if not reasons else "degraded","reasons":reasons})
         if reasons:
             issue("prediction_"+dimension+"_"+symbol,"%s/%s: %s" % (dimension,symbol,", ".join(reasons)))
+    trade_status=None
+    if trades is not None:
+        trade_status={"producer_age_seconds":age(trades.get("heartbeat_ms")),"flow_age_seconds":age(trades.get("flow_end_ms"))}
+        if trade_status["producer_age_seconds"] is None or trade_status["producer_age_seconds"]>MAX_TRADES_HEARTBEAT_SECONDS:
+            issue("trades_producer_stale","El productor de operaciones no actualiza su estado.")
+        if trade_status["flow_age_seconds"] is None or trade_status["flow_age_seconds"]>MAX_TRADE_FLOW_AGE_SECONDS:
+            issue("trades_flow_stale","Spark no cierra ventanas recientes de operaciones.")
     ready=not issues
     return {"ready":ready,"status":"ready" if ready else "degraded","checked_at_ms":current_ms,
             "active_model_version":model_version,"stream_age_seconds":stream_age,
-            "producer_age_seconds":producer_age,"symbols":assets,"prediction_series":series,
+            "producer_age_seconds":producer_age,"trades":trade_status,"symbols":assets,"prediction_series":series,
             "reasons":issues,"pending_evaluations":pending_evaluations or [],
             "policy":{"context_candles":61,"max_data_age_seconds":MAX_DATA_AGE_SECONDS,
                       "max_prediction_lag_minutes":MAX_PREDICTION_LAG_MINUTES}}
@@ -110,7 +119,11 @@ def product_health(candles=None,predictions=None,stream=None,producer=None):
         < extract(epoch FROM now())*1000 GROUP BY dimension ORDER BY dimension""")
     return build_health(candles,context,predictions,stream if stream is not None else read_json(STATE/"stream_status.json"),
                         producer if producer is not None else read_json(STATE/"producer_status.json"),version,
-                        pending_evaluations=pending)
+                        pending_evaluations=pending,trades=trade_health())
+
+def trade_health():
+    flow=db.query("SELECT (extract(epoch FROM max(window_end))*1000)::bigint flow_end_ms FROM trade_flow")[0]
+    return {**read_json(STATE/"trades_status.json"),"flow_end_ms":flow["flow_end_ms"]}
 
 def read_json(path,default=None):
     try:
@@ -158,6 +171,12 @@ def metrics():
     family("stream_heartbeat_age_seconds","Edad del heartbeat del driver Spark",[]).set(max(0,(current-stream.get("heartbeat_ms",0))/1000))
     family("inference_enabled","Inferencia habilitada en el job Spark",[]).set(int(stream.get("inference_enabled",False)))
     health=product_health(stream=stream,producer=producer)
+    trades=read_json(STATE/"trades_status.json")
+    family("trades_producer_connected","WebSocket de operaciones conectado",[]).set(int(trades.get("connected",False)))
+    family("trades_heartbeat_age_seconds","Edad del heartbeat del productor de operaciones",[]).set(max(0,(current-trades.get("heartbeat_ms",0))/1000))
+    family("trades_recovered_total","Operaciones recuperadas por REST tras una caida",[]).set(trades.get("recovered",0))
+    family("trade_flow_age_seconds","Segundos desde la ultima ventana cerrada de operaciones",[]).set(
+        health["trades"]["flow_age_seconds"] if health["trades"]["flow_age_seconds"] is not None else float("inf"))
     family("product_ready","Datos continuos e inferencia reciente de las siete series",[]).set(int(health["ready"]))
     missing=family("recent_missing_minutes","Minutos ausentes entre las ultimas 61 velas por activo",["symbol"])
     context=family("context_ready","Contexto completo y reciente para calcular las variables",["symbol"])
@@ -183,7 +202,7 @@ def metrics():
         duration.labels(query).set(progress.get("durationMs",{}).get("triggerExecution",0)/1000)
         throughput.labels(query).set(progress.get("inputRowsPerSecond",0))
         dropped.labels(query).set(sum(op.get("numRowsDroppedByWatermark",0) for op in progress.get("stateOperators",[])))
-        if query=="cryptopulse_archive":
+        if query in ("cryptopulse_archive","cryptopulse_trades"):
             for source in progress.get("sources",[]):
                 offsets=source.get("endOffset",{})
                 if isinstance(offsets,str):
@@ -195,10 +214,11 @@ def metrics():
         consumer=KafkaConsumer(bootstrap_servers=os.environ.get("KAFKA_BOOTSTRAP","kafka:9092"),
             enable_auto_commit=False,client_id="cryptopulse-offset-probe",request_timeout_ms=10000)
         partitions=[]
-        for topic in ("market.klines.btcusdt","market.klines.solusdt"):
+        topics=("market.klines.btcusdt","market.klines.solusdt","market.trades.btcusdt","market.trades.solusdt")
+        for topic in topics:
             partitions.extend(TopicPartition(topic,p) for p in (consumer.partitions_for_topic(topic) or []))
         offsets=consumer.end_offsets(partitions)
-        for topic in ("market.klines.btcusdt","market.klines.solusdt"):
+        for topic in topics:
             difference=sum(max(0,end-int(processed.get(topic,{}).get(str(tp.partition),0)))
                            for tp,end in offsets.items() if tp.topic==topic)
             lag.labels(topic).set(difference)

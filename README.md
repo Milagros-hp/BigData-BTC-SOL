@@ -12,7 +12,7 @@ Plataforma funcional de análisis histórico y en vivo para BTCUSDT y SOLUSDT en
 
 ## Acceder al producto
 
-- [Grafana y tablero unificado](http://localhost:43000/d/cryptopulse-main): usuario `admin`, contraseña actual `admin2026!`.
+- [Grafana y tablero unificado](http://localhost:43000/d/cryptopulse-main): usuario `admin`, contraseña en `GRAFANA_PASSWORD` de `.env`.
 - [Kafka UI](http://localhost:48085).
 - [Prometheus](http://localhost:49090).
 - [Estado del pipeline en JSON](http://localhost:48000/api/status).
@@ -42,9 +42,9 @@ El entorno de notebooks se gestiona por separado con `scripts/iniciar_s01.ps1` y
 
 **Batch**: ZIP mensuales públicos con SHA256 → CSV originales → controles PySpark → cuarentena y registro de huecos → Parquet por activo año y mes → variables temporales → entrenamiento MLlib → validación temporal → modelos y umbrales versionados.
 
-**Tiempo real**: WebSocket de velas cerradas, con recuperación REST → Kafka → tres consultas Spark Structured Streaming → PostgreSQL → Grafana. Una consulta archiva eventos de forma idempotente; las otras calculan ventanas fijas de cinco minutos y deslizantes de cinco minutos con paso de un minuto. Las ventanas usan watermark de dos minutos y deduplicación por identificador.
+**Tiempo real**: WebSocket de velas cerradas, con recuperación REST → Kafka → consultas Spark Structured Streaming → PostgreSQL → Grafana. Una consulta archiva eventos de forma idempotente; las otras calculan ventanas fijas de cinco minutos y deslizantes de cinco minutos con paso de un minuto. Las ventanas usan watermark de dos minutos y deduplicación por identificador.
 
-**Eventos empresariales**: cada operación ejecutada en Binance (`aggTrade`) → `cryptopulse.trades` → tópicos `market.trades.*` (contrato `schemas/market-trade-v1.schema.json`) → cuarta consulta Spark con ventana de un minuto, watermark de un minuto y deduplicación por `event_id` → tabla `trade_flow` → panel de flujo comprador/vendedor en Grafana.
+**Eventos empresariales**: cada operación ejecutada en Binance (`aggTrade`) → `cryptopulse.trades` → tópicos `market.trades.*` (contrato `schemas/market-trade-v1.schema.json`) → cuarta consulta Spark con ventana de un minuto, watermark de un minuto y deduplicación por `event_id` → tabla `trade_flow` → panel de flujo comprador/vendedor en Grafana. Si el productor cae, el estado pasa a degradado y al volver recupera por REST las operaciones faltantes.
 
 El archivo durable conserva los eventos válidos aunque sean demasiado tardíos para una ventana de tiempo real. Los reintentos no duplican una vela o una predicción porque PostgreSQL aplica claves únicas. Esto proporciona resultados idempotentes sobre entrega al menos una vez; no se presenta como una transacción global exactamente una vez.
 

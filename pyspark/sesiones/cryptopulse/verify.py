@@ -29,7 +29,31 @@ def kafka_smoke():
                 found=found or json.loads(message.value).get("probe_id")==probe["probe_id"]
     consumer.close();producer.close()
     assert found,"El mensaje de prueba no pudo leerse en Kafka"
-    return status("S06",kafka_roundtrip=True,partition=receipt.partition,offset=receipt.offset,contract_version=1)
+    return status("S06",kafka_roundtrip=True,partition=receipt.partition,offset=receipt.offset,contract_version=1,
+        business_events=verify_business_events())
+
+def verify_business_events():
+    """Las operaciones reales deben seguir el contrato y llegar hasta las ventanas de Spark."""
+    from .trades import TOPICS,validate_trade
+    info=json.loads((STATE/"trades_status.json").read_text())
+    assert 0 <= time.time()*1000-info.get("heartbeat_ms",0) < 60000,"Productor de operaciones atrasado"
+    consumer=KafkaConsumer(bootstrap_servers=os.environ.get("KAFKA_BOOTSTRAP","kafka:9092"),enable_auto_commit=False,request_timeout_ms=15000)
+    checked={}
+    for symbol,topic in TOPICS.items():
+        partitions=[TopicPartition(topic,p) for p in consumer.partitions_for_topic(topic) or []]
+        for partition,end in consumer.end_offsets(partitions).items():
+            if end<=0:
+                continue
+            consumer.assign([partition]);consumer.seek(partition,end-1)
+            for records in consumer.poll(timeout_ms=3000).values():
+                for message in records:
+                    event=validate_trade(json.loads(message.value))
+                    checked[symbol]={"topic":topic,"offset":message.offset,"event_id":event["event_id"]}
+        assert symbol in checked,f"Sin operaciones legibles en {topic}"
+    consumer.close()
+    flow=db.query("SELECT symbol,count(*) windows,sum(trades) trades FROM trade_flow WHERE window_end>now()-interval '5 minutes' GROUP BY symbol")
+    assert len(flow)==2,"Spark no cierra ventanas recientes de operaciones"
+    return {"topics":checked,"recent_flow":flow,"published":info["published"],"recovered":info.get("recovered",0)}
 
 def verify_market_ingestion():
     info=json.loads((STATE/"producer_status.json").read_text())
@@ -68,7 +92,7 @@ def verify_streaming():
     assert len(counts)==2 and all(r["n"]>=120 for r in counts)
     windows=db.query("SELECT kind,count(*) n FROM stream_windows GROUP BY kind")
     assert {r["kind"] for r in windows}=={"fixed","sliding"}
-    for name in ("archive","fixed","sliding"):
+    for name in ("archive","fixed","sliding","trades"):
         path=STATE/"checkpoints"/name
         assert (path/"commits").exists() and any((path/"commits").iterdir())
         if name!="archive":
@@ -84,7 +108,7 @@ def verify_observability():
     assert all(active.get(job)=="up" for job in ("cryptopulse","kafka","prometheus")),active
     rules=requests.get("http://prometheus:9090/api/v1/rules",timeout=15).json()["data"]["groups"]
     alerts=sum(len(group["rules"]) for group in rules)
-    assert alerts>=5
+    assert alerts>=11
     costs=json.loads((STATE/"costs.json").read_text())
     assert costs["kind"]=="illustrative_estimate" and costs["monthly_usd"]>=0
     return status("S09",prometheus_targets=active,alert_rules=alerts,monthly_estimate_usd=costs["monthly_usd"],
@@ -151,13 +175,14 @@ def verify_bi():
 def verify_final():
     sessions={}
     # S07-S11 are executed below; an earlier failed live check must be retryable.
-    for number in range(3,7):
+    for number in range(3,6):
         key=f"S{number:02d}"
         path=STATE/(key.lower()+".json")
         assert path.exists(),f"Falta {key}"
         item=json.loads(path.read_text())
         assert item["status"]=="PASS"
         sessions[key]=item["status"]
+    sessions["S06"]=kafka_smoke()["status"]
     ingestion=verify_market_ingestion()
     streaming=verify_streaming()
     inference=verify_inference()
@@ -171,6 +196,7 @@ def verify_final():
     assert all(time.time()*1000-row["latest_ms"]<180000 for row in latest),latest
     integrations=json.loads((STATE/"integration_tests.json").read_text())
     assert integrations["status"]=="PASS"
+    assert "trades" in integrations,"Repite scripts/pruebas_integracion.ps1: faltan las pruebas de operaciones"
     version=json.loads((ML/"model_registry.json").read_text())["model_version"]
     assert integrations.get("model_version")==version,"Las pruebas de integracion corresponden a otra version del modelo"
     return status("S12",unit=2,sessions=sessions,duplicate_candles=duplicates,

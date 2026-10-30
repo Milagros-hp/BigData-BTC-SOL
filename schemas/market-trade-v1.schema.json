@@ -18,7 +18,7 @@
     "quote_usdt": {"type": "string", "description": "price × quantity, importe en USDT"},
     "side": {"enum": ["buy", "sell"], "description": "Lado que inició la operación (agresor)"},
     "source": {"const": "binance_spot"},
-    "transport": {"const": "websocket"},
+    "transport": {"enum": ["websocket", "rest"], "description": "rest: operación recuperada tras una caída del productor"},
     "published_ms": {"type": "integer"},
     "synthetic": {"const": false}
   },

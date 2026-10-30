@@ -15,7 +15,7 @@ Plantilla del docente: [Producto U3](https://262bigdata.github.io/lambda26/proye
 | Salida analítica particionada en Parquet | ✅ | `clean_parquet/symbol/year/month` |
 | Ingesta de eventos empresariales e IoT con Kafka | ✅ | `trades.py` (operaciones) y `producer.py` (velas) |
 | Streaming con ventanas y watermarking | ✅ | `stream.py`, 4 consultas |
-| Observabilidad, paneles y costos | ✅ | Prometheus, 8 alertas, [costos y escalado](u2-producto.md#3-costos-y-criterios-de-escalado) |
+| Observabilidad, paneles y costos | ✅ | Prometheus, 8 alertas, [costos y escalado](u2-producto.md#costos) |
 | Modelo ML, inferencia y salida BI | ✅ | 4 modelos, inferencia cada minuto y tablero único |
 | Prácticas DataOps/DevOps | ✅ | Docker Compose, scripts idempotentes, modelos versionados, CI en GitHub Actions |
 | Evidencias reproducibles | 🔄 | `verificar_producto.ps1`; capturas con reloj en [evidencias](../evidencias/README.md) (las toma cada integrante) |
@@ -59,7 +59,7 @@ Los responsables son una propuesta; ajústenla según quién domina cada parte.
 | Instalación o ejecución | [Instalación y ejecución](../instalacion.md) |
 | Uso del sistema | [Uso del tablero](../PRODUCTO_FINAL.md) |
 | Arquitectura o estructura | [Informe técnico](../INFORME_PROYECTO_CRYPTOPULSE.md), [Repositorio](../repositorio.md) |
-| Módulos o funcionalidades | [Producto U2 §1](u2-producto.md#1-capacidades-por-sesion) |
+| Módulos o funcionalidades | [Producto U2 §1](u2-producto.md#1-alcance-de-capacidades-por-sesion) |
 | Datos | [Producto U1](u1-producto.md), [Brief §2](brief.md#2-dominio-del-proyecto) |
 | Pruebas y evidencias | [Hardening](../hardening.md), [Notebooks U1](../notebooks-u1.md), [Evidencias](../evidencias/README.md) |
 | Equipo y aporte individual | [Equipo](../equipo.md) |

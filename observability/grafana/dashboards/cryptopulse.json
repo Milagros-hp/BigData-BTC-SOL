@@ -1964,6 +1964,214 @@
           "rawQuery": true
         }
       ]
+    },
+    {
+      "id": 48,
+      "title": "Productor de operaciones · conectado",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 110,
+        "w": 6,
+        "h": 5
+      },
+      "description": "1 significa WebSocket aggTrade conectado.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cryptopulse_trades_producer_connected",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "title": "Productor de operaciones · edad de señal",
+      "type": "stat",
+      "gridPos": {
+        "x": 6,
+        "y": 110,
+        "w": 6,
+        "h": 5
+      },
+      "description": "Más de 60 s degrada el producto y dispara una alerta.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cryptopulse_trades_heartbeat_age_seconds",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "title": "Flujo Spark · edad de la última ventana",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 110,
+        "w": 6,
+        "h": 5
+      },
+      "description": "Más de 300 s degrada el producto.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cryptopulse_trade_flow_age_seconds",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "title": "Kafka · operaciones pendientes",
+      "type": "stat",
+      "gridPos": {
+        "x": 18,
+        "y": 110,
+        "w": 6,
+        "h": 5
+      },
+      "description": "Offsets publicados aún no procesados. Se correlaciona con la duración de los micro-lotes.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(cryptopulse_kafka_checkpoint_lag{topic=~\"market.trades.*\"})",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
     }
   ],
   "links": [

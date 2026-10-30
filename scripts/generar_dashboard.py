@@ -91,5 +91,11 @@ panel(46,'Presión compradora · % del importe iniciado por compradores','timese
 table(47,'Último minuto cerrado · operaciones por activo',105,5,
  "SELECT DISTINCT ON (symbol) symbol AS \"Activo\",window_end AS \"Cierre\",trades AS \"Operaciones\",round(buy_usdt::numeric,0) AS \"Compras USDT\",round(sell_usdt::numeric,0) AS \"Ventas USDT\",large_trades AS \"Operaciones ≥ 100k USDT\",round(max_trade_usdt::numeric,0) AS \"Mayor operación USDT\" FROM trade_flow ORDER BY symbol,window_start DESC",
  'Ventanas finalizadas por watermark: aparecen con 1–2 minutos de retraso respecto al reloj.')
+for id,title,x,expr,unit,desc in [
+ (48,'Productor de operaciones · conectado',0,'cryptopulse_trades_producer_connected','short','1 significa WebSocket aggTrade conectado.'),
+ (49,'Productor de operaciones · edad de señal',6,'cryptopulse_trades_heartbeat_age_seconds','s','Más de 60 s degrada el producto y dispara una alerta.'),
+ (50,'Flujo Spark · edad de la última ventana',12,'cryptopulse_trade_flow_age_seconds','s','Más de 300 s degrada el producto.'),
+ (51,'Kafka · operaciones pendientes',18,'sum(cryptopulse_kafka_checkpoint_lag{topic=~"market.trades.*"})','short','Offsets publicados aún no procesados. Se correlaciona con la duración de los micro-lotes.')]:
+    panel(id,title,'stat',x,110,6,5,expr,unit,desc,prom=True)
 dashboard={'uid':'cryptopulse-main','title':'CryptoPulse · BTC y SOL','tags':['cryptopulse','bigdata','risk-monitoring'],'schemaVersion':40,'version':2,'refresh':'10s','timezone':'browser','time':{'from':'now-3h','to':'now'},'editable':True,'graphTooltip':1,'panels':panels,'links':[{'title':'Estado técnico JSON','type':'link','url':'http://localhost:48000/api/status','targetBlank':True},{'title':'Kafka UI','type':'link','url':'http://localhost:48085','targetBlank':True}]}
 print(json.dumps(dashboard,ensure_ascii=False,indent=2))

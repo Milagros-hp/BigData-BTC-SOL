@@ -32,8 +32,8 @@ if ($busy.Count -gt 0) {
 # Si Kafka arranca con un volumen nuevo, los checkpoints guardan offsets que ya no existen y
 # el streaming se detiene en bucle. Se respaldan en lugar de borrarse.
 $checkpoints=Join-Path $projectRoot 'pyspark\sesiones\_runtime\checkpoints'
-docker volume inspect cryptopulse_kafka_data *> $null
-$kafkaVolumeExists=($LASTEXITCODE -eq 0)
+# 'docker volume inspect' escribe en stderr si falta y con ErrorActionPreference=Stop abortaria.
+$kafkaVolumeExists=@(docker volume ls -q --filter 'name=^cryptopulse_kafka_data$').Count -gt 0
 if (-not $kafkaVolumeExists -and (Test-Path -LiteralPath $checkpoints) -and @(Get-ChildItem -LiteralPath $checkpoints).Count -gt 0) {
     $backups=Join-Path $projectRoot 'pyspark\sesiones\_runtime\backups'
     New-Item -ItemType Directory -Force -Path $backups | Out-Null
@@ -42,6 +42,7 @@ if (-not $kafkaVolumeExists -and (Test-Path -LiteralPath $checkpoints) -and @(Ge
     Write-Host "Kafka nuevo: checkpoints anteriores respaldados en $target"
 }
 
+& (Join-Path $PSScriptRoot 'actualizar_costos.ps1')
 docker compose --env-file $envFile -f $composeFile up -d --no-build
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo iniciar el producto.' }
 
@@ -74,4 +75,4 @@ while ((Get-Date) -lt $deadline) {
     Start-Sleep -Seconds 5
 }
 if (-not $ready) { throw 'Los servicios arrancaron, pero el producto no esta listo. Consulta http://localhost:48000/api/status para ver los motivos; no se borro ningun dato.' }
-Write-Host 'Producto LISTO: datos consecutivos y siete pronosticos recientes.'
+Write-Host 'Producto LISTO: datos consecutivos, siete pronosticos recientes y flujo de operaciones activo.'

@@ -14,7 +14,7 @@
 | 8 | Sin fuga de información futura | Hecho | Prueba `future_mutation_does_not_change_past_features`; embargo de 30 min entre particiones |
 | 9 | Recuperación ante caída de la ingesta | Hecho | `scripts/prueba_recuperacion.ps1` |
 | 10 | Arranque en equipo limpio | Hecho | `iniciar_producto.ps1` detecta puertos ocupados, respalda checkpoints obsoletos y publica KPIs si la base está vacía |
-| 11 | Alertas operativas | Hecho | 8 reglas en `observability/alerts.yml` (exportador caído, datos atrasados, streaming detenido, lag Kafka, WebSocket, predicción atrasada, hueco, producto degradado) |
+| 11 | Alertas operativas | Hecho | 11 reglas en `observability/alerts.yml` (exportador caído, datos atrasados, streaming detenido, lag Kafka, WebSocket, predicción atrasada, hueco, producto degradado) |
 | 12 | Integración continua | Hecho | `.github/workflows/ci.yml`: pruebas unitarias, validación de Compose y JSON en cada push |
 | 13 | Documentación reproducible | Hecho | Este sitio MkDocs, publicado con `.github/workflows/docs.yml` |
 

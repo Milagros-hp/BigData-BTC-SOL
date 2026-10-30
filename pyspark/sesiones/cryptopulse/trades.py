@@ -9,6 +9,7 @@ import signal
 import time
 import traceback
 from decimal import Decimal, InvalidOperation
+import requests
 import websocket
 from kafka import KafkaProducer
 from kafka.admin import KafkaAdminClient, NewTopic
@@ -19,6 +20,8 @@ from .core import STATE, save_json
 BOOTSTRAP = os.environ.get("KAFKA_BOOTSTRAP", "kafka:9092")
 TOPICS = {s: "market.trades." + s.lower() for s in SYMBOLS}
 WS = "wss://data-stream.binance.vision/stream?streams=btcusdt@aggTrade/solusdt@aggTrade"
+REST = "https://data-api.binance.vision"
+MAX_BACKFILL_PAGES = 120
 EVENT_TYPE = "market.trade.executed"
 running = True
 
@@ -46,7 +49,7 @@ def validate_trade(event):
         raise ValueError("invalid_event_id")
     return event
 
-def from_aggtrade(message, published_ms=None):
+def from_aggtrade(message, published_ms=None, transport="websocket"):
     payload = message.get("data", message)
     if payload.get("e") != "aggTrade":
         return None
@@ -55,13 +58,43 @@ def from_aggtrade(message, published_ms=None):
     event = {"schema_version": 1, "event_type": EVENT_TYPE, "event_id": f"{payload['s']}:trade:{int(payload['a'])}",
         "symbol": payload["s"], "trade_id": int(payload["a"]), "trade_ms": int(payload["T"]),
         "price": str(price), "quantity": str(quantity), "quote_usdt": str((price * quantity).quantize(Decimal("0.00000001"))),
-        "side": "sell" if payload["m"] else "buy", "source": "binance_spot", "transport": "websocket",
+        "side": "sell" if payload["m"] else "buy", "source": "binance_spot", "transport": transport,
         "published_ms": published_ms or int(time.time() * 1000), "synthetic": False}
     return validate_trade(event)
+
+def from_rest(symbol, row, published_ms=None):
+    """Una fila de /api/v3/aggTrades lleva los mismos campos que el mensaje WebSocket."""
+    return from_aggtrade({"e": "aggTrade", "s": symbol, "a": row["a"], "p": row["p"], "q": row["q"],
+        "T": row["T"], "m": row["m"]}, published_ms, transport="rest")
+
+def missing_trades(session, last_ids):
+    """Operaciones ausentes tras una caida, en orden de tiempo.
+
+    Se ordenan entre activos porque el watermark de Spark es global: publicar primero un
+    activo completo convertiria en tardias las operaciones del otro.
+    """
+    events = []
+    for symbol, last_id in last_ids.items():
+        for _ in range(MAX_BACKFILL_PAGES):
+            response = session.get(REST + "/api/v3/aggTrades",
+                params={"symbol": symbol, "fromId": last_id + 1, "limit": 1000}, timeout=20)
+            response.raise_for_status()
+            rows = response.json()
+            events.extend(from_rest(symbol, row) for row in rows)
+            if len(rows) < 1000:
+                break
+            last_id = rows[-1]["a"]
+    return sorted(events, key=lambda event: event["trade_ms"])
 
 def stop(*_):
     global running
     running = False
+
+def read_status():
+    try:
+        return json.loads((STATE / "trades_status.json").read_text())
+    except (OSError, ValueError):
+        return {}
 
 def ensure_topics():
     admin = KafkaAdminClient(bootstrap_servers=BOOTSTRAP, client_id="cryptopulse-trades-admin")
@@ -80,22 +113,34 @@ def run():
     producer = KafkaProducer(bootstrap_servers=BOOTSTRAP, acks="all", retries=10, linger_ms=50,
         key_serializer=lambda s: s.encode(), value_serializer=lambda value: json.dumps(value).encode(),
         client_id="cryptopulse-trades", enable_idempotence=True)
-    info = {"connected": False, "published": 0, "rejected": 0, "last_trade_ms": None, "heartbeat_ms": None}
+    previous = read_status()
+    info = {"connected": False, "published": previous.get("published", 0), "rejected": 0, "recovered": previous.get("recovered", 0),
+        "last_trade_ms": previous.get("last_trade_ms"), "heartbeat_ms": None, "last_ids": previous.get("last_ids", {})}
+    def publish(event):
+        producer.send(TOPICS[event["symbol"]], key=event["symbol"], value=event)
+        info["published"] += 1
+        info["last_trade_ms"] = event["trade_ms"]
+        info["last_ids"][event["symbol"]] = event["trade_id"]
+    session = requests.Session()
     backoff = 1
     while running:
         connection = None
         try:
             connection = websocket.create_connection(WS, timeout=5)
+            # El socket ya acumula lo nuevo: se recupera el hueco y luego se ignora lo repetido.
+            recovered = missing_trades(session, info["last_ids"])
+            for event in recovered:
+                publish(event)
+            producer.flush(30)
+            info["recovered"] += len(recovered)
             info["connected"] = True
             backoff = 1
             next_heartbeat = 0
             while running:
                 try:
                     event = from_aggtrade(json.loads(connection.recv()))
-                    if event is not None:
-                        producer.send(TOPICS[event["symbol"]], key=event["symbol"], value=event)
-                        info["published"] += 1
-                        info["last_trade_ms"] = event["trade_ms"]
+                    if event is not None and event["trade_id"] > info["last_ids"].get(event["symbol"], -1):
+                        publish(event)
                 except websocket.WebSocketTimeoutException:
                     pass
                 except (ValueError, KeyError, TypeError, ArithmeticError) as error:
@@ -115,6 +160,8 @@ def run():
             if connection:
                 connection.close()
     producer.flush(10)
+    info["connected"] = False
+    save_json(STATE / "trades_status.json", info)
     producer.close()
 
 if __name__ == "__main__":

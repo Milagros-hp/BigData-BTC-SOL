@@ -1,5 +1,7 @@
 # Evidencias de ejecución
 
+Las capturas automáticas del 30 de octubre de 2026 están en [Exposición U2](../u2/sesiones.md). No muestran reloj ni usuario de Windows, así que no reemplazan las capturas personales de esta lista.
+
 La rúbrica pide capturas con **el reloj de Windows y el usuario visibles**, con fechas coherentes con los commits. Cada integrante guarda aquí las suyas con el nombre `<integrante>-<numero>-<que-muestra>.png`.
 
 | Captura | Qué debe verse | Quién |

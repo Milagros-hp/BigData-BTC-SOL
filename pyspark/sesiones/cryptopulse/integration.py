@@ -95,6 +95,59 @@ def watermark_and_recovery(spark,candles):
     return {"duplicate_event_counted_once":True,"late_event_rejected":True,
             "watermark_rows_dropped":dropped,"checkpoint_restart_recovered":True,"isolated_topic":topic}
 
+def trade_flow_checks(spark):
+    """Duplicado, operacion tardia y checkpoint sobre la misma consulta que usa produccion."""
+    from .producer import BOOTSTRAP
+    from .stream import trade_flow_frame
+    from .trades import from_aggtrade
+    topic="cryptopulse.integration.trades."+uuid.uuid4().hex[:12]
+    admin=KafkaAdminClient(bootstrap_servers=BOOTSTRAP)
+    admin.create_topics([NewTopic(topic,num_partitions=1,replication_factor=1)])
+    producer=KafkaProducer(bootstrap_servers=BOOTSTRAP,acks="all",value_serializer=lambda value:json.dumps(value).encode())
+    base=STATE/"integration"/topic
+    start_ms=1767225600000  # 2026-01-01 00:00 UTC
+    def send(trade_id,offset_seconds,seller=False,repeat=1):
+        event=from_aggtrade({"e":"aggTrade","s":"BTCUSDT","a":trade_id,"p":"100.00000000","q":"1.00000000",
+            "T":start_ms+offset_seconds*1000,"m":seller},published_ms=start_ms)
+        for _ in range(repeat):
+            producer.send(topic,value=event).get(timeout=20)
+        producer.flush()
+    def start():
+        return (trade_flow_frame(spark,topic,"earliest").writeStream.format("parquet").outputMode("append")
+            .option("checkpointLocation",str(base/"checkpoint")).option("path",str(base/"output"))
+            .trigger(processingTime="2 seconds").start())
+    def output():
+        rows=spark.read.parquet(str(base/"output")).collect()
+        return {int(r.window.start.replace(tzinfo=timezone.utc).timestamp()*1000-start_ms)//1000:r for r in rows}
+    query=start()
+    try:
+        send(1,5,repeat=2)
+        send(2,10,seller=True)
+        query.processAllAvailable()
+        send(3,200)  # Avanza el watermark mas alla del primer minuto.
+        query.processAllAvailable()
+        send(4,6)  # Identificador nuevo, tiempo ya cerrado.
+        send(5,400)
+        query.processAllAvailable()
+        query.processAllAvailable()
+    finally:
+        query.stop()
+    first=output()[0]
+    assert (first.trades,first.buy_usdt,first.sell_usdt)==(2,100.0,100.0),first
+    send(6,700)
+    recovered=start()
+    try:
+        recovered.processAllAvailable()
+        recovered.processAllAvailable()
+    finally:
+        recovered.stop()
+        producer.close()
+        admin.close()
+    windows=output()
+    assert windows[0].trades==2 and 180 in windows and 360 in windows,sorted(windows)
+    return {"duplicate_trade_counted_once":True,"late_trade_rejected":True,"buy_sell_separated":True,
+            "checkpoint_restart_recovered":True,"isolated_topic":topic}
+
 def replay_model_checks(spark):
     # Solo se usan velas reales de enero 2026. source_mode=replay queda excluido en Grafana.
     all_rows=[]
@@ -149,6 +202,7 @@ def run():
     results={"status":"PASS","model_version":json.loads((ML/"model_registry.json").read_text())["model_version"],"verified_at_utc":datetime.now(timezone.utc).isoformat(),
         "contract":contract_checks(fixture[0]),
         "streaming":watermark_and_recovery(spark,fixture),
+        "trades":trade_flow_checks(spark),
         "models":replay_model_checks(spark)}
     spark.stop()
     save_json(STATE/"integration_tests.json",results)

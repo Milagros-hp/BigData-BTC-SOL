@@ -27,14 +27,14 @@ def valid_market_payload(raw):
     except (ValueError,KeyError,TypeError,ArithmeticError):
         return False
 
-def trade_flow_query(spark):
+def trade_flow_frame(spark,topics=TRADE_TOPICS,starting="latest"):
     """Eventos empresariales: flujo comprador/vendedor por minuto con watermark y deduplicacion."""
     fields=[StructField(k,StringType()) for k in ["event_id","event_type","symbol","side","source","price","quantity","quote_usdt"]]
     fields+=[StructField(k,LongType()) for k in ["schema_version","trade_id","trade_ms"]]+[StructField("synthetic",BooleanType())]
     # Las operaciones son un flujo auxiliar de alto volumen: si la retencion de Kafka ya
     # descarto offsets, se continua en lugar de detener el streaming de velas.
-    trades=(spark.readStream.format("kafka").option("kafka.bootstrap.servers",BOOTSTRAP)
-        .option("subscribe",TRADE_TOPICS).option("startingOffsets","latest")
+    return (spark.readStream.format("kafka").option("kafka.bootstrap.servers",BOOTSTRAP)
+        .option("subscribe",topics).option("startingOffsets",starting)
         .option("maxOffsetsPerTrigger",50000).option("failOnDataLoss","false").load()
         .select(F.from_json(F.col("value").cast("string"),StructType(fields)).alias("t")).select("t.*")
         .withColumn("_quote",F.expr("try_cast(quote_usdt AS DOUBLE)"))
@@ -50,6 +50,9 @@ def trade_flow_query(spark):
             F.sum(F.when(F.col("side")=="sell",F.col("_quote")).otherwise(0.0)).alias("sell_usdt"),
             F.max("_quote").alias("max_trade_usdt"),
             F.sum((F.col("_quote")>=LARGE_TRADE_USDT).cast("int")).alias("large_trades")))
+
+def trade_flow_query(spark):
+    trades=trade_flow_frame(spark)
     def write(batch,batch_id):
         if batch.isEmpty():
             return
