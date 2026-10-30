@@ -52,7 +52,7 @@ docker logs --tail 40 cryptopulse-streaming | Select-String progreso
 | `cryptopulse_kafka_checkpoint_lag` | Lag del consumidor | Panel *Kafka · eventos pendientes*; alerta `CryptoPulseKafkaLag` |
 | `cryptopulse_batch_duration_seconds` | Backpressure | Panel *Spark · duración de micro-lotes* |
 
-Prometheus lee (pull) el exportador propio en `exporter:8000/metrics` y el `kafka-exporter`; Grafana consulta Prometheus y PostgreSQL. Costos y escalado: [Producto U2, sección 3](u2-producto.md#3-costos-y-criterios-de-escalado).
+Prometheus lee (pull) el exportador propio en `exporter:8000/metrics` y el `kafka-exporter`; Grafana consulta Prometheus y PostgreSQL. Costos y escalado: [Producto U2, costos](u2-producto.md#costos).
 
 ### S10 · Series de tiempo e inferencia
 
@@ -79,7 +79,7 @@ Dentro del watermark entra en su ventana según la hora del evento; fuera de él
 La duración del micro-lote: si supera los 15 s del intervalo, el siguiente lote empieza atrasado. Enseguida le sigue el lag de Kafka (`cryptopulse_kafka_checkpoint_lag`), que tiene alerta a partir de 100 mensajes durante 2 min.
 
 **¿Por qué estimar el costo del streaming no es igual que el del batch?**
-El batch corre un rato y se apaga: se paga por ejecución. El streaming corre las 730 horas del mes y su costo crece con el volumen continuo y la retención de Kafka (las operaciones ocupan ~3 GB en 7 días).
+El batch corre un rato y se apaga: se paga por ejecución. El streaming corre las 730 horas del mes y su costo crece con el volumen continuo y la retención de Kafka (las operaciones ocuparon unos 6 GB proyectados a 7 días con el volumen del 30 de octubre).
 
 **¿Qué gana el tablero al mostrar la predicción junto a los KPIs?**
 El analista ve en la misma pantalla qué está pasando (KPI) y qué se espera (predicción), y luego si el pronóstico acertó. Por separado tendría que cruzarlos a mano.

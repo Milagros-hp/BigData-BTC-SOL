@@ -48,7 +48,7 @@ Cada sesión muestra el responsable declarado en [Equipo y aporte individual](..
 
 ## S10 · Inferencia en streaming { #s10 }
 
-**Responsables: los cuatro, un modelo cada uno.** En cada cierre de minuto se aplican los modelos a las últimas 61 velas y salen 7 pronósticos. Cada uno se evalúa cuando madura su horizonte.
+**Responsables: Franck (volatilidad), Julmer (caídas), Abdul (actividad) y Luz Milagros (separación).** Cada uno construye y sustenta su modelo, y [Franck](franck.md) lleva el de volatilidad, con Random Forest para BTC y SOL. En cada cierre de minuto se aplican los modelos a las últimas 61 velas y salen 7 pronósticos. Cada uno se evalúa cuando madura su horizonte.
 
 | Dimensión | Responsable | Modelo | Métrica en prueba 2026 | Modelo | Referencia |
 |---|---|---|---|---:|---:|
@@ -69,7 +69,7 @@ Cada sesión muestra el responsable declarado en [Equipo y aporte individual](..
 
 ## S12 · Integración y sustentación { #s12 }
 
-**Responsables: Luz Milagros en DataOps; cada integrante sustenta su dimensión.** La integración se comprueba con tres scripts:
+**Responsables: Luz Milagros en DataOps y Franck en la integración y publicación del pipeline (commits `bc288ce` y `c051ab9`); cada integrante sustenta su dimensión.** La integración se comprueba con tres scripts:
 
 | Script | Qué comprueba | Resultado del 30 de octubre |
 |---|---|---|

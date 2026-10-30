@@ -72,9 +72,9 @@ flowchart LR
 | [S7](sesiones.md#s7) | Ingesta de eventos IoT/sensores en tiempo real. | Telemetría real de mercado: velas de 1 minuto en `market.klines.*`, en el mismo Kafka, con esquema, frecuencia y volumen ajustados. | Julmer |
 | [S8](sesiones.md#s8) | Procesamiento streaming con Spark Structured Streaming. | Ventanas fija, deslizante y de operaciones, con watermark, deduplicación y checkpoint. | Julmer |
 | [S9](sesiones.md#s9) | Observabilidad con Grafana y estimación de costos. | Panel de operación con métricas, 11 alertas, riesgos operativos y costo estimado de escalado. | Abdul |
-| [S10](sesiones.md#s10) | Series de tiempo e inferencia en streaming. | 4 modelos y 7 pronósticos cada minuto, evaluados al madurar su horizonte. | Los cuatro |
+| [S10](sesiones.md#s10) | Series de tiempo e inferencia en streaming. | 4 modelos y 7 pronósticos cada minuto, evaluados al madurar su horizonte. | Franck (volatilidad), Julmer (caídas), Abdul (actividad) y Luz Milagros (separación) |
 | [S11](sesiones.md#s11) | BI/ML distribuido: KPIs y visualización de la predicción. | Un tablero con KPIs del flujo en tiempo real y la predicción de S10. | Luz Milagros |
-| [S12](sesiones.md#s12) (esta evaluación) | Ensambla todo lo anterior en un solo pipeline y lo sustenta. | Verificación integral, pruebas de recuperación y sustentación por dimensión. | Luz Milagros y equipo |
+| [S12](sesiones.md#s12) (esta evaluación) | Ensambla todo lo anterior en un solo pipeline y lo sustenta. | Verificación integral, pruebas de recuperación y sustentación por dimensión. | Luz Milagros, Franck y equipo |
 
 ## 2. Rúbrica de Evaluación
 
