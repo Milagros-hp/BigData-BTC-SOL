@@ -29,6 +29,7 @@ nav:
       - Bitácora S01–S12: INFORME_SESIONES_S01_S12.md
   - Unidad 2 · Tiempo real:
       - Uso del tablero: PRODUCTO_FINAL.md
+      - Sistema de diseño: diseno.md
       - Informe técnico y arquitectura: INFORME_PROYECTO_CRYPTOPULSE.md
   - Unidad 3 · DataOps:
       - Instalación y ejecución: instalacion.md

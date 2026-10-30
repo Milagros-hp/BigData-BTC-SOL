@@ -71,3 +71,12 @@ groups:
         annotations:
           summary: CryptoPulse no cumple las condiciones de datos e inferencia recientes
           description: Consulta /api/status para conocer el motivo por activo y por serie.
+  - name: cryptopulse_registros
+    rules:
+      # Reglas de grabación: precalculan series que el tablero de operación consulta cada 10 s.
+      - record: cryptopulse:kafka_mensajes_por_minuto
+        expr: sum by (topic) (rate(kafka_topic_partition_current_offset{topic=~"market[.].*"}[5m])) * 60
+      - record: cryptopulse:lag_total
+        expr: sum(cryptopulse_kafka_checkpoint_lag)
+      - record: cryptopulse:lote_spark_max_5m
+        expr: max by (query) (max_over_time(cryptopulse_batch_duration_seconds[5m]))

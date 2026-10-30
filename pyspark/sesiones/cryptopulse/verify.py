@@ -149,12 +149,14 @@ def verify_bi():
     for uid in ("cryptopulse-postgres","cryptopulse-prometheus"):
         response=requests.get(base+"/api/datasources/uid/"+uid+"/health",auth=grafana_auth(),timeout=20)
         assert response.status_code==200,(uid,response.text)
-    response=requests.get(base+"/api/dashboards/uid/cryptopulse-main",auth=grafana_auth(),timeout=20)
-    response.raise_for_status()
-    dashboard=response.json()["dashboard"]
+    panels=[]
+    for uid in ("cryptopulse-main","cryptopulse-ops"):
+        response=requests.get(base+"/api/dashboards/uid/"+uid,auth=grafana_auth(),timeout=20)
+        response.raise_for_status()
+        panels+=response.json()["dashboard"]["panels"]
     checks=[]
     current=int(time.time()*1000)
-    for panel in dashboard["panels"]:
+    for panel in panels:
         if panel.get("datasource",{}).get("type")!="postgres" or not panel.get("targets"):
             continue
         target=dict(panel["targets"][0])
@@ -169,7 +171,7 @@ def verify_bi():
         checks.append(validate_panel_result(panel,item))
     batch=db.query("SELECT count(*) days,sum(candles) rows FROM batch_kpis")[0]
     assert batch["rows"]>1_000_000
-    return status("S11",grafana_dashboard="cryptopulse-main",sql_panels_checked=checks,
+    return status("S11",grafana_dashboard=["cryptopulse-main","cryptopulse-ops"],sql_panels_checked=checks,
         batch_rows=int(batch["rows"]),model_metrics=db.query("SELECT count(*) n FROM model_metrics")[0]["n"])
 
 def verify_final():

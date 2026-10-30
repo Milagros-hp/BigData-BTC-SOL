@@ -11,6 +11,7 @@ Cada integrante tiene su propio notebook en `pyspark/sesiones/u1-dimensiones/`, 
 | 5. Análisis descriptivo y diagnóstico con gráficos (2022–2026) | Dimensión descriptiva/diagnóstica |
 | 6. Tres configuraciones de modelo y una referencia, al menos tres métricas, ganador guardado y recargado | 5. Componente ML distribuido |
 | 7. Registro `verificacion_u1.json` | 4 y 6. Reproducible, con evidencia |
+| 8. Respuesta escrita a la pregunta de la dimensión, con la misma estructura del cuadro del brief | Aporte individual: cada integrante responde su pregunta |
 
 Partición temporal en los cuatro: **entrenamiento 2022–2024**, **validación 2025** (elige al ganador), **prueba enero–septiembre 2026** (se usa una sola vez), con 30 minutos de embargo entre tramos.
 

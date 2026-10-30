@@ -130,6 +130,10 @@ services:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin2026!}
       GF_USERS_ALLOW_SIGN_UP: "false"
+      # Diseño CryptoPulse: tema oscuro, tablero ejecutivo como inicio y HTML con estilos en el banner.
+      GF_USERS_DEFAULT_THEME: dark
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/cryptopulse.json
+      GF_PANELS_DISABLE_SANITIZE_HTML: "true"
     volumes:
       - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./observability/grafana/dashboards:/var/lib/grafana/dashboards:ro
