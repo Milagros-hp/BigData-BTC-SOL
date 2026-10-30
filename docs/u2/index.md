@@ -16,46 +16,16 @@ Del histórico de la Unidad 1 a un pipeline vivo: cada operación y cada minuto 
 
 <div class="cp-stats" markdown>
 <div class="cp-stat"><b>2</b><span>flujos reales en Kafka: operaciones y velas</span></div>
-<div class="cp-stat"><b>79 744</b><span>operaciones en ventanas durante la primera hora</span></div>
+<div class="cp-stat"><b>237 471</b><span>operaciones procesadas en ventanas, 30 de octubre</span></div>
 <div class="cp-stat"><b>7/7</b><span>pronósticos vigentes cada minuto</span></div>
 <div class="cp-stat"><b>11</b><span>alertas operativas en Prometheus</span></div>
-<div class="cp-stat"><b>4,6 s</b><span>duración media del lote, con intervalo de 15 s</span></div>
+<div class="cp-stat"><b>4 de 4</b><span>modelos superan su referencia en la prueba 2026</span></div>
 <div class="cp-stat"><b>65 USD</b><span>por mes, estimación con tarifas ilustrativas</span></div>
 </div>
 
-## De la Unidad 1 a la Unidad 2
+## Producto
 
-| | Unidad 1 | Unidad 2 |
-|---|---|---|
-| **Datos** | 4 993 757 velas históricas validadas | Operaciones y velas en vivo desde Binance |
-| **Proceso** | Batch con PySpark y Parquet | Spark Structured Streaming con ventanas, watermark y checkpoints |
-| **Modelos** | Entrenados y evaluados con historia | Aplicados cada minuto y evaluados cuando madura el horizonte |
-| **Salida** | Notebooks por integrante | Tablero Grafana en vivo, con operación y costos |
-
-## El equipo y su aporte
-
-<div class="cp-team">
-<a class="cp-member cp-franck" href="franck/"><strong>Franck Coaquira</strong><em>Volatilidad a 15 min</em><span class="cp-chip">S10</span><span class="cp-chip">S11</span><span class="cp-chip">S12</span><small>Modelo Random Forest en vivo</small></a>
-<a class="cp-member cp-julmer" href="julmer/"><strong>Julmer Quispe</strong><em>Caída fuerte a 30 min</em><span class="cp-chip">S6</span><span class="cp-chip">S7</span><span class="cp-chip">S8</span><span class="cp-chip">S10</span><span class="cp-chip">S12</span><small>Kafka, contratos y Spark</small></a>
-<a class="cp-member cp-abdul" href="abdul/"><strong>Abdul Quispe</strong><em>Actividad anómala a 5 min</em><span class="cp-chip">S9</span><span class="cp-chip">S10</span><span class="cp-chip">S12</span><small>Prometheus, alertas y costos</small></a>
-<a class="cp-member cp-luz" href="luz/"><strong>Luz Milagros Huanca</strong><em>Separación BTC–SOL a 15 min</em><span class="cp-chip">S10</span><span class="cp-chip">S11</span><span class="cp-chip">S12</span><small>Tablero BI, scripts y CI</small></a>
-</div>
-
-## El camino: sesión 6 a sesión 12
-
-<div class="cp-timeline" markdown>
-<div class="cp-step cp-julmer"><b>S6</b><span>Eventos empresariales: operaciones ejecutadas en <code>market.trades.*</code></span><small>Julmer</small></div>
-<div class="cp-step cp-julmer"><b>S7</b><span>Telemetría de mercado: velas de 1 minuto en <code>market.klines.*</code></span><small>Julmer</small></div>
-<div class="cp-step cp-julmer"><b>S8</b><span>Spark Streaming: 4 consultas, ventanas, watermark y checkpoints</span><small>Julmer</small></div>
-<div class="cp-step cp-abdul"><b>S9</b><span>Observabilidad, alertas, costos y criterios de escalado</span><small>Abdul</small></div>
-<div class="cp-step cp-franck"><b>S10</b><span>Inferencia en streaming: un modelo por integrante</span><small>Los cuatro</small></div>
-<div class="cp-step cp-luz"><b>S11</b><span>Tablero BI: KPIs y predicción en la misma vista</span><small>Luz Milagros</small></div>
-<div class="cp-step cp-luz"><b>S12</b><span>Integración, pruebas de recuperación y sustentación</span><small>Luz Milagros y equipo</small></div>
-</div>
-
-[Ver cada sesión con su evidencia](sesiones.md){ .md-button .md-button--primary } [Guion de la demo](demo.md){ .md-button }
-
-## Arquitectura
+**Pipeline en tiempo real con ingesta de eventos empresariales y telemetría de mercado, procesamiento streaming con Spark, observabilidad/costos y salidas BI/ML distribuidas.**
 
 ```mermaid
 flowchart LR
@@ -71,23 +41,97 @@ flowchart LR
     EX[exporter y kafka-exporter] --> PR[Prometheus] --> G
 ```
 
-## El producto en vivo
+| | Unidad 1 | Unidad 2 |
+|---|---|---|
+| **Datos** | 4 993 757 velas históricas validadas | Operaciones y velas en vivo desde Binance |
+| **Proceso** | Batch con PySpark y Parquet | Spark Structured Streaming con ventanas, watermark y checkpoints |
+| **Modelos** | Entrenados y comparados con historia | Aplicados cada minuto y evaluados cuando madura el horizonte |
+| **Salida** | Notebooks por integrante | Tablero Grafana en vivo, con operación y costos |
 
 <figure markdown>
 ![Tablero CryptoPulse en estado LISTO](../assets/u2/tablero.png)
-<figcaption>Tablero único en estado LISTO, 30 de octubre de 2026. Captura automática del producto en ejecución.</figcaption>
+<figcaption>Tablero único en estado LISTO. Captura automática del producto en ejecución.</figcaption>
 </figure>
 
-## Lo que probamos, no solo lo que construimos
+## Equipo: cada uno sustenta su dimensión
 
-| Prueba | Resultado |
-|---|---|
-| Evento duplicado | Se cuenta una sola vez, en velas y en operaciones |
-| Evento tardío | Se descarta por watermark |
-| Reinicio de Spark | Continúa desde su checkpoint |
-| Caída del productor de velas | El estado pasa a degradado y se recupera sin huecos |
-| Caída del productor de operaciones | El estado pasa a degradado; recupera por REST y la verificación no encuentra minutos faltantes en BTC |
+<div class="cp-team">
+<a class="cp-member cp-franck" href="franck/"><strong>Franck Coaquira</strong><em>Volatilidad a 15 min</em><small>Random Forest en vivo</small></a>
+<a class="cp-member cp-julmer" href="julmer/"><strong>Julmer Quispe</strong><em>Caída fuerte a 30 min</em><small>Kafka, contratos y Spark</small></a>
+<a class="cp-member cp-abdul" href="abdul/"><strong>Abdul Quispe</strong><em>Actividad anómala a 5 min</em><small>Prometheus, alertas y costos</small></a>
+<a class="cp-member cp-luz" href="luz/"><strong>Luz Milagros Huanca</strong><em>Separación BTC–SOL a 15 min</em><small>Tablero BI, scripts y CI</small></a>
+</div>
+
+## 1. Alcance de capacidades por sesión
+
+**Tabla 1. De la sesión a la capacidad del sistema**
+
+| Sesión | Capacidad que agrega | Cómo lo hace CryptoPulse | Responsable |
+|---|---|---|---|
+| [S6](sesiones.md#s6) | Ingesta de eventos empresariales en tiempo real. | Cada operación ejecutada en Binance se publica y consume con Kafka en `market.trades.*`, con contrato y tópicos documentados. | Julmer |
+| [S7](sesiones.md#s7) | Ingesta de eventos IoT/sensores en tiempo real. | Telemetría real de mercado: velas de 1 minuto en `market.klines.*`, en el mismo Kafka, con esquema, frecuencia y volumen ajustados. | Julmer |
+| [S8](sesiones.md#s8) | Procesamiento streaming con Spark Structured Streaming. | Ventanas fija, deslizante y de operaciones, con watermark, deduplicación y checkpoint. | Julmer |
+| [S9](sesiones.md#s9) | Observabilidad con Grafana y estimación de costos. | Panel de operación con métricas, 11 alertas, riesgos operativos y costo estimado de escalado. | Abdul |
+| [S10](sesiones.md#s10) | Series de tiempo e inferencia en streaming. | 4 modelos y 7 pronósticos cada minuto, evaluados al madurar su horizonte. | Los cuatro |
+| [S11](sesiones.md#s11) | BI/ML distribuido: KPIs y visualización de la predicción. | Un tablero con KPIs del flujo en tiempo real y la predicción de S10. | Luz Milagros |
+| [S12](sesiones.md#s12) (esta evaluación) | Ensambla todo lo anterior en un solo pipeline y lo sustenta. | Verificación integral, pruebas de recuperación y sustentación por dimensión. | Luz Milagros y equipo |
+
+## 2. Rúbrica de Evaluación
+
+**Tabla 2. Rúbrica de evaluación de la Unidad 2**
+
+| Criterio | Peso | CE / Nivel | A (20 pts) | B (15 pts) | C (10 pts) | D (5 pts) | Calificación obtenida |
+|---|---:|---|---|---|---|---|---|
+| 1. Ingesta de eventos empresariales mediante Kafka | 12% | — (apoyo) | Eventos empresariales publicados y consumidos en vivo, con contrato de evento y tópico documentados. | Ingesta funcional, con documentación parcial del contrato. | Ingesta parcial o sin verificación en vivo. | No implementa ingesta de eventos empresariales. | |
+| 2. Ingesta de eventos IoT/sensores | 10% | — (apoyo) | Eventos IoT/sensores integrados al mismo pipeline, con esquema y volumen ajustados y verificados. | Ingesta funcional, con ajustes menores pendientes. | Ingesta parcial o poco verificable. | No implementa ingesta de eventos IoT/sensores. | |
+| 3. Procesamiento streaming con Spark Structured Streaming | 14% | — (apoyo) | Ventanas, watermarking y checkpointing verificados en vivo sobre datos reales del pipeline. | Procesamiento funcional, con verificación parcial de alguno de los tres elementos. | Procesamiento streaming presente, sin verificación clara. | No implementa procesamiento streaming. | |
+| 4. Observabilidad con métricas y tableros | 12% | — (apoyo) | Panel de observabilidad operativo con métricas correlacionadas del pipeline streaming. | Panel operativo, con correlación parcial. | Métricas presentes, sin panel ni correlación clara. | No presenta observabilidad verificable. | |
+| 5. Estimación de costos y criterios de escalado | 8% | — (apoyo) | Estimación de costos y criterios de escalado documentados y justificados frente al volumen real del pipeline. | Estimación presente, con justificación parcial. | Estimación mencionada, sin justificación clara. | No presenta estimación de costos. | |
+| 6. Salidas BI/ML distribuidas | 12% | CE044-N3 | Tablero BI con KPIs del flujo en tiempo real, verificado en vivo. | Tablero funcional, con KPIs parciales. | Tablero presente, sin verificación clara. | No presenta salida BI/ML. | |
+| 7. Series de tiempo o inferencia en streaming documentada y validada | 12% | CE043-N3 (completa) | Modelo o inferencia de series de tiempo validado con métricas, integrado al tablero BI (criterio 6). | Modelo o inferencia presente, con validación parcial. | Modelo mencionado, sin validación clara. | No presenta modelo ni inferencia de series de tiempo. | |
+| 8. Sustentación | 20% | CG | Sustenta con claridad y profesionalismo su aporte individual, respondiendo con precisión las preguntas del jurado. | Sustenta con solvencia, con detalles menores en claridad, orden o precisión. | Sustenta con dificultad; claridad, orden o precisión insuficientes. | No sustenta adecuadamente ni demuestra su aporte individual. | |
+
+**Nota final** = suma de (Peso × Puntos de la calificación obtenida) / 100 × 20.
+
+CE044-N3 = Nivel 3 de CE044 (Analiza y Define Estrategias). CE043-N3 (completa) = segunda mitad del Nivel 3 de CE043, que junto con el criterio 5 de Unidad 1 completa esa competencia. — (apoyo) = infraestructura técnica que hace posible generar la evidencia de nivel, sin ser en sí misma evidencia de una competencia. CG = Competencia General "Investigación e Innovación" del sílabo.
+
+### Evidencia por criterio
+
+| Criterio | Dónde se verifica | Resultado medido |
+|---|---|---|
+| 1 | Kafka UI, `market.trades.*`, [contrato](https://github.com/Milagros-hp/BigData-BTC-SOL/blob/main/schemas/market-trade-v1.schema.json), panel de flujo neto | 237 471 operaciones reales procesadas en ventanas |
+| 2 | Kafka UI, `market.klines.*`, [contrato](https://github.com/Milagros-hp/BigData-BTC-SOL/blob/main/schemas/market-kline-v1.schema.json), panel de frescura | 2 mensajes por minuto, 61/61 velas, 0 faltantes y 0 rechazados |
+| 3 | [`stream.py`](https://github.com/Milagros-hp/BigData-BTC-SOL/blob/main/pyspark/sesiones/cryptopulse/stream.py), tabla de ventanas, `pruebas_integracion.ps1` | Duplicado contado una vez, tardío descartado y checkpoint recuperado, en velas y operaciones |
+| 4 | Sección *Operación* del tablero, Prometheus, `prueba_recuperacion.ps1` | 3/3 destinos activos y 11 reglas; caídas de ambos productores detectadas |
+| 5 | [Costos y escalado](../proyecto-sello/u2-producto.md#costos) | 65,15 USD/mes con tarifas ilustrativas, frente al volumen medido |
+| 6 | Tablero *CryptoPulse · BTC y SOL* | KPIs del flujo y predicción en la misma vista, en estado LISTO |
+| 7 | *Prueba histórica reservada* y *Evaluación en vivo* | 4 de 4 modelos superan su referencia en la prueba 2026; en vivo, ver [lectura honesta](index.md#lectura) |
+| 8 | Páginas por integrante y [guion](demo.md) | Se evalúa el día de la sustentación |
+
+**Tabla 3. Subaspectos de la sustentación (Unidad 2)**
+
+| Subaspecto | Qué observa en Unidad 2 | Cómo lo atendemos |
+|---|---|---|
+| 1. Aporte individual | Cada integrante demuestra su propia dimensión U2 — no el trabajo del resto del equipo. | Página propia: [Franck](franck.md), [Julmer](julmer.md), [Abdul](abdul.md) y [Luz Milagros](luz.md) |
+| 2. Comunicación y orden | Claridad, estructura, tiempo y lenguaje técnico durante la presentación. | [Guion con tiempos](demo.md) y preguntas probables |
+| 3. Presentación personal y actitud | Puntualidad, vestimenta limpia y adecuada, higiene, cabello ordenado, actitud profesional, respeto, honestidad y coherencia con los valores y principios cristianos de la institución. | Responsabilidad de cada expositor el día de la sustentación |
+| 4. Repositorio y estándares | Topics académicos vigentes, organización, commits y reproducibilidad del pipeline streaming. | Scripts de instalación y verificación, CI en verde. **Pendiente del equipo:** topics y commits individuales |
+| 5. MkDocs o equivalente | Documentación de tu dimensión U2 publicada, navegable y alineada con u2-producto.md. | Este sitio; cada página de integrante sigue la plantilla |
+| 6. Pitch/demo ejecutiva | Introducción breve de cómo evolucionó tu dimensión desde Unidad 1, con apoyo visual (.pptx, Canva o equivalente) — no reemplaza la demo técnica de la Tabla 2 de S12, la precede. | Esta portada como apoyo visual y sección *Evolución desde U1* de cada integrante |
+
+## 3. Trazabilidad y procedencia de la rúbrica
+
+Los primeros siete criterios son cita literal de los criterios de evaluación del producto de la Unidad II en el sílabo de Big Data; el octavo (Sustentación) corresponde a la sustentación exigida por el mismo sílabo (sesión 12, actividad 2).
+
+| Criterio | Competencia | En CryptoPulse |
+|---|---|---|
+| 7. Series de tiempo (S10) | Completa la segunda mitad del Nivel 3 de CE043 "Genera Modelos"; la primera mitad se evidenció en Unidad 1 (S4) | Modelos de U1 aplicados en streaming y evaluados al madurar el horizonte |
+| 6. BI/ML distribuido (S11) | Evidencia completa del Nivel 3 de CE044 "Analiza y Define Estrategias" | Predicción junto a KPIs del negocio en el mismo tablero |
+| 1 a 5 | Infraestructura técnica; no son evidencia de nivel por sí mismos | Kafka, Spark, Prometheus, Grafana y costos |
+| 8. Sustentación | Transversal; no forma parte de la definición de ninguna competencia | Exposición de S12 |
+
+## Lectura honesta { #lectura }
 
 <div class="cp-honest" markdown>
-**Lectura honesta de los modelos.** En la prueba histórica reservada (enero a septiembre de 2026), los cuatro superan a su referencia. En la primera hora en vivo solo volatilidad la supera con claridad; caída queda empatada, y actividad y separación quedan por debajo. Una hora de un solo día no alcanza para concluir, por eso el tablero sigue midiéndolo.
+**Lectura honesta de los modelos.** En la prueba histórica reservada (enero a septiembre de 2026), los cuatro superan a su referencia. En vivo llevamos pocas horas de un solo día (30 de octubre de 2026, de 15:07 a 18:34 UTC): volatilidad la supera con claridad, separación la supera por poco, caída queda empatada y actividad queda por debajo en BTC y casi empatada en SOL. La muestra no alcanza para concluir, por eso el tablero sigue midiéndolo.
 </div>
