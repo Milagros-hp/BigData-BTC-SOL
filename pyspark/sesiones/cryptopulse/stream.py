@@ -19,6 +19,26 @@ LARGE_TRADE_USDT=100000.0
 INFERENCE=os.environ.get("INFERENCE_ENABLED","false").lower()=="true"
 running=True
 
+def repair_checkpoints(root=None):
+    """Respalda los checkpoints si un apagado brusco dejo archivos llenos de ceros.
+
+    Spark no puede leer un commit u offset corrupto y se reinicia en bucle. Las
+    salidas son idempotentes, asi que releer Kafka desde cero no duplica datos.
+    """
+    root=root or STATE/"checkpoints"
+    if not root.exists():
+        return None
+    damaged=[path for path in root.rglob("*") if path.is_file() and path.stat().st_size
+             and not path.read_bytes().strip(b"\0")]
+    if not damaged:
+        return None
+    target=STATE/"backups"/("checkpoints-corruptos-"+time.strftime("%Y%m%d-%H%M%S"))
+    target.parent.mkdir(parents=True,exist_ok=True)
+    root.rename(target)
+    root.mkdir()
+    print(json.dumps({"checkpoints_respaldados":str(target),"archivos_corruptos":len(damaged)}),flush=True)
+    return target
+
 def valid_market_payload(raw):
     """Use the same contract in the archive and both window queries."""
     try:
@@ -65,6 +85,7 @@ def trade_flow_query(spark):
 
 def run():
     global running
+    repair_checkpoints()
     spark=(SparkSession.builder.appName("cryptopulse-live")
         .config("spark.sql.session.timeZone","UTC")
         .config("spark.sql.shuffle.partitions","4")

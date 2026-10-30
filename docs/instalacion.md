@@ -101,6 +101,7 @@ Se conservan volúmenes, modelos y checkpoints.
 |---|---|---|
 | `port is already allocated` o aviso de puertos ocupados | Otro proyecto (lambda26) usa los puertos | `docker stop` a los contenedores indicados |
 | El streaming se reinicia en bucle con `Some data may have been lost` | Checkpoints de un Kafka anterior | El arranque ya los respalda solo; si ocurre manualmente, mover `pyspark/sesiones/_runtime/checkpoints` a `backups/` |
+| El estado queda en rojo y el streaming se reinicia con `MALFORMED_LOG_FILE` | Apagado brusco con Spark escribiendo | Se corrige solo al reiniciar el streaming; para evitarlo, apaga siempre con `detener_producto.ps1` antes de cerrar Docker |
 | La verificación falla en `batch_rows` | Base de datos nueva sin KPIs históricos | Volver a ejecutar `iniciar_producto.ps1` (los publica solo) |
 | La verificación dice que las pruebas de integración son de otra versión | Se cambió un modelo | Ejecutar `pruebas_integracion.ps1` |
 | Grafana pide contraseña | Volumen nuevo de Grafana | Usuario `admin`, contraseña de `GRAFANA_PASSWORD` en `.env` |
