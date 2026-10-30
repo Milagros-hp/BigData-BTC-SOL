@@ -1,0 +1,1936 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Monitoreo de riesgo de BTC y SOL con arquitectura Lambda (Big Data UPeU 2026-2)">
+      
+      
+        <meta name="author" content="Grupo 3 · CryptoPulse">
+      
+      
+        <link rel="canonical" href="https://milagros-hp.github.io/BigData-BTC-SOL/proyecto-sello/s12-preparacion/">
+      
+      
+        <link rel="prev" href="../u2-producto/">
+      
+      
+        <link rel="next" href="../u3-producto/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+    
+    
+      
+        <title>Preparación S12 - CryptoPulse · Grupo 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/pitch.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preparacion-s12-evaluacion-de-la-unidad-ii" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="CryptoPulse · Grupo 3" class="md-header__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CryptoPulse · Grupo 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Preparación S12
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../u2/" class="md-tabs__link">
+          
+  
+    
+  
+  Exposición U2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Proyecto Sello
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notebooks-u1/" class="md-tabs__link">
+          
+  
+    
+  
+  Unidad 1 · Batch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../PRODUCTO_FINAL/" class="md-tabs__link">
+          
+  
+    
+  
+  Unidad 2 · Tiempo real
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../instalacion/" class="md-tabs__link">
+          
+  
+    
+  
+  Unidad 3 · DataOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../equipo/" class="md-tabs__link">
+          
+  
+    
+  
+  Equipo
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CryptoPulse · Grupo 3" class="md-nav__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CryptoPulse · Grupo 3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Milagros-hp/BigData-BTC-SOL" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Milagros-hp/BigData-BTC-SOL
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../u2/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Exposición U2
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exposición U2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u2/sesiones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sesiones S6 a S12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u2/franck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Franck · Volatilidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u2/julmer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Julmer · Caídas y streaming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u2/abdul/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Abdul · Actividad y observabilidad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u2/luz/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Luz Milagros · Separación y BI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u2/demo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guion de la demo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Proyecto Sello
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Proyecto Sello
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brief/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Brief técnico-analítico
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u1-producto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Producto U1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u2-producto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Producto U2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Preparación S12
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Preparación S12
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-teoria-s6s11-con-ejemplos-de-cryptopulse" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Teoría S6–S11 con ejemplos de CryptoPulse
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Teoría S6–S11 con ejemplos de CryptoPulse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s6-eventos-empresariales-con-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      S6 · Eventos empresariales con Kafka
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s7-eventos-iotsensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      S7 · Eventos IoT/sensores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s8-streaming-con-ventanas-watermark-y-semantica" class="md-nav__link">
+    <span class="md-ellipsis">
+      S8 · Streaming con ventanas, watermark y semántica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s9-observabilidad-y-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      S9 · Observabilidad y costos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s10-series-de-tiempo-e-inferencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      S10 · Series de tiempo e inferencia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s11-biml-kpis-y-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      S11 · BI/ML: KPIs y predicción
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-preguntas-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Preguntas de referencia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-autoevaluacion-con-la-rubrica-u2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Autoevaluación con la rúbrica U2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-decisiones-propias-distintas-al-ejemplo-del-docente" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Decisiones propias, distintas al ejemplo del docente
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../u3-producto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Producto U3 / final
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 1 · Batch
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 1 · Batch
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks-u1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notebooks por integrante
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../INFORME_SESIONES_S01_S12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitácora S01–S12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Unidad 2 · Tiempo real
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 2 · Tiempo real
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PRODUCTO_FINAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Uso del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../INFORME_PROYECTO_CRYPTOPULSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Informe técnico y arquitectura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../evidencias/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Unidad 3 · DataOps
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Unidad 3 · DataOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../instalacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalación y ejecución
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardening/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pruebas y hardening
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../limitaciones/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limitaciones y mejoras
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Equipo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Equipo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../equipo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Equipo y aporte individual
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../repositorio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repositorio y estándares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GUIA_DE_CAMBIOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía de cambios
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Anexos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GUIA_INICIO_LOCAL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía de inicio local
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REVISION_PROYECTO_Y_GUIA_GRAFANA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Revisión del tablero
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-teoria-s6s11-con-ejemplos-de-cryptopulse" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Teoría S6–S11 con ejemplos de CryptoPulse
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Teoría S6–S11 con ejemplos de CryptoPulse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s6-eventos-empresariales-con-kafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      S6 · Eventos empresariales con Kafka
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s7-eventos-iotsensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      S7 · Eventos IoT/sensores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s8-streaming-con-ventanas-watermark-y-semantica" class="md-nav__link">
+    <span class="md-ellipsis">
+      S8 · Streaming con ventanas, watermark y semántica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s9-observabilidad-y-costos" class="md-nav__link">
+    <span class="md-ellipsis">
+      S9 · Observabilidad y costos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s10-series-de-tiempo-e-inferencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      S10 · Series de tiempo e inferencia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s11-biml-kpis-y-prediccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      S11 · BI/ML: KPIs y predicción
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-preguntas-de-referencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Preguntas de referencia
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-autoevaluacion-con-la-rubrica-u2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Autoevaluación con la rúbrica U2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-decisiones-propias-distintas-al-ejemplo-del-docente" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Decisiones propias, distintas al ejemplo del docente
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="preparacion-s12-evaluacion-de-la-unidad-ii">Preparación S12 · Evaluación de la Unidad II<a class="headerlink" href="#preparacion-s12-evaluacion-de-la-unidad-ii" title="Permanent link">&para;</a></h1>
+<p>Guía de la evaluación: <a href="https://262bigdata.github.io/lambda26/sesiones/S12_Evaluacion_Unidad_2/">S12</a>. Aquí está cada tema de la evaluación teórico-práctica (S6–S11) respondido con <strong>nuestro</strong> pipeline, las preguntas de referencia, la autoevaluación con la rúbrica y las decisiones propias que nos distinguen del ejemplo del docente.</p>
+<h2 id="1-teoria-s6s11-con-ejemplos-de-cryptopulse">1. Teoría S6–S11 con ejemplos de CryptoPulse<a class="headerlink" href="#1-teoria-s6s11-con-ejemplos-de-cryptopulse" title="Permanent link">&para;</a></h2>
+<h3 id="s6-eventos-empresariales-con-kafka">S6 · Eventos empresariales con Kafka<a class="headerlink" href="#s6-eventos-empresariales-con-kafka" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>En CryptoPulse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Broker</strong></td>
+<td>Un broker Kafka 4.3.1 en modo KRaft (sin ZooKeeper), contenedor <code>cryptopulse-kafka</code></td>
+</tr>
+<tr>
+<td><strong>Topic</strong></td>
+<td><code>market.trades.btcusdt</code> y <code>market.trades.solusdt</code> (operaciones); <code>market.klines.*</code> (velas)</td>
+</tr>
+<tr>
+<td><strong>Partición</strong></td>
+<td>3 por tópico; el orden se garantiza dentro de cada partición</td>
+</tr>
+<tr>
+<td><strong>Key</strong></td>
+<td>El símbolo (<code>BTCUSDT</code>): todos los eventos de un activo caen en la misma partición y conservan su orden</td>
+</tr>
+<tr>
+<td><strong>Offset</strong></td>
+<td>Posición de cada mensaje; Spark guarda el último offset procesado en su checkpoint</td>
+</tr>
+<tr>
+<td><strong>Consumer group</strong></td>
+<td>Spark Structured Streaming no confirma offsets en un consumer group: los guarda en su checkpoint, por eso puede reprocesar exactamente desde donde iba</td>
+</tr>
+<tr>
+<td><strong>Contrato versionable</strong></td>
+<td><code>schema_version: 1</code> en cada evento; <code>schemas/market-trade-v1.schema.json</code> y <code>market-kline-v1.schema.json</code>. Un cambio incompatible sería <code>v2</code> en un tópico nuevo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="s7-eventos-iotsensores">S7 · Eventos IoT/sensores<a class="headerlink" href="#s7-eventos-iotsensores" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>En CryptoPulse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frecuencia y volumen</strong></td>
+<td>La vela (nuestra telemetría) llega a un ritmo fijo: 2 mensajes por minuto, tamaño constante. La operación (evento de negocio) llega en ráfagas: ~800 por minuto en promedio y picos de 3 547</td>
+</tr>
+<tr>
+<td><strong>Particionado por dispositivo</strong></td>
+<td>Nuestro «dispositivo» es el activo: la key <code>BTCUSDT</code>/<code>SOLUSDT</code> se verifica en Kafka UI, columna <em>Key</em></td>
+</tr>
+<tr>
+<td><strong>Validación de esquema y rango físico</strong></td>
+<td><code>contract.py</code> rechaza: OHLC incoherente (mínimo mayor que apertura o cierre), volúmenes negativos, intervalo distinto de 59 999 ms, velas futuras o no cerradas</td>
+</tr>
+<tr>
+<td><strong>¿Por qué un dispositivo real usa MQTT y no Kafka?</strong></td>
+<td>Un sensor tiene poca memoria, batería y conexión intermitente; MQTT es liviano y tolera cortes. Un <strong>puente</strong> recibe por MQTT y publica en Kafka. En nuestro caso, <code>producer.py</code> cumple el papel de puente: recibe del WebSocket de Binance y publica en Kafka con contrato y reintentos</td>
+</tr>
+</tbody>
+</table>
+<h3 id="s8-streaming-con-ventanas-watermark-y-semantica">S8 · Streaming con ventanas, watermark y semántica<a class="headerlink" href="#s8-streaming-con-ventanas-watermark-y-semantica" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>En CryptoPulse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ventana fija</strong></td>
+<td>5 minutos, sin solaparse</td>
+</tr>
+<tr>
+<td><strong>Ventana deslizante</strong></td>
+<td>5 minutos que avanzan de a 1 minuto</td>
+</tr>
+<tr>
+<td><strong>Watermark</strong></td>
+<td>2 min en velas y 1 min en operaciones: lo que llega más tarde se descarta y se cuenta en <code>descartadas_por_watermark</code></td>
+</tr>
+<tr>
+<td><strong>Checkpoint</strong></td>
+<td>Uno por consulta en <code>_runtime/checkpoints/{archive,fixed,sliding,trades}</code></td>
+</tr>
+<tr>
+<td><strong>Al menos una vez + deduplicación</strong></td>
+<td>Spark puede reprocesar un lote tras un fallo; <code>dropDuplicatesWithinWatermark(event_id)</code> y las claves únicas de PostgreSQL hacen que el resultado no tenga duplicados</td>
+</tr>
+<tr>
+<td><strong>Efecto en latencia y throughput</strong></td>
+<td>El watermark agrega hasta 2 min de espera antes de cerrar una ventana definitiva; el micro-lote de 15 s y <code>maxOffsetsPerTrigger</code> limitan cuánto se procesa por lote</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verificación en logs</strong> (criterio 3): cada minuto Spark escribe una línea con lote, filas, watermark, filas descartadas y ruta del checkpoint de cada consulta:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">docker</span> <span class="n">logs</span> <span class="p">-</span><span class="n">-tail</span> <span class="n">40</span> <span class="n">cryptopulse-streaming</span> <span class="p">|</span> <span class="nb">Select-String</span> <span class="n">progreso</span>
+</code></pre></div>
+<h3 id="s9-observabilidad-y-costos">S9 · Observabilidad y costos<a class="headerlink" href="#s9-observabilidad-y-costos" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Tipo</th>
+<th>Dónde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cryptopulse_producer_connected</code>, <code>cryptopulse_product_ready</code></td>
+<td>Disponibilidad</td>
+<td>Panel <em>WebSocket</em> y <em>Estado integral</em></td>
+</tr>
+<tr>
+<td>Edad de la última vela y del heartbeat de Spark</td>
+<td>Latencia</td>
+<td>Panel <em>Spark · edad de señal de vida</em>, tabla <em>Frescura</em></td>
+</tr>
+<tr>
+<td><code>cryptopulse_input_rows_per_second</code>, offsets de Kafka</td>
+<td>Throughput</td>
+<td>Panel <em>Kafka · avance acumulado por tópico</em></td>
+</tr>
+<tr>
+<td><code>cryptopulse_kafka_checkpoint_lag</code></td>
+<td>Lag del consumidor</td>
+<td>Panel <em>Kafka · eventos pendientes</em>; alerta <code>CryptoPulseKafkaLag</code></td>
+</tr>
+<tr>
+<td><code>cryptopulse_batch_duration_seconds</code></td>
+<td>Backpressure</td>
+<td>Panel <em>Spark · duración de micro-lotes</em></td>
+</tr>
+</tbody>
+</table>
+<p>Prometheus lee (pull) el exportador propio en <code>exporter:8000/metrics</code> y el <code>kafka-exporter</code>; Grafana consulta Prometheus y PostgreSQL. Costos y escalado: <a href="../u2-producto/#3-costos-y-criterios-de-escalado">Producto U2, sección 3</a>.</p>
+<h3 id="s10-series-de-tiempo-e-inferencia">S10 · Series de tiempo e inferencia<a class="headerlink" href="#s10-series-de-tiempo-e-inferencia" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Referencia de persistencia primero:</strong> en volatilidad la referencia es «la volatilidad actual se repite». Si el modelo no le gana, no aporta: eso nos pasó con la divergencia con signo y por eso la reformulamos.</li>
+<li><strong>División cronológica, nunca aleatoria:</strong> entrenamiento 2022–2024, validación 2025, prueba 2026, con 30 min de embargo.</li>
+<li><strong>Inferencia sin estado:</strong> el modelo se carga una vez; en cada cierre de minuto se leen las últimas 61 velas desde PostgreSQL y se calcula todo de nuevo. No se mantiene historial en memoria: si Spark se reinicia, la próxima lectura basta.</li>
+</ul>
+<h3 id="s11-biml-kpis-y-prediccion">S11 · BI/ML: KPIs y predicción<a class="headerlink" href="#s11-biml-kpis-y-prediccion" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>KPI de negocio:</strong> precio, flujo neto comprador − vendedor, probabilidad de caída, separación BTC–SOL. <strong>Métrica de infraestructura:</strong> lag de Kafka, duración del lote. <strong>Métrica de aplicación:</strong> pronósticos vigentes 7/7, velas de contexto 61/61.</li>
+<li><strong>Pushgateway:</strong> no lo usamos. Nuestro streaming nunca termina, así que exponemos <code>/metrics</code> y Prometheus lo lee, que es la forma recomendada. Pushgateway sirve para jobs que terminan; usarlo en uno que no termina es un atajo porque si el job muere, la última métrica queda «congelada» y Prometheus no lo nota.</li>
+<li><strong>Error de predicción en vivo:</strong> tabla <em>En vivo · error real de los pronósticos ya madurados</em>.</li>
+<li><strong>Panel batch y streaming lado a lado:</strong> <em>Batch · prueba histórica reservada</em> (estático, 2026) junto a <em>En vivo · error real</em> (se actualiza cada minuto).</li>
+</ul>
+<h2 id="2-preguntas-de-referencia">2. Preguntas de referencia<a class="headerlink" href="#2-preguntas-de-referencia" title="Permanent link">&para;</a></h2>
+<p><strong>¿Diferencia entre el contrato de un evento empresarial y uno de sensor?</strong>
+La vela (sensor) es periódica, de tamaño fijo y se valida por rango físico (OHLC coherente). La operación (negocio) es individual, en ráfagas, con identidad propia (<code>trade_id</code>) y lado comprador/vendedor. Por eso van en tópicos distintos: distinto volumen, retención y consumidores.</p>
+<p><strong>Si un evento llega tarde, ¿qué hace el watermark? ¿Y sin él?</strong>
+Dentro del watermark entra en su ventana según la hora del evento; fuera de él se descarta y se cuenta. Sin watermark, Spark tendría que guardar el estado de todas las ventanas para siempre: la memoria crecería sin límite y nunca podría declarar una ventana como definitiva.</p>
+<p><strong>¿Qué métrica alertaría primero un backpressure?</strong>
+La duración del micro-lote: si supera los 15 s del intervalo, el siguiente lote empieza atrasado. Enseguida le sigue el lag de Kafka (<code>cryptopulse_kafka_checkpoint_lag</code>), que tiene alerta a partir de 100 mensajes durante 2 min.</p>
+<p><strong>¿Por qué estimar el costo del streaming no es igual que el del batch?</strong>
+El batch corre un rato y se apaga: se paga por ejecución. El streaming corre las 730 horas del mes y su costo crece con el volumen continuo y la retención de Kafka (las operaciones ocupan ~3 GB en 7 días).</p>
+<p><strong>¿Qué gana el tablero al mostrar la predicción junto a los KPIs?</strong>
+El analista ve en la misma pantalla qué está pasando (KPI) y qué se espera (predicción), y luego si el pronóstico acertó. Por separado tendría que cruzarlos a mano.</p>
+<p><strong>¿Por qué comparar primero con la persistencia y qué significa no ganarle?</strong>
+Porque en series de tiempo «mañana será como hoy» suele ser difícil de superar. Si el modelo no le gana, no aporta valor y se despliega la referencia; nos pasó con la divergencia con signo.</p>
+<p><strong>¿KPI de negocio frente a métrica de infraestructura? ¿Por qué Pushgateway es un atajo?</strong>
+Ver S11 arriba.</p>
+<h2 id="3-autoevaluacion-con-la-rubrica-u2">3. Autoevaluación con la rúbrica U2<a class="headerlink" href="#3-autoevaluacion-con-la-rubrica-u2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th style="text-align: right;">Peso</th>
+<th>Evidencia en vivo</th>
+<th>Nivel esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Eventos empresariales con Kafka</td>
+<td style="text-align: right;">12 %</td>
+<td>Kafka UI <code>market.trades.*</code>, contrato v1, panel de flujo neto</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2. Eventos IoT/sensores</td>
+<td style="text-align: right;">10 %</td>
+<td>Kafka UI <code>market.klines.*</code>, 61/61 velas, 0 faltantes</td>
+<td>A (telemetría real de mercado; explicar la analogía con un sensor)</td>
+</tr>
+<tr>
+<td>3. Streaming con Spark</td>
+<td style="text-align: right;">14 %</td>
+<td>4 consultas; log <code>progreso</code> con watermark y checkpoint; tabla <em>Ventanas finalizadas</em></td>
+<td>A</td>
+</tr>
+<tr>
+<td>4. Observabilidad</td>
+<td style="text-align: right;">12 %</td>
+<td>Sección <em>Operación</em>, Prometheus <code>/targets</code> y <code>/alerts</code>, caso de error</td>
+<td>A</td>
+</tr>
+<tr>
+<td>5. Costos y escalado</td>
+<td style="text-align: right;">8 %</td>
+<td>Volumen medido, costo de 65 USD/mes y umbrales para escalar</td>
+<td>A</td>
+</tr>
+<tr>
+<td>6. Salidas BI/ML</td>
+<td style="text-align: right;">12 %</td>
+<td>Tablero único: estado, señales, KPIs y predicciones</td>
+<td>A</td>
+</tr>
+<tr>
+<td>7. Inferencia validada</td>
+<td style="text-align: right;">12 %</td>
+<td>Prueba 2026 contra referencias y error en vivo, lado a lado</td>
+<td>A</td>
+</tr>
+<tr>
+<td>8. Sustentación</td>
+<td style="text-align: right;">20 %</td>
+<td>Depende de cada integrante: dimensión propia, evolución desde U1 y una pregunta de la Tabla 1</td>
+<td>Practicar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-decisiones-propias-distintas-al-ejemplo-del-docente">4. Decisiones propias, distintas al ejemplo del docente<a class="headerlink" href="#4-decisiones-propias-distintas-al-ejemplo-del-docente" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Datos reales, no simulados:</strong> velas y operaciones reales de Binance en lugar de sensores simulados.</li>
+<li><strong>Evento empresarial con valor de negocio:</strong> cada operación ejecutada se convierte en el flujo comprador/vendedor por minuto.</li>
+<li><strong>Cambiar la pregunta cuando el modelo no aporta:</strong> la divergencia con signo no superó la referencia; la reformulamos como tamaño y documentamos ambas versiones.</li>
+<li><strong>Probabilidades calibradas y umbral elegido en datos separados</strong>, en vez de usar 0,5 por defecto.</li>
+<li><strong>Error medido en vivo:</strong> cada pronóstico se compara con la realidad cuando madura su horizonte.</li>
+<li><strong>Exportador propio con <code>/metrics</code></strong> en lugar de Pushgateway.</li>
+<li><strong>Autorreparación:</strong> el streaming detecta checkpoints corruptos y se recupera sin duplicar datos.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 · CryptoPulse · Grupo 3 · Big Data UPeU
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.525ec568.min.js"></script>
+      
+    
+  </body>
+</html>
