@@ -14,6 +14,12 @@ Del histórico de la Unidad 1 a un pipeline vivo: cada operación y cada minuto 
 <p class="cp-question">¿Cómo puede un analista de riesgo anticipar, con 5 a 30 minutos de antelación, volatilidad alta, caídas fuertes, actividad anómala y desacople entre BTC y SOL?</p>
 </div>
 
+## Presentación
+
+[Descargar PowerPoint](../presentacion/CryptoPulse_U2.pptx){ .md-button .md-button--primary } [Abrir PDF](../presentacion/CryptoPulse_U2.pdf){ .md-button }
+
+<iframe src="../../presentacion/CryptoPulse_U2.pdf" title="Presentación CryptoPulse U2" style="width:100%;height:70vh;border:0;border-radius:12px"></iframe>
+
 <div class="cp-stats" markdown>
 <div class="cp-stat"><b>2</b><span>flujos reales en Kafka: operaciones y velas</span></div>
 <div class="cp-stat"><b>237 471</b><span>operaciones procesadas en ventanas, 30 de octubre</span></div>
