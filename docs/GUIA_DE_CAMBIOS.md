@@ -84,7 +84,7 @@ Sitio de documentación con la estructura de la plantilla de U3: Inicio, Instala
 
 ### 9. CI
 
-- `ci.yml`: en cada push corre las 45 pruebas unitarias, valida los JSON (tablero, contratos, configuración), los notebooks y los archivos Compose.
+- `ci.yml`: en cada push corre las 49 pruebas unitarias, valida los JSON (tablero, contratos, configuración), los notebooks y los archivos Compose.
 - `docs.yml`: publica la documentación.
 
 ### 10. Páginas de U3
@@ -110,4 +110,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\iniciar_producto.p
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verificar_producto.ps1
 ```
 
-Último resultado: S03 a S12 **PASS**, producto **LISTO** con 7/7 pronósticos y 45 pruebas unitarias aprobadas.
+Último resultado: S03 a S12 **PASS**, producto **LISTO** con 7/7 pronósticos y 49 pruebas unitarias aprobadas.
