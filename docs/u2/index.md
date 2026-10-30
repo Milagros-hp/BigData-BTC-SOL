@@ -16,7 +16,7 @@ Del histórico de la Unidad 1 a un pipeline vivo: cada operación y cada minuto 
 
 ## Presentación
 
-[Descargar PowerPoint](../presentacion/CryptoPulse_U2.pptx){ .md-button .md-button--primary } [Abrir PDF](../presentacion/CryptoPulse_U2.pdf){ .md-button }
+[Descargar PowerPoint](../presentacion/CryptoPulse_U2.pptx){ .md-button .md-button--primary } [Abrir PDF](../presentacion/CryptoPulse_U2.pdf){ .md-button } [Versión con color por expositor](../presentacion/CryptoPulse_U2_colores_por_expositor.pptx){ .md-button }
 
 <iframe src="../../presentacion/CryptoPulse_U2.pdf" title="Presentación CryptoPulse U2" style="width:100%;height:70vh;border:0;border-radius:12px"></iframe>
 

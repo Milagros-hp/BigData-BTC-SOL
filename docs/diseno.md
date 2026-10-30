@@ -41,3 +41,12 @@ Además de las 11 alertas operativas, `observability/alerts.yml` define 3 **regl
 | `cryptopulse:kafka_mensajes_por_minuto` | Mensajes por minuto en cada tópico `market.*` (tasa de 5 minutos) |
 | `cryptopulse:lag_total` | Lag total de Spark frente a Kafka |
 | `cryptopulse:lote_spark_max_5m` | Micro-lote más lento de los últimos 5 minutos, por consulta |
+
+## Tres tableros
+
+| Tablero | Para qué | Quién lo usa en la demo |
+|---|---|---|
+| **CryptoPulse · BTC y SOL** | KPIs y predicción en la misma vista: estado, cuatro dimensiones, riesgo, mercado y evidencia | Todo el equipo |
+| **CryptoPulse · Detalle** | Señales, historial, frescura, error por activo y correlación | Para responder preguntas |
+| **CryptoPulse · Operación** | Salud del pipeline, Spark, Kafka y costos | Abdul |
+| **Cómo se obtiene** (uno por integrante) | Recorrido del dato: pregunta, entrada, cálculo, pronóstico, acierto y validación. Se abre al pulsar la tarjeta de cada dimensión | Cada integrante |

@@ -1,0 +1,1197 @@
+{
+  "uid": "cryptopulse-abdul",
+  "title": "CryptoPulse · Abdul · cómo se obtiene",
+  "panels": [
+    {
+      "id": 60,
+      "title": "",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 3
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "html",
+        "content": "<style>\nbody{background:#0E1322!important}\n.react-grid-item section{background:#151C30!important;border:1px solid rgba(201,206,216,.10)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.28)!important}\n[data-testid^=\"data-testid Panel header\"] h2{font-weight:600!important;letter-spacing:.01em}\n[data-testid^=\"data-testid dashboard-row-title\"]{color:#F2A65A!important;text-transform:uppercase;letter-spacing:.08em;font-size:13px!important}\n.cp-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(244,241,234,.06);border:1px solid rgba(244,241,234,.14);color:#F4F1EA;font-size:12px;margin:3px}\n.cp-chip b{color:#F2A65A}\n</style><div style=\"display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px 20px;border-radius:14px;\nbackground:linear-gradient(120deg,#12182B 0%,#1B2440 62%,#2A1F14 100%);border:1px solid rgba(242,166,90,.35)\">\n<div><div style=\"font-size:24px;font-weight:800;color:#F4F1EA;line-height:1.2\">CryptoPulse <span style=\"color:#F2A65A\">BTC</span> · <span style=\"color:#4C9BE8\">SOL</span> <span style=\"color:#C9CED8;font-size:14px;font-weight:500\">Abdul · cómo se obtiene: Actividad anómala a 5 minutos</span></div>\n<div style=\"color:#C9CED8;font-size:13px\">Anticipar el riesgo con 5 a 30 minutos de antelación · Grupo 3 · Big Data UPeU 2026-2</div></div>\n<div style=\"text-align:right\"><span class=\"cp-chip\" style=\"border-left:3px solid #F2A65A\"><b style=\"color:#F2A65A\">Volatilidad</b> · Franck</span><span class=\"cp-chip\" style=\"border-left:3px solid #E5534B\"><b style=\"color:#E5534B\">Caídas</b> · Julmer</span><span class=\"cp-chip\" style=\"border-left:3px solid #3FB68B\"><b style=\"color:#3FB68B\">Actividad</b> · Abdul</span><span class=\"cp-chip\" style=\"border-left:3px solid #B48EF0\"><b style=\"color:#B48EF0\">Separación</b> · Luz Milagros</span></div></div>"
+      },
+      "transparent": true
+    },
+    {
+      "id": 100,
+      "title": "1 · La pregunta y el recorrido del dato",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 101,
+      "title": "¿Qué responde?",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 10,
+        "h": 6
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**¿Qué probabilidad hay de que en los próximos 5 minutos el volumen o las operaciones sean inusualmente altos para esa hora del día?**\n\nDetecta **actividad inusual**, que suele acompañar a noticias o movimientos fuertes. No atribuye fraude.\n\n**Modelo:** Regresión logística calibrada · **Horizonte:** 5 minutos"
+      }
+    },
+    {
+      "id": 102,
+      "title": "¿Por dónde pasa el dato?",
+      "type": "text",
+      "gridPos": {
+        "x": 10,
+        "y": 4,
+        "w": 14,
+        "h": 6
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "html",
+        "content": "<div style=\"display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;height:100%;gap:0\"><span style=\"display:inline-block;padding:8px 8px;border-radius:10px;background:rgba(244,241,234,.07);color:#F4F1EA;text-align:center;min-width:74px\"><b>Binance</b><br><span style=\"font-size:11px\">vela o operación real</span></span><span style=\"color:#C9CED8;font-size:20px;margin:0 3px\">→</span><span style=\"display:inline-block;padding:8px 8px;border-radius:10px;background:rgba(244,241,234,.07);color:#F4F1EA;text-align:center;min-width:74px\"><b>Kafka</b><br><span style=\"font-size:11px\">tópico con contrato</span></span><span style=\"color:#C9CED8;font-size:20px;margin:0 3px\">→</span><span style=\"display:inline-block;padding:8px 8px;border-radius:10px;background:rgba(244,241,234,.07);color:#F4F1EA;text-align:center;min-width:74px\"><b>Spark</b><br><span style=\"font-size:11px\">valida y calcula</span></span><span style=\"color:#C9CED8;font-size:20px;margin:0 3px\">→</span><span style=\"display:inline-block;padding:8px 8px;border-radius:10px;background:#3FB68B;color:#12182B;text-align:center;min-width:74px\"><b>Modelo</b><br><span style=\"font-size:11px\">pronóstico cada minuto</span></span><span style=\"color:#C9CED8;font-size:20px;margin:0 3px\">→</span><span style=\"display:inline-block;padding:8px 8px;border-radius:10px;background:rgba(244,241,234,.07);color:#F4F1EA;text-align:center;min-width:74px\"><b>PostgreSQL</b><br><span style=\"font-size:11px\">guarda y evalúa</span></span><span style=\"color:#C9CED8;font-size:20px;margin:0 3px\">→</span><span style=\"display:inline-block;padding:8px 8px;border-radius:10px;background:rgba(244,241,234,.07);color:#F4F1EA;text-align:center;min-width:74px\"><b>Grafana</b><br><span style=\"font-size:11px\">lo que ves</span></span></div>"
+      }
+    },
+    {
+      "id": 103,
+      "title": "2 · El dato que entra",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 10,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 104,
+      "title": "Últimas velas cerradas recibidas por Kafka",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 11,
+        "w": 16,
+        "h": 7
+      },
+      "description": "Cada fila viene de un mensaje real de market.klines.*, validado contra su contrato.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "locale",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT replace(symbol,'USDT','') AS \"Activo\",to_timestamp(close_ms/1000.0) AS \"Cierre\",open::double precision AS \"Apertura\",high::double precision AS \"Máximo\",low::double precision AS \"Mínimo\",close::double precision AS \"Cierre USDT\",round(quote_asset_volume::numeric,0) AS \"Volumen USDT\",number_of_trades AS \"Operaciones\" FROM market_candles WHERE source_mode<>'replay' ORDER BY close_ms DESC,symbol LIMIT 8",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "title": "Cómo llega",
+      "type": "text",
+      "gridPos": {
+        "x": 16,
+        "y": 11,
+        "w": 8,
+        "h": 7
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Tópicos:** `market.klines.btcusdt` y `market.klines.solusdt`\n\n**Frecuencia:** una vela por activo cada minuto\n\n**Contrato:** `market-kline-v1`. Lo que no lo cumple se rechaza.\n\n**Si cae:** se recupera por REST, sin inventar velas."
+      }
+    },
+    {
+      "id": 106,
+      "title": "3 · Cómo se calcula",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 107,
+      "title": "La lógica",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 10,
+        "h": 8
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Actividad anómala:** volumen u operaciones de 5 minutos sobre el percentil 95 de ese activo y esa hora UTC.\n\n**Abajo** se ve la actividad actual frente a esa referencia. Se compara por hora porque lo normal cambia durante el día.\n\n**Sin fuga:** las referencias salen solo del entrenamiento 2022–2024."
+      }
+    },
+    {
+      "id": 108,
+      "title": "Indicadores del último minuto",
+      "type": "table",
+      "gridPos": {
+        "x": 10,
+        "y": 19,
+        "w": 14,
+        "h": 8
+      },
+      "description": "Valores reales guardados en cada cierre de minuto.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "locale",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          },
+          "decimals": 3
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT DISTINCT ON(symbol) replace(symbol,'USDT','') AS \"Activo\",round((metrics->>'quote5')::numeric,0) AS \"Volumen 5 min USDT\",round((metrics->>'quote5_p95')::numeric,0) AS \"Referencia P95 USDT\",(metrics->>'trades5')::bigint AS \"Operaciones 5 min\",round((metrics->>'trades5_p95')::numeric,0) AS \"Referencia P95 operaciones\" FROM market_kpis WHERE symbol IN ('BTCUSDT','SOLUSDT') ORDER BY symbol,as_of_ms DESC",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "title": "4 · Qué predijo",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 110,
+      "title": "Pronóstico actual como % de su umbral",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 6,
+        "h": 8
+      },
+      "description": "100 % significa que alcanzó su umbral de alerta.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#24795C",
+                "value": null
+              },
+              {
+                "color": "#E0A030",
+                "value": 80
+              },
+              {
+                "color": "#E5534B",
+                "value": 100
+              }
+            ]
+          },
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value_and_name",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical"
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT now() AS time,replace(symbol,'USDT','') AS metric,100*value/NULLIF(threshold,0) AS value FROM cp_signal_board WHERE kind='forecast' AND dimension='anomaly' ORDER BY symbol",
+          "format": "time_series",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "title": "Pronóstico en el tiempo",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 6,
+        "y": 28,
+        "w": 18,
+        "h": 8
+      },
+      "description": "Punteada: pronóstico. Continua: observada. Puntos: lo que pasó después.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "spanNulls": false,
+            "showPoints": "never",
+            "lineInterpolation": "smooth",
+            "axisGridShow": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^BTC(USDT)?( ·.*)?$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2A65A"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^SOL(USDT)?( ·.*)?$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4C9BE8"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^BTC-SOL.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#B48EF0"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*(pronóstico|referencia)$"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "fill": "dash",
+                  "dash": [
+                    10,
+                    6
+                  ]
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*realidad futura$"
+            },
+            "properties": [
+              {
+                "id": "custom.drawStyle",
+                "value": "points"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 6
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT to_timestamp(as_of_ms/1000.0) AS time,replace(symbol,'USDT','')||' · pronóstico' AS metric,forecast AS value FROM predictions WHERE dimension='anomaly' AND source_mode='live' AND model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version') AND (as_of_ms BETWEEN $__unixEpochFrom()::bigint*1000 AND $__unixEpochTo()::bigint*1000) ORDER BY 1",
+          "format": "time_series",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "title": "5 · ¿Acertó?",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 36,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 113,
+      "title": "Últimas probabilidades ya comprobadas",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 37,
+        "w": 14,
+        "h": 8
+      },
+      "description": "Se comprueban cuando madura el horizonte.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          },
+          "decimals": 1
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT to_timestamp(as_of_ms/1000.0) AS \"Emitido\",replace(symbol,'USDT','') AS \"Activo\",round(100*forecast::numeric,1) AS \"Probabilidad %\",round(100*baseline::numeric,1) AS \"Referencia %\",CASE WHEN alert THEN 'Sí' ELSE 'No' END AS \"¿Alertó?\",CASE WHEN actual>=1 THEN 'Sí' ELSE 'No' END AS \"¿Ocurrió?\" FROM predictions WHERE dimension='anomaly' AND source_mode='live' AND model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version') AND actual IS NOT NULL ORDER BY as_of_ms DESC,symbol LIMIT 10",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "title": "Aciertos y errores en vivo · período elegido",
+      "type": "table",
+      "gridPos": {
+        "x": 14,
+        "y": 37,
+        "w": 10,
+        "h": 8
+      },
+      "description": "Conteo real de pronósticos ya madurados. Con pocas horas la muestra es corta.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT replace(symbol,'USDT','') AS \"Activo\",count(*) FILTER(WHERE alert AND actual>=1) AS \"Alertó y ocurrió\",count(*) FILTER(WHERE alert AND actual<1) AS \"Falsa alarma\",count(*) FILTER(WHERE NOT alert AND actual>=1) AS \"No alertó y ocurrió\",count(*) FILTER(WHERE NOT alert AND actual<1) AS \"Sin alerta y no ocurrió\" FROM predictions WHERE dimension='anomaly' AND source_mode='live' AND model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version') AND (as_of_ms BETWEEN $__unixEpochFrom()::bigint*1000 AND $__unixEpochTo()::bigint*1000) AND actual IS NOT NULL GROUP BY symbol ORDER BY symbol",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "title": "6 · Validación, evolución y límite",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 45,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 116,
+      "title": "Prueba 2026 · modelo contra referencia",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 46,
+        "w": 9,
+        "h": 7
+      },
+      "description": "Prueba reservada de enero a septiembre de 2026, usada una sola vez.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT CASE k WHEN 'rmse' THEN 'RMSE (menos es mejor)' WHEN 'mae' THEN 'MAE (menos es mejor)' WHEN 'pr_auc' THEN 'PR-AUC (más es mejor)' WHEN 'brier' THEN 'Brier (menos es mejor)' WHEN 'precision' THEN 'Precisión en el umbral' ELSE 'Recall en el umbral' END AS \"Métrica\",round((x.metrics->>k)::numeric,3) AS \"Modelo\",round((b.metrics->>k)::numeric,3) AS \"Referencia\" FROM unnest(ARRAY['pr_auc','brier','precision','recall']) k CROSS JOIN model_metrics x JOIN model_metrics b ON b.dimension=x.dimension AND b.model_version=x.model_version AND b.split='test_baseline' WHERE x.dimension='anomaly' AND x.split='test_deployed' AND x.model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version')",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "title": "En vivo · por activo",
+      "type": "table",
+      "gridPos": {
+        "x": 9,
+        "y": 46,
+        "w": 7,
+        "h": 7
+      },
+      "description": "Solo el período elegido. Es una muestra corta.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT replace(symbol,'USDT','') AS \"Activo\",count(*) AS \"Evaluados\",round(avg(abs(forecast-actual))::numeric,3) AS \"MAE modelo\",round(avg(abs(baseline-actual))::numeric,3) AS \"MAE referencia\" FROM predictions WHERE dimension='anomaly' AND source_mode='live' AND model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version') AND (as_of_ms BETWEEN $__unixEpochFrom()::bigint*1000 AND $__unixEpochTo()::bigint*1000) AND actual IS NOT NULL GROUP BY symbol ORDER BY symbol",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "title": "De U1 a U2 y límite",
+      "type": "text",
+      "gridPos": {
+        "x": 16,
+        "y": 46,
+        "w": 8,
+        "h": 7
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**U1:** En U1 comparó referencia, dos logísticas y Random Forest. Ganó la logística L2, con AUC-PR de validación 0,820.\n\n**U2:** el mismo tipo de modelo trabaja en vivo y se evalúa solo.\n\n**Límite real:** En vivo, en BTC, ha tenido más error que su referencia en algunos períodos. La muestra es corta y hay que seguir midiéndolo."
+      }
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "tags": [
+    "cryptopulse-integrante"
+  ],
+  "schemaVersion": 40,
+  "version": 4,
+  "refresh": "10s",
+  "timezone": "browser",
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "editable": true,
+  "graphTooltip": 1,
+  "links": [
+    {
+      "title": "← Volver al tablero",
+      "type": "link",
+      "url": "/d/cryptopulse-main",
+      "targetBlank": false
+    }
+  ]
+}

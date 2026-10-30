@@ -1,0 +1,981 @@
+{
+  "uid": "cryptopulse-detalle",
+  "title": "CryptoPulse · Detalle",
+  "panels": [
+    {
+      "id": 60,
+      "title": "",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 3
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {
+        "mode": "html",
+        "content": "<style>\nbody{background:#0E1322!important}\n.react-grid-item section{background:#151C30!important;border:1px solid rgba(201,206,216,.10)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.28)!important}\n[data-testid^=\"data-testid Panel header\"] h2{font-weight:600!important;letter-spacing:.01em}\n[data-testid^=\"data-testid dashboard-row-title\"]{color:#F2A65A!important;text-transform:uppercase;letter-spacing:.08em;font-size:13px!important}\n.cp-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(244,241,234,.06);border:1px solid rgba(244,241,234,.14);color:#F4F1EA;font-size:12px;margin:3px}\n.cp-chip b{color:#F2A65A}\n</style><div style=\"display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px 20px;border-radius:14px;\nbackground:linear-gradient(120deg,#12182B 0%,#1B2440 62%,#2A1F14 100%);border:1px solid rgba(242,166,90,.35)\">\n<div><div style=\"font-size:24px;font-weight:800;color:#F4F1EA;line-height:1.2\">CryptoPulse <span style=\"color:#F2A65A\">BTC</span> · <span style=\"color:#4C9BE8\">SOL</span> <span style=\"color:#C9CED8;font-size:14px;font-weight:500\">Detalle de señales y evidencia</span></div>\n<div style=\"color:#C9CED8;font-size:13px\">Anticipar el riesgo con 5 a 30 minutos de antelación · Grupo 3 · Big Data UPeU 2026-2</div></div>\n<div style=\"text-align:right\"><span class=\"cp-chip\" style=\"border-left:3px solid #F2A65A\"><b style=\"color:#F2A65A\">Volatilidad</b> · Franck</span><span class=\"cp-chip\" style=\"border-left:3px solid #E5534B\"><b style=\"color:#E5534B\">Caídas</b> · Julmer</span><span class=\"cp-chip\" style=\"border-left:3px solid #3FB68B\"><b style=\"color:#3FB68B\">Actividad</b> · Abdul</span><span class=\"cp-chip\" style=\"border-left:3px solid #B48EF0\"><b style=\"color:#B48EF0\">Separación</b> · Luz Milagros</span></div></div>"
+      },
+      "transparent": true
+    },
+    {
+      "id": 10,
+      "title": "Señales de mercado · estado, umbral y explicación",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 24,
+        "h": 11
+      },
+      "description": "Siempre muestra las 14 evaluaciones posibles. NORMAL no es un dato ausente. Las señales apoyan la revisión; no ejecutan órdenes.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT symbol AS \"Activo\",CASE dimension WHEN 'volatility' THEN 'Volatilidad' WHEN 'crash' THEN 'Caída' WHEN 'anomaly' THEN 'Actividad' ELSE 'Divergencia' END AS \"Dimensión\",CASE kind WHEN 'observed' THEN 'Observada' ELSE 'Pronóstico' END AS \"Origen\",state AS \"Estado\",round(value::numeric,3) AS \"Valor\",round(threshold::numeric,3) AS \"Umbral\",explanation AS \"Interpretación\",action AS \"Qué revisar\" FROM cp_signal_board ORDER BY dimension,symbol,kind",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Historial de cruces · período seleccionado",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 24,
+        "h": 8
+      },
+      "description": "Solo cruces reales. No se generan alertas artificiales para llenar esta tabla.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "WITH events AS (SELECT to_timestamp(as_of_ms/1000.0) AS \"Fecha\",symbol AS \"Activo\",CASE dimension WHEN 'volatility' THEN 'Volatilidad' WHEN 'crash' THEN 'Caída' WHEN 'anomaly' THEN 'Actividad' ELSE 'Divergencia' END AS \"Dimensión\",CASE kind WHEN 'observed' THEN 'Observada' ELSE 'Pronóstico' END AS \"Origen\",CASE severity WHEN 'high' THEN 'ALERTA' ELSE 'VIGILANCIA' END AS \"Estado\",round(value::numeric,3) AS \"Valor\",round(threshold::numeric,3) AS \"Umbral\",explanation AS \"Detalle\" FROM market_signals WHERE triggered AND source_mode='live' AND model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version') AND (as_of_ms BETWEEN $__unixEpochFrom()::bigint*1000 AND $__unixEpochTo()::bigint*1000) ORDER BY as_of_ms DESC LIMIT 100)\n SELECT * FROM events UNION ALL SELECT NULL,'BTC / SOL','Todas','Estado',CASE WHEN (SELECT count(*) FROM cp_signal_board WHERE kind='forecast' AND age_seconds<=180)=7 THEN 'SIN CRUCES' ELSE 'REVISAR INFERENCIA' END,NULL,NULL,'No hay señales que superen umbrales en el período seleccionado.' WHERE NOT EXISTS(SELECT 1 FROM events)",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "title": "Frescura y continuidad por activo",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 22,
+        "w": 12,
+        "h": 5
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT symbol AS \"Activo\",status AS \"Estado\",round(candle_age_seconds,0) AS \"Edad vela · s\",context_rows AS \"Velas / 61\",missing_minutes AS \"Minutos faltantes\" FROM cp_asset_health ORDER BY symbol",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "title": "Último minuto cerrado · operaciones",
+      "type": "table",
+      "gridPos": {
+        "x": 12,
+        "y": 22,
+        "w": 12,
+        "h": 5
+      },
+      "description": "Ventanas finalizadas por watermark: aparecen con 1–2 minutos de retraso respecto al reloj.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "locale",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          },
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT DISTINCT ON (symbol) symbol AS \"Activo\",trades AS \"Operaciones\",round(buy_usdt::numeric,0) AS \"Compras USDT\",round(sell_usdt::numeric,0) AS \"Ventas USDT\",large_trades AS \"≥ 100k USDT\" FROM trade_flow ORDER BY symbol,window_start DESC",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "En vivo · error real por activo",
+      "type": "table",
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 12,
+        "h": 7
+      },
+      "description": "Solo la versión activa y el período elegido. Los horizontes todavía abiertos permanecen madurando.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT CASE dimension WHEN 'volatility' THEN 'Volatilidad' WHEN 'crash' THEN 'Caída' WHEN 'anomaly' THEN 'Actividad' ELSE 'Divergencia' END AS \"Dimensión\",symbol AS \"Activo\",count(actual) AS \"Evaluadas\",count(*) FILTER(WHERE actual IS NULL) AS \"Madurando\",round(avg(abs(forecast-actual))::numeric,3) AS \"MAE modelo\",round(avg(abs(baseline-actual))::numeric,3) AS \"MAE referencia\" FROM predictions WHERE source_mode='live' AND model_version=(SELECT value FROM runtime_configuration WHERE key='active_model_version') AND (as_of_ms BETWEEN $__unixEpochFrom()::bigint*1000 AND $__unixEpochTo()::bigint*1000) GROUP BY dimension,symbol ORDER BY dimension,symbol",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "title": "Actividad observada · referencia por hora UTC",
+      "type": "table",
+      "gridPos": {
+        "x": 12,
+        "y": 27,
+        "w": 12,
+        "h": 7
+      },
+      "description": "P95 respecto del entrenamiento 2022–2024 para activo y hora UTC. No atribuye fraude.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "locale",
+          "noValue": "Pendiente",
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "wrapText": true
+          },
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "NORMAL": {
+                        "text": "NORMAL",
+                        "color": "#3FB68B"
+                      },
+                      "LISTO": {
+                        "text": "LISTO",
+                        "color": "#3FB68B"
+                      },
+                      "SIN CRUCES": {
+                        "text": "SIN CRUCES",
+                        "color": "#3FB68B"
+                      },
+                      "VIGILANCIA": {
+                        "text": "VIGILANCIA",
+                        "color": "#E0A030"
+                      },
+                      "ALERTA": {
+                        "text": "ALERTA",
+                        "color": "#E5534B"
+                      },
+                      "DESACTUALIZADO": {
+                        "text": "DESACTUALIZADO",
+                        "color": "#E5534B"
+                      },
+                      "REVISAR INFERENCIA": {
+                        "text": "REVISAR INFERENCIA",
+                        "color": "#E5534B"
+                      },
+                      "DATOS INCOMPLETOS": {
+                        "text": "DATOS INCOMPLETOS",
+                        "color": "#E5534B"
+                      },
+                      "SIN EVALUAR": {
+                        "text": "SIN EVALUAR",
+                        "color": "#7A8296"
+                      },
+                      "REFERENCIA": {
+                        "text": "REFERENCIA",
+                        "color": "#4C9BE8"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT DISTINCT ON(symbol) symbol AS \"Activo\",round((metrics->>'quote5')::numeric,0) AS \"USDT · 5 min\",round((metrics->>'quote5_p95')::numeric,0) AS \"USDT · P95\",(metrics->>'trades5')::bigint AS \"Operaciones · 5 min\",round((metrics->>'trades5_p95')::numeric,0) AS \"Operaciones · P95\" FROM market_kpis WHERE symbol IN ('BTCUSDT','SOLUSDT') ORDER BY symbol,as_of_ms DESC",
+          "format": "table",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Correlación BTC / SOL · rendimientos 60 min",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 34,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Pearson sobre rendimientos consecutivos de un minuto: −1 a +1. Correlación no implica causalidad.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "spanNulls": false,
+            "showPoints": "never",
+            "lineInterpolation": "smooth",
+            "axisGridShow": false
+          },
+          "min": -1,
+          "max": 1,
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#B48EF0"
+          },
+          "displayName": "Correlación BTC–SOL"
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT to_timestamp(as_of_ms/1000.0) AS time,(metrics->>'correlation_60m')::double precision AS value FROM market_kpis WHERE symbol='BTC-SOL' AND (as_of_ms BETWEEN $__unixEpochFrom()::bigint*1000 AND $__unixEpochTo()::bigint*1000) ORDER BY 1",
+          "format": "time_series",
+          "rawQuery": true
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "title": "Presión compradora · % del importe iniciado por compradores",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 34,
+        "w": 12,
+        "h": 8
+      },
+      "description": "50 % es equilibrio. Valores sostenidos lejos de 50 % acompañan movimientos direccionales.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "spanNulls": false,
+            "showPoints": "never",
+            "lineInterpolation": "smooth",
+            "axisGridShow": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^BTC(USDT)?( ·.*)?$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2A65A"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^SOL(USDT)?( ·.*)?$"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4C9BE8"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^BTC-SOL.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#B48EF0"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*(pronóstico|referencia)$"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "fill": "dash",
+                  "dash": [
+                    10,
+                    6
+                  ]
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*realidad futura$"
+            },
+            "properties": [
+              {
+                "id": "custom.drawStyle",
+                "value": "points"
+              },
+              {
+                "id": "custom.pointSize",
+                "value": 6
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "postgres",
+        "uid": "cryptopulse-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "cryptopulse-postgres"
+          },
+          "rawSql": "SELECT window_start AS time,symbol AS metric,100*buy_usdt/NULLIF(buy_usdt+sell_usdt,0) AS value FROM trade_flow WHERE $__timeFilter(window_start) ORDER BY 1",
+          "format": "time_series",
+          "rawQuery": true
+        }
+      ]
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "tags": [
+    "cryptopulse",
+    "bigdata",
+    "risk-monitoring"
+  ],
+  "schemaVersion": 40,
+  "version": 4,
+  "refresh": "10s",
+  "timezone": "browser",
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "editable": true,
+  "graphTooltip": 1,
+  "links": [
+    {
+      "title": "Tableros CryptoPulse",
+      "type": "dashboards",
+      "tags": [
+        "cryptopulse"
+      ],
+      "asDropdown": false,
+      "includeVars": false,
+      "keepTime": true
+    },
+    {
+      "title": "Estado técnico JSON",
+      "type": "link",
+      "url": "http://localhost:48000/api/status",
+      "targetBlank": true
+    },
+    {
+      "title": "Kafka UI",
+      "type": "link",
+      "url": "http://localhost:48085",
+      "targetBlank": true
+    },
+    {
+      "title": "Prometheus",
+      "type": "link",
+      "url": "http://localhost:49090/alerts",
+      "targetBlank": true
+    }
+  ]
+}

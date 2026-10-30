@@ -10,7 +10,7 @@
         "x": 0,
         "y": 0,
         "w": 24,
-        "h": 5
+        "h": 3
       },
       "description": "",
       "fieldConfig": {
@@ -22,7 +22,7 @@
       },
       "options": {
         "mode": "html",
-        "content": "<style>\nbody{background:#0E1322!important}\n.react-grid-item section{background:#151C30!important;border:1px solid rgba(201,206,216,.10)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.28)!important}\n[data-testid^=\"data-testid Panel header\"] h2{font-weight:600!important;letter-spacing:.01em}\n[data-testid^=\"data-testid dashboard-row-title\"]{color:#F2A65A!important;text-transform:uppercase;letter-spacing:.08em;font-size:13px!important}\n.cp-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(244,241,234,.06);border:1px solid rgba(244,241,234,.14);color:#F4F1EA;font-size:12px;margin:3px}\n.cp-chip b{color:#F2A65A}\n</style><div style=\"display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 24px;border-radius:16px;\nbackground:linear-gradient(120deg,#12182B 0%,#1B2440 62%,#2A1F14 100%);border:1px solid rgba(242,166,90,.35)\">\n<div><div style=\"color:#F2A65A;font-weight:700;letter-spacing:.18em;font-size:11px;text-transform:uppercase\">Big Data · UPeU 2026-2 · Grupo 3 · Operación del pipeline</div>\n<div style=\"font-size:30px;font-weight:800;color:#F4F1EA;line-height:1.2\">CryptoPulse <span style=\"color:#F2A65A\">BTC</span> · <span style=\"color:#4C9BE8\">SOL</span></div>\n<div style=\"color:#C9CED8;font-size:14px;max-width:780px\">¿Cómo anticipar, con 5 a 30 minutos de antelación, volatilidad alta, caídas fuertes, actividad anómala y desacople entre BTC y SOL?</div>\n<div style=\"margin-top:6px;font-size:13px\"><a href=\"/d/cryptopulse-main\" style=\"color:#F2A65A;font-weight:600;margin-right:16px;text-decoration:none\">Tablero ejecutivo →</a><a href=\"http://localhost:49090/alerts\" style=\"color:#F2A65A;font-weight:600;margin-right:16px;text-decoration:none\">Prometheus →</a><a href=\"http://localhost:48085\" style=\"color:#F2A65A;font-weight:600;margin-right:16px;text-decoration:none\">Kafka UI →</a></div></div>\n<div style=\"text-align:right;max-width:560px\"><span class=\"cp-chip\" style=\"border-left:3px solid #F2A65A\"><b style=\"color:#F2A65A\">Volatilidad</b> · Franck</span><span class=\"cp-chip\" style=\"border-left:3px solid #E5534B\"><b style=\"color:#E5534B\">Caídas</b> · Julmer</span><span class=\"cp-chip\" style=\"border-left:3px solid #3FB68B\"><b style=\"color:#3FB68B\">Actividad</b> · Abdul</span><span class=\"cp-chip\" style=\"border-left:3px solid #B48EF0\"><b style=\"color:#B48EF0\">Divergencia</b> · Luz Milagros</span></div></div>"
+        "content": "<style>\nbody{background:#0E1322!important}\n.react-grid-item section{background:#151C30!important;border:1px solid rgba(201,206,216,.10)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.28)!important}\n[data-testid^=\"data-testid Panel header\"] h2{font-weight:600!important;letter-spacing:.01em}\n[data-testid^=\"data-testid dashboard-row-title\"]{color:#F2A65A!important;text-transform:uppercase;letter-spacing:.08em;font-size:13px!important}\n.cp-chip{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(244,241,234,.06);border:1px solid rgba(244,241,234,.14);color:#F4F1EA;font-size:12px;margin:3px}\n.cp-chip b{color:#F2A65A}\n</style><div style=\"display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px 20px;border-radius:14px;\nbackground:linear-gradient(120deg,#12182B 0%,#1B2440 62%,#2A1F14 100%);border:1px solid rgba(242,166,90,.35)\">\n<div><div style=\"font-size:24px;font-weight:800;color:#F4F1EA;line-height:1.2\">CryptoPulse <span style=\"color:#F2A65A\">BTC</span> · <span style=\"color:#4C9BE8\">SOL</span> <span style=\"color:#C9CED8;font-size:14px;font-weight:500\">Operación del pipeline</span></div>\n<div style=\"color:#C9CED8;font-size:13px\">Anticipar el riesgo con 5 a 30 minutos de antelación · Grupo 3 · Big Data UPeU 2026-2</div></div>\n<div style=\"text-align:right\"><span class=\"cp-chip\" style=\"border-left:3px solid #F2A65A\"><b style=\"color:#F2A65A\">Volatilidad</b> · Franck</span><span class=\"cp-chip\" style=\"border-left:3px solid #E5534B\"><b style=\"color:#E5534B\">Caídas</b> · Julmer</span><span class=\"cp-chip\" style=\"border-left:3px solid #3FB68B\"><b style=\"color:#3FB68B\">Actividad</b> · Abdul</span><span class=\"cp-chip\" style=\"border-left:3px solid #B48EF0\"><b style=\"color:#B48EF0\">Separación</b> · Luz Milagros</span></div></div>"
       },
       "transparent": true
     },
@@ -32,7 +32,7 @@
       "type": "row",
       "gridPos": {
         "x": 0,
-        "y": 5,
+        "y": 3,
         "w": 24,
         "h": 1
       },
@@ -52,7 +52,7 @@
       "type": "stat",
       "gridPos": {
         "x": 0,
-        "y": 6,
+        "y": 4,
         "w": 4,
         "h": 4
       },
@@ -124,7 +124,7 @@
       "type": "stat",
       "gridPos": {
         "x": 4,
-        "y": 6,
+        "y": 4,
         "w": 4,
         "h": 4
       },
@@ -196,7 +196,7 @@
       "type": "stat",
       "gridPos": {
         "x": 8,
-        "y": 6,
+        "y": 4,
         "w": 4,
         "h": 4
       },
@@ -268,7 +268,7 @@
       "type": "stat",
       "gridPos": {
         "x": 12,
-        "y": 6,
+        "y": 4,
         "w": 4,
         "h": 4
       },
@@ -340,7 +340,7 @@
       "type": "stat",
       "gridPos": {
         "x": 16,
-        "y": 6,
+        "y": 4,
         "w": 4,
         "h": 4
       },
@@ -412,7 +412,7 @@
       "type": "stat",
       "gridPos": {
         "x": 20,
-        "y": 6,
+        "y": 4,
         "w": 4,
         "h": 4
       },
@@ -484,7 +484,7 @@
       "type": "stat",
       "gridPos": {
         "x": 0,
-        "y": 10,
+        "y": 8,
         "w": 6,
         "h": 5
       },
@@ -541,7 +541,7 @@
       "type": "stat",
       "gridPos": {
         "x": 6,
-        "y": 10,
+        "y": 8,
         "w": 6,
         "h": 5
       },
@@ -594,7 +594,7 @@
       "type": "table",
       "gridPos": {
         "x": 0,
-        "y": 15,
+        "y": 13,
         "w": 12,
         "h": 5
       },
@@ -608,7 +608,7 @@
             "cellOptions": {
               "type": "auto"
             },
-            "filterable": true,
+            "filterable": false,
             "wrapText": true
           }
         },
@@ -663,7 +663,7 @@
       "type": "timeseries",
       "gridPos": {
         "x": 12,
-        "y": 10,
+        "y": 8,
         "w": 12,
         "h": 10
       },
@@ -679,7 +679,8 @@
             "gradientMode": "opacity",
             "spanNulls": false,
             "showPoints": "never",
-            "lineInterpolation": "smooth"
+            "lineInterpolation": "smooth",
+            "axisGridShow": false
           }
         },
         "overrides": [
@@ -758,11 +759,11 @@
     },
     {
       "id": 43,
-      "title": "Operación · recepción, procesamiento y persistencia",
+      "title": "Procesamiento · Spark y Kafka",
       "type": "row",
       "gridPos": {
         "x": 0,
-        "y": 20,
+        "y": 18,
         "w": 24,
         "h": 1
       },
@@ -777,69 +778,16 @@
       "options": {}
     },
     {
-      "id": 13,
-      "title": "WebSocket · 1 conectado",
-      "type": "stat",
-      "gridPos": {
-        "x": 0,
-        "y": 21,
-        "w": 6,
-        "h": 5
-      },
-      "description": "La conexión no sustituye continuidad e inferencia.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "noValue": "Pendiente",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#1B2440",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center"
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "cryptopulse_producer_connected",
-          "instant": true,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
-        }
-      ]
-    },
-    {
       "id": 14,
       "title": "Spark · edad de señal de vida",
       "type": "stat",
       "gridPos": {
-        "x": 6,
-        "y": 21,
+        "x": 0,
+        "y": 19,
         "w": 6,
-        "h": 5
+        "h": 4
       },
-      "description": "La alerta integral comprueba además pronósticos.",
+      "description": "Verde hasta 30 s. Más de 60 s degrada el producto.",
       "fieldConfig": {
         "defaults": {
           "unit": "s",
@@ -848,8 +796,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#1B2440",
+                "color": "#24795C",
                 "value": null
+              },
+              {
+                "color": "#E0A030",
+                "value": 30
+              },
+              {
+                "color": "#E5534B",
+                "value": 60
               }
             ]
           }
@@ -887,12 +843,12 @@
       "title": "Kafka · eventos pendientes",
       "type": "stat",
       "gridPos": {
-        "x": 12,
-        "y": 21,
+        "x": 6,
+        "y": 19,
         "w": 6,
-        "h": 5
+        "h": 4
       },
-      "description": "Regla de grabación: suma del lag de todos los tópicos respecto de los offsets disponibles.",
+      "description": "Un lote normal de 15 s ya trae cientos de operaciones. Ámbar desde 2 000 y rojo desde 5 000 en total.",
       "fieldConfig": {
         "defaults": {
           "unit": "short",
@@ -901,8 +857,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#1B2440",
+                "color": "#24795C",
                 "value": null
+              },
+              {
+                "color": "#E0A030",
+                "value": 2000
+              },
+              {
+                "color": "#E5534B",
+                "value": 5000
               }
             ]
           }
@@ -937,15 +901,15 @@
     },
     {
       "id": 16,
-      "title": "Escenario de costo · sin facturación",
+      "title": "Costo estimado · sin facturación",
       "type": "stat",
       "gridPos": {
-        "x": 18,
-        "y": 21,
+        "x": 12,
+        "y": 19,
         "w": 6,
-        "h": 5
+        "h": 4
       },
-      "description": "Hipótesis editables; no cobro Docker ni cotización. CPU, memoria, disco y horas configurados.",
+      "description": "Hipótesis editables; no es cobro ni cotización. CPU, memoria, disco y horas configurados.",
       "fieldConfig": {
         "defaults": {
           "unit": "currencyUSD",
@@ -958,7 +922,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "decimals": 2
         },
         "overrides": []
       },
@@ -989,168 +954,19 @@
       ]
     },
     {
-      "id": 17,
-      "title": "Spark · duración de micro-lotes (intervalo 15 s)",
-      "type": "timeseries",
-      "gridPos": {
-        "x": 0,
-        "y": 26,
-        "w": 12,
-        "h": 7
-      },
-      "description": "Comparar duración con intervalo de 15 s. Los lotes de recuperación pueden excederlo.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "noValue": "Pendiente",
-          "custom": {
-            "drawStyle": "line",
-            "lineWidth": 2,
-            "fillOpacity": 8,
-            "gradientMode": "opacity",
-            "spanNulls": false,
-            "showPoints": "never",
-            "lineInterpolation": "smooth",
-            "thresholdsStyle": {
-              "mode": "line+area"
-            }
-          },
-          "min": 0,
-          "max": 60,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "transparent",
-                "value": null
-              },
-              {
-                "color": "rgba(229,83,75,0.25)",
-                "value": 15
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "cryptopulse_batch_duration_seconds",
-          "instant": false,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
-        }
-      ]
-    },
-    {
-      "id": 18,
-      "title": "Kafka · avance acumulado por tópico",
-      "type": "timeseries",
-      "gridPos": {
-        "x": 12,
-        "y": 26,
-        "w": 12,
-        "h": 7
-      },
-      "description": "Suma de offsets. No es tasa de mensajes por segundo ni número retenido.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "noValue": "Pendiente",
-          "custom": {
-            "drawStyle": "line",
-            "lineWidth": 2,
-            "fillOpacity": 8,
-            "gradientMode": "opacity",
-            "spanNulls": false,
-            "showPoints": "never",
-            "lineInterpolation": "smooth"
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*btcusdt.*"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "mode": "fixed",
-                  "fixedColor": "#F2A65A"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": ".*solusdt.*"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "mode": "fixed",
-                  "fixedColor": "#4C9BE8"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "options": {
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "sum by(topic) (kafka_topic_partition_current_offset{topic=~\"market.(klines|trades).*\"})",
-          "instant": false,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
-        }
-      ]
-    },
-    {
       "id": 1,
-      "title": "Histórico limpio · corte batch",
+      "title": "Histórico limpio · velas",
       "type": "stat",
       "gridPos": {
-        "x": 0,
-        "y": 33,
+        "x": 18,
+        "y": 19,
         "w": 6,
-        "h": 5
+        "h": 4
       },
       "description": "2022-01 a 2026-09. Archivos públicos con SHA256. Dos registros inválidos excluidos.",
       "fieldConfig": {
         "defaults": {
-          "unit": "short",
+          "unit": "locale",
           "noValue": "Pendiente",
           "thresholds": {
             "mode": "absolute",
@@ -1160,7 +976,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "decimals": 0
         },
         "overrides": []
       },
@@ -1195,16 +1012,388 @@
       ]
     },
     {
+      "id": 17,
+      "title": "Spark · duración de micro-lotes (intervalo 15 s)",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 23,
+        "w": 12,
+        "h": 7
+      },
+      "description": "Comparar duración con intervalo de 15 s. Los lotes de recuperación pueden excederlo.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "spanNulls": false,
+            "showPoints": "never",
+            "lineInterpolation": "smooth",
+            "axisGridShow": false,
+            "thresholdsStyle": {
+              "mode": "line"
+            }
+          },
+          "min": 0,
+          "max": 60,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "#E5534B",
+                "value": 15
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cryptopulse_batch_duration_seconds",
+          "instant": false,
+          "legendFormat": "{{query}}"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Kafka · avance acumulado por tópico",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 23,
+        "w": 12,
+        "h": 7
+      },
+      "description": "Suma de offsets. Punteado: velas; continuo: operaciones.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "spanNulls": false,
+            "showPoints": "never",
+            "lineInterpolation": "smooth",
+            "axisGridShow": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*btcusdt.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#F2A65A"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*solusdt.*"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#4C9BE8"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "^market\\.klines.*"
+            },
+            "properties": [
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "fill": "dash",
+                  "dash": [
+                    10,
+                    6
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by(topic) (kafka_topic_partition_current_offset{topic=~\"market.(klines|trades).*\"})",
+          "instant": false,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "title": "Eventos empresariales y ventanas",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 30,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 49,
+      "title": "Productor de operaciones · edad",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 31,
+        "w": 4,
+        "h": 5
+      },
+      "description": "Más de 60 s degrada el producto y dispara una alerta.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#24795C",
+                "value": null
+              },
+              {
+                "color": "#E0A030",
+                "value": 30
+              },
+              {
+                "color": "#E5534B",
+                "value": 60
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cryptopulse_trades_heartbeat_age_seconds",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "title": "Última ventana · edad",
+      "type": "stat",
+      "gridPos": {
+        "x": 4,
+        "y": 31,
+        "w": 4,
+        "h": 5
+      },
+      "description": "Más de 300 s degrada el producto.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#24795C",
+                "value": null
+              },
+              {
+                "color": "#E0A030",
+                "value": 180
+              },
+              {
+                "color": "#E5534B",
+                "value": 300
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "cryptopulse_trade_flow_age_seconds",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "title": "Operaciones pendientes",
+      "type": "stat",
+      "gridPos": {
+        "x": 8,
+        "y": 31,
+        "w": 4,
+        "h": 5
+      },
+      "description": "Ámbar desde 2 000 y rojo desde 5 000, igual que la alerta.",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "Pendiente",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#24795C",
+                "value": null
+              },
+              {
+                "color": "#E0A030",
+                "value": 2000
+              },
+              {
+                "color": "#E5534B",
+                "value": 5000
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cryptopulse-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(cryptopulse_kafka_checkpoint_lag{topic=~\"market.trades.*\"})",
+          "instant": true,
+          "legendFormat": "{{query}}{{symbol}}{{topic}}"
+        }
+      ]
+    },
+    {
       "id": 35,
       "title": "Ventanas finalizadas · cobertura real",
       "type": "table",
       "gridPos": {
-        "x": 6,
-        "y": 33,
-        "w": 18,
+        "x": 12,
+        "y": 31,
+        "w": 12,
         "h": 5
       },
-      "description": "Fijas 5 min y deslizantes 5 min/paso 1 min. Watermark 2 min: una ventana finalizada puede estar incompleta; el archivo conserva reparaciones tardías.",
+      "description": "Fijas 5 min y deslizantes 5 min/paso 1 min. Watermark 2 min: una ventana finalizada puede estar incompleta.",
       "fieldConfig": {
         "defaults": {
           "unit": "short",
@@ -1214,7 +1403,7 @@
             "cellOptions": {
               "type": "auto"
             },
-            "filterable": true,
+            "filterable": false,
             "wrapText": true
           }
         },
@@ -1304,241 +1493,9 @@
             "type": "postgres",
             "uid": "cryptopulse-postgres"
           },
-          "rawSql": "SELECT kind AS \"Ventana\",symbol AS \"Activo\",max(window_end) AS \"Último cierre finalizado\",count(*) AS \"Ventanas\",count(*) FILTER(WHERE candles<>5) AS \"Incompletas\" FROM stream_windows GROUP BY kind,symbol ORDER BY kind,symbol",
+          "rawSql": "SELECT CASE kind WHEN 'fixed' THEN 'Fija' ELSE 'Deslizante' END AS \"Ventana\",symbol AS \"Activo\",max(window_end) AS \"Último cierre\",count(*) AS \"Ventanas\",count(*) FILTER(WHERE candles<>5) AS \"Incompletas\" FROM stream_windows GROUP BY kind,symbol ORDER BY kind,symbol",
           "format": "table",
           "rawQuery": true
-        }
-      ]
-    },
-    {
-      "id": 44,
-      "title": "Eventos empresariales · productores y procesamiento",
-      "type": "row",
-      "gridPos": {
-        "x": 0,
-        "y": 38,
-        "w": 24,
-        "h": 1
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "noValue": "Pendiente"
-        },
-        "overrides": []
-      },
-      "options": {}
-    },
-    {
-      "id": 48,
-      "title": "Productor de operaciones · conectado",
-      "type": "stat",
-      "gridPos": {
-        "x": 0,
-        "y": 39,
-        "w": 6,
-        "h": 5
-      },
-      "description": "1 significa WebSocket aggTrade conectado.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "noValue": "Pendiente",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#1B2440",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center"
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "cryptopulse_trades_producer_connected",
-          "instant": true,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
-        }
-      ]
-    },
-    {
-      "id": 49,
-      "title": "Productor de operaciones · edad de señal",
-      "type": "stat",
-      "gridPos": {
-        "x": 6,
-        "y": 39,
-        "w": 6,
-        "h": 5
-      },
-      "description": "Más de 60 s degrada el producto y dispara una alerta.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "noValue": "Pendiente",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#1B2440",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center"
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "cryptopulse_trades_heartbeat_age_seconds",
-          "instant": true,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
-        }
-      ]
-    },
-    {
-      "id": 50,
-      "title": "Flujo Spark · edad de la última ventana",
-      "type": "stat",
-      "gridPos": {
-        "x": 12,
-        "y": 39,
-        "w": 6,
-        "h": 5
-      },
-      "description": "Más de 300 s degrada el producto.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "s",
-          "noValue": "Pendiente",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#1B2440",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center"
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "cryptopulse_trade_flow_age_seconds",
-          "instant": true,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
-        }
-      ]
-    },
-    {
-      "id": 51,
-      "title": "Kafka · operaciones pendientes",
-      "type": "stat",
-      "gridPos": {
-        "x": 18,
-        "y": 39,
-        "w": 6,
-        "h": 5
-      },
-      "description": "Offsets publicados aún no procesados. Se correlaciona con la duración de los micro-lotes.",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "noValue": "Pendiente",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#1B2440",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "value",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center"
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cryptopulse-prometheus"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "expr": "sum(cryptopulse_kafka_checkpoint_lag{topic=~\"market.trades.*\"})",
-          "instant": true,
-          "legendFormat": "{{query}}{{symbol}}{{topic}}"
         }
       ]
     }
@@ -1552,7 +1509,7 @@
     "risk-monitoring"
   ],
   "schemaVersion": 40,
-  "version": 3,
+  "version": 4,
   "refresh": "10s",
   "timezone": "browser",
   "time": {

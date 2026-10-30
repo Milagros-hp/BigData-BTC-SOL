@@ -150,7 +150,7 @@ def verify_bi():
         response=requests.get(base+"/api/datasources/uid/"+uid+"/health",auth=grafana_auth(),timeout=20)
         assert response.status_code==200,(uid,response.text)
     panels=[]
-    for uid in ("cryptopulse-main","cryptopulse-ops"):
+    for uid in ("cryptopulse-main","cryptopulse-detalle","cryptopulse-ops","cryptopulse-franck","cryptopulse-julmer","cryptopulse-abdul","cryptopulse-milagros"):
         response=requests.get(base+"/api/dashboards/uid/"+uid,auth=grafana_auth(),timeout=20)
         response.raise_for_status()
         panels+=response.json()["dashboard"]["panels"]
