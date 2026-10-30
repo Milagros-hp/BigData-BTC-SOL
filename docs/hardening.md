@@ -22,7 +22,7 @@
 
 | Tipo | Cantidad | Comando |
 |---|---|---|
-| Unitarias (ingesta, contratos de velas y operaciones, señales, salud, calibración, reparación de checkpoints) | 45 | `docker compose -f platform.yml run --rm --no-deps tools python -m unittest cryptopulse.test_trades cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion` |
+| Unitarias (ingesta, contratos de velas y operaciones, señales, salud, calibración, reparación de checkpoints, recuperación de operaciones) | 49 | `docker compose -f platform.yml run --rm --no-deps tools python -m unittest cryptopulse.test_trades cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion` |
 | Spark con modelos reales | 5 | `... python -m unittest cryptopulse.test_inference_spark` |
 | Integración aislada (Kafka, watermark, checkpoint, replay) | 1 suite | `scripts/pruebas_integracion.ps1` |
 | Verificación integral S03–S12 | 1 suite | `scripts/verificar_producto.ps1` |
