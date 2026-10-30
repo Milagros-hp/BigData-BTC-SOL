@@ -1625,7 +1625,7 @@
 <img alt="Reglas de alerta en Prometheus" src="../../assets/u2/prom_reglas.png" />
 <img alt="Destinos de Prometheus" src="../../assets/u2/prom_destinos.png" /></p>
 <h2 id="s10">S10 · Inferencia en streaming<a class="headerlink" href="#s10" title="Permanent link">&para;</a></h2>
-<p><strong>Responsables: los cuatro, un modelo cada uno.</strong> En cada cierre de minuto se aplican los modelos a las últimas 61 velas y salen 7 pronósticos. Cada uno se evalúa cuando madura su horizonte.</p>
+<p><strong>Responsables: Franck (volatilidad), Julmer (caídas), Abdul (actividad) y Luz Milagros (separación).</strong> Cada uno construye y sustenta su modelo, y <a href="../franck/">Franck</a> lleva el de volatilidad, con Random Forest para BTC y SOL. En cada cierre de minuto se aplican los modelos a las últimas 61 velas y salen 7 pronósticos. Cada uno se evalúa cuando madura su horizonte.</p>
 <table>
 <thead>
 <tr>
@@ -1679,7 +1679,7 @@
 <p><img alt="Centro de señales" src="../../assets/u2/senales.png" />
 <img alt="Presión compradora" src="../../assets/u2/presion.png" /></p>
 <h2 id="s12">S12 · Integración y sustentación<a class="headerlink" href="#s12" title="Permanent link">&para;</a></h2>
-<p><strong>Responsables: Luz Milagros en DataOps; cada integrante sustenta su dimensión.</strong> La integración se comprueba con tres scripts:</p>
+<p><strong>Responsables: Luz Milagros en DataOps y Franck en la integración y publicación del pipeline (commits <code>bc288ce</code> y <code>c051ab9</code>); cada integrante sustenta su dimensión.</strong> La integración se comprueba con tres scripts:</p>
 <table>
 <thead>
 <tr>

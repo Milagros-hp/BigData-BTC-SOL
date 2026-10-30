@@ -1768,7 +1768,7 @@
 </tr>
 </tbody>
 </table>
-<p>Prometheus lee (pull) el exportador propio en <code>exporter:8000/metrics</code> y el <code>kafka-exporter</code>; Grafana consulta Prometheus y PostgreSQL. Costos y escalado: <a href="../u2-producto/#3-costos-y-criterios-de-escalado">Producto U2, sección 3</a>.</p>
+<p>Prometheus lee (pull) el exportador propio en <code>exporter:8000/metrics</code> y el <code>kafka-exporter</code>; Grafana consulta Prometheus y PostgreSQL. Costos y escalado: <a href="../u2-producto/#costos">Producto U2, costos</a>.</p>
 <h3 id="s10-series-de-tiempo-e-inferencia">S10 · Series de tiempo e inferencia<a class="headerlink" href="#s10-series-de-tiempo-e-inferencia" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Referencia de persistencia primero:</strong> en volatilidad la referencia es «la volatilidad actual se repite». Si el modelo no le gana, no aporta: eso nos pasó con la divergencia con signo y por eso la reformulamos.</li>
@@ -1790,7 +1790,7 @@ Dentro del watermark entra en su ventana según la hora del evento; fuera de él
 <p><strong>¿Qué métrica alertaría primero un backpressure?</strong>
 La duración del micro-lote: si supera los 15 s del intervalo, el siguiente lote empieza atrasado. Enseguida le sigue el lag de Kafka (<code>cryptopulse_kafka_checkpoint_lag</code>), que tiene alerta a partir de 100 mensajes durante 2 min.</p>
 <p><strong>¿Por qué estimar el costo del streaming no es igual que el del batch?</strong>
-El batch corre un rato y se apaga: se paga por ejecución. El streaming corre las 730 horas del mes y su costo crece con el volumen continuo y la retención de Kafka (las operaciones ocupan ~3 GB en 7 días).</p>
+El batch corre un rato y se apaga: se paga por ejecución. El streaming corre las 730 horas del mes y su costo crece con el volumen continuo y la retención de Kafka (las operaciones ocuparon unos 6 GB proyectados a 7 días con el volumen del 30 de octubre).</p>
 <p><strong>¿Qué gana el tablero al mostrar la predicción junto a los KPIs?</strong>
 El analista ve en la misma pantalla qué está pasando (KPI) y qué se espera (predicción), y luego si el pronóstico acertó. Por separado tendría que cruzarlos a mano.</p>
 <p><strong>¿Por qué comparar primero con la persistencia y qué significa no ganarle?</strong>
