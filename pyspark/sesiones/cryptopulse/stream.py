@@ -39,6 +39,13 @@ def repair_checkpoints(root=None):
     print(json.dumps({"checkpoints_respaldados":str(target),"archivos_corruptos":len(damaged)}),flush=True)
     return target
 
+def progress_summary(name,progress):
+    """Una línea de log por consulta: deja verificable el watermark, lo descartado y el checkpoint."""
+    return {"consulta":name,"lote":progress.get("batchId"),"filas":progress.get("numInputRows"),
+        "watermark":progress.get("eventTime",{}).get("watermark"),
+        "descartadas_por_watermark":sum(op.get("numRowsDroppedByWatermark",0) for op in progress.get("stateOperators",[])),
+        "checkpoint":str(STATE/"checkpoints"/name.replace("cryptopulse_",""))}
+
 def valid_market_payload(raw):
     """Use the same contract in the archive and both window queries."""
     try:
@@ -183,6 +190,7 @@ def run():
         global running
         running=False
     signal.signal(signal.SIGTERM,stop)
+    next_report=0
     try:
         while running:
             for query in queries:
@@ -193,6 +201,9 @@ def run():
             progress={q.name:q.lastProgress for q in queries}
             save_json(STATE/"stream_status.json",{"heartbeat_ms":int(time.time()*1000),"inference_enabled":INFERENCE,
                 "queries":progress,"model_version":bundle.registry["model_version"] if bundle else None})
+            if time.monotonic()>=next_report:
+                print(json.dumps({"progreso":[progress_summary(name,item) for name,item in progress.items() if item]}),flush=True)
+                next_report=time.monotonic()+60
             time.sleep(5)
     finally:
         for query in queries:

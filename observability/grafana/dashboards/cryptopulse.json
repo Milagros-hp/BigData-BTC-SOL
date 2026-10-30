@@ -1035,13 +1035,13 @@
     },
     {
       "id": 11,
-      "title": "Prueba histórica reservada · modelo contra referencia",
+      "title": "Batch · prueba histórica reservada, modelo contra referencia",
       "type": "table",
       "gridPos": {
         "x": 0,
         "y": 62,
-        "w": 24,
-        "h": 8
+        "w": 12,
+        "h": 16
       },
       "description": "Prueba enero–septiembre 2026, muestreo cada 15 min. MAE/RMSE en unidad de su objetivo; Brier menor es mejor. Precisión y recall son proporciones. No se reentrena con esta prueba para escoger modelos.",
       "fieldConfig": {
@@ -1142,13 +1142,13 @@
     },
     {
       "id": 12,
-      "title": "Evaluación en vivo · activo, dimensión y período seleccionado",
+      "title": "En vivo · error real de los pronósticos ya madurados",
       "type": "table",
       "gridPos": {
-        "x": 0,
-        "y": 70,
-        "w": 24,
-        "h": 8
+        "x": 12,
+        "y": 62,
+        "w": 12,
+        "h": 16
       },
       "description": "Solo la versión activa y el período elegido. Los horizontes todavía abiertos o con datos incompletos permanecen pendientes. Clasificación usa Brier; no se mezcla con RMSE de precios.",
       "fieldConfig": {
