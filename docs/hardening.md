@@ -22,7 +22,7 @@
 
 | Tipo | Cantidad | Comando |
 |---|---|---|
-| Unitarias (ingesta, contratos de velas y operaciones, señales, salud, calibración) | 44 | `docker compose -f platform.yml run --rm --no-deps tools python -m unittest cryptopulse.test_trades cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion` |
+| Unitarias (ingesta, contratos de velas y operaciones, señales, salud, calibración, reparación de checkpoints) | 45 | `docker compose -f platform.yml run --rm --no-deps tools python -m unittest cryptopulse.test_trades cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion` |
 | Spark con modelos reales | 5 | `... python -m unittest cryptopulse.test_inference_spark` |
 | Integración aislada (Kafka, watermark, checkpoint, replay) | 1 suite | `scripts/pruebas_integracion.ps1` |
 | Verificación integral S03–S12 | 1 suite | `scripts/verificar_producto.ps1` |
@@ -54,4 +54,5 @@ Durante la demo se puede ver el cambio en el panel *Estado integral* de Grafana 
 | Con un Kafka nuevo, el streaming se caía en bucle por checkpoints obsoletos | El arranque detecta el volumen nuevo y respalda los checkpoints |
 | Choque de puertos con lambda26 | El arranque se detiene con un mensaje claro y el comando para resolverlo |
 | Rutas fijas `D:\bigdata` en la documentación | Rutas relativas al repositorio |
+| Un apagado brusco dejó checkpoints de Spark llenos de ceros y el streaming se reiniciaba en bucle (30 de octubre) | Al arrancar, `stream.py` detecta archivos corruptos, los respalda en `_runtime/backups/` y continúa con checkpoints nuevos |
 | El modelo de divergencia no superaba a la referencia | Se reformuló como tamaño de la separación; ahora supera a la referencia en validación y prueba |

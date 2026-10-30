@@ -26,7 +26,7 @@ Plantilla del docente: [Producto U3](https://262bigdata.github.io/lambda26/proye
 | Criterio | Peso | Evidencia |
 |---|---:|---|
 | 1. Integración end-to-end batch + streaming + BI/ML | 20% | Los modelos entrenados en batch se aplican en vivo a cada vela de Kafka y se ven en Grafana; `verificar_producto.ps1` comprueba S03–S12 juntos |
-| 2. DataOps/DevOps | 15% | `platform.yml`, `scripts/`, versiones fijadas, `.github/workflows/ci.yml` (44 pruebas en cada push), `docs.yml` |
+| 2. DataOps/DevOps | 15% | `platform.yml`, `scripts/`, versiones fijadas, `.github/workflows/ci.yml` (45 pruebas en cada push), `docs.yml` |
 | 3. Documentación operativa | 15% | Este sitio MkDocs; [Instalación](../instalacion.md) paso a paso con problemas frecuentes |
 | 4. Hardening y revisión técnica | 10% | [Checklist de 13 controles](../hardening.md) y problemas encontrados y corregidos |
 | 5. Demo reproducible | 15% | Clonar → `entrenar_producto.ps1` → `iniciar_producto.ps1` → `verificar_producto.ps1` |
