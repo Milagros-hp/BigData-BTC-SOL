@@ -9,6 +9,8 @@
         <meta name="description" content="Monitoreo de riesgo de BTC y SOL con arquitectura Lambda (Big Data UPeU 2026-2)">
       
       
+        <meta name="author" content="Grupo 3 · CryptoPulse">
+      
       
         <link rel="canonical" href="https://milagros-hp.github.io/BigData-BTC-SOL/">
       
@@ -28,6 +30,9 @@
     
       <link rel="stylesheet" href="assets/stylesheets/main.8c3ca2c6.min.css">
       
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
       
 
 
@@ -40,10 +45,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="assets/stylesheets/extra.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -55,7 +62,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -78,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabecera">
     <a href="." title="CryptoPulse · Grupo 3" class="md-header__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
       
@@ -107,6 +121,32 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
@@ -134,6 +174,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -164,13 +206,141 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="proyecto-sello/" class="md-tabs__link">
+          
+  
+    
+  
+  Proyecto Sello
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="notebooks-u1/" class="md-tabs__link">
+          
+  
+    
+  
+  Unidad 1 · Batch
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="PRODUCTO_FINAL/" class="md-tabs__link">
+          
+  
+    
+  
+  Unidad 2 · Tiempo real
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="instalacion/" class="md-tabs__link">
+          
+  
+    
+  
+  Unidad 3 · DataOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="equipo/" class="md-tabs__link">
+          
+  
+    
+  
+  Equipo
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -178,14 +348,18 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="CryptoPulse · Grupo 3" class="md-nav__button md-logo" aria-label="CryptoPulse · Grupo 3" data-md-component="logo">
       
@@ -263,29 +437,86 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problema" class="md-nav__link">
+  <a href="#cuatro-dimensiones-un-solo-tablero" class="md-nav__link">
     <span class="md-ellipsis">
-      Problema
+      Cuatro dimensiones, un solo tablero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuatro dimensiones, un solo tablero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volatilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volatilidad
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#solucion" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#caidas-fuertes" class="md-nav__link">
     <span class="md-ellipsis">
-      Solución
+      Caídas fuertes
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#valor-para-la-decision" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#actividad-anomala" class="md-nav__link">
     <span class="md-ellipsis">
-      Valor para la decisión
+      Actividad anómala
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#divergencia-btcsol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Divergencia BTC–SOL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitectura Lambda
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitectura Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capa-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa batch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capa-de-velocidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa de velocidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -295,6 +526,48 @@
       Por dónde empezar
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Por dónde empezar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-y-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación y ejecución
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brief-tecnico-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brief técnico-analítico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebooks-u1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebooks U1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-del-tablero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso del tablero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -314,6 +587,25 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -323,16 +615,24 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="proyecto-sello/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Proyecto Sello
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
@@ -341,25 +641,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="proyecto-sello/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Guía del proyecto
-  </span>
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -436,7 +717,7 @@
         
   
   <span class="md-ellipsis">
-    Producto U3 / Producto final
+    Producto U3 / final
   </span>
   
 
@@ -459,52 +740,43 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="instalacion/" class="md-nav__link">
+    
+    
+      
         
-  
-  <span class="md-ellipsis">
-    Instalación y ejecución
-  </span>
-  
-
-      </a>
-    </li>
-  
-
+      
+        
+      
+    
     
       
       
-  
-  
-  
-  
-    
-    
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    1. Batch distribuido
+    Unidad 1 · Batch
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            1. Batch distribuido
+            Unidad 1 · Batch
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -519,7 +791,7 @@
         
   
   <span class="md-ellipsis">
-    Notebooks U1 por integrante
+    Notebooks por integrante
   </span>
   
 
@@ -540,7 +812,7 @@
         
   
   <span class="md-ellipsis">
-    Trabajo por sesión S01–S12
+    Bitácora S01–S12
   </span>
   
 
@@ -565,30 +837,41 @@
   
     
     
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    2. Sistema en tiempo real
+    Unidad 2 · Tiempo real
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            2. Sistema en tiempo real
+            Unidad 2 · Tiempo real
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -649,32 +932,78 @@
   
     
     
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="evidencias/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
-    3. Integración y DataOps
+    Unidad 3 · DataOps
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            3. Integración y DataOps
+            Unidad 3 · DataOps
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="instalacion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalación y ejecución
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -687,7 +1016,7 @@
         
   
   <span class="md-ellipsis">
-    Pruebas, hardening y DataOps
+    Pruebas y hardening
   </span>
   
 
@@ -695,6 +1024,8 @@
     </li>
   
 
+              
+            
               
             
               
@@ -718,27 +1049,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="evidencias/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Evidencias
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -748,6 +1058,56 @@
     
       
       
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Equipo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Equipo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
@@ -765,9 +1125,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -785,9 +1146,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -805,25 +1167,37 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
     
       
       
-  
-  
-  
-  
-    
-    
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -834,8 +1208,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
             <span class="md-nav__icon md-icon"></span>
             Anexos
           </label>
@@ -889,6 +1263,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
   </ul>
 </nav>
@@ -897,6 +1279,8 @@
               </div>
             
             
+              
+                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -917,29 +1301,86 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#problema" class="md-nav__link">
+  <a href="#cuatro-dimensiones-un-solo-tablero" class="md-nav__link">
     <span class="md-ellipsis">
-      Problema
+      Cuatro dimensiones, un solo tablero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuatro dimensiones, un solo tablero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volatilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volatilidad
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#solucion" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#caidas-fuertes" class="md-nav__link">
     <span class="md-ellipsis">
-      Solución
+      Caídas fuertes
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#valor-para-la-decision" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#actividad-anomala" class="md-nav__link">
     <span class="md-ellipsis">
-      Valor para la decisión
+      Actividad anómala
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#divergencia-btcsol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Divergencia BTC–SOL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura-lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitectura Lambda
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitectura Lambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capa-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa batch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capa-de-velocidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capa de velocidad
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -949,6 +1390,48 @@
       Por dónde empezar
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Por dónde empezar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-y-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación y ejecución
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brief-tecnico-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brief técnico-analítico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebooks-u1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebooks U1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-del-tablero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso del tablero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -970,95 +1453,91 @@
   
 
 
+<div class="hero">
+<p><span class="eyebrow">Big Data · UPeU 2026-2 · Grupo 3</span></p>
 <h1 id="cryptopulse-monitoreo-de-riesgo-de-btc-y-sol">CryptoPulse · Monitoreo de riesgo de BTC y SOL<a class="headerlink" href="#cryptopulse-monitoreo-de-riesgo-de-btc-y-sol" title="Permanent link">&para;</a></h1>
-<p><strong>Curso:</strong> Big Data · UPeU 2026-2 · <strong>Grupo 3</strong>
-<strong>Repositorio:</strong> <a href="https://github.com/Milagros-hp/BigData-BTC-SOL">https://github.com/Milagros-hp/BigData-BTC-SOL</a></p>
-<table>
-<thead>
-<tr>
-<th>Integrante</th>
-<th>Dimensión</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Franck Albertson Coaquira Justo</td>
-<td>Volatilidad</td>
-</tr>
-<tr>
-<td>Julmer Quispe Apaza</td>
-<td>Caídas significativas</td>
-</tr>
-<tr>
-<td>Abdul Quispe Condori</td>
-<td>Actividad anómala</td>
-</tr>
-<tr>
-<td>Luz Milagros Huanca Pacco</td>
-<td>Divergencia BTC–SOL</td>
-</tr>
-</tbody>
-</table>
-<h2 id="problema">Problema<a class="headerlink" href="#problema" title="Permanent link">&para;</a></h2>
-<p>Quien analiza criptomonedas necesita saber, minuto a minuto, si BTC o SOL entran en una condición de riesgo y qué puede pasar en los próximos minutos. CryptoPulse responde la pregunta central del equipo:</p>
-<blockquote>
 <p>¿Cómo puede un analista de riesgo anticipar, con 5 a 30 minutos de antelación, condiciones de riesgo en BTC y SOL: volatilidad alta, caídas fuertes, actividad anómala y desacople entre ambos activos?</p>
-</blockquote>
-<h2 id="solucion">Solución<a class="headerlink" href="#solucion" title="Permanent link">&para;</a></h2>
-<p>Un sistema Big Data con <strong>arquitectura Lambda</strong>:</p>
-<ul>
-<li><strong>Capa batch:</strong> 4,99 millones de velas reales de Binance (2022–2026) → calidad con PySpark → Parquet particionado → cuatro modelos Spark MLlib validados en el tiempo.</li>
-<li><strong>Capa de velocidad:</strong> WebSocket de Binance → Kafka → Spark Structured Streaming (ventanas, watermark, checkpoints) → inferencia en cada cierre de minuto → PostgreSQL. Dos flujos: <strong>telemetría</strong> (velas de 1 minuto) y <strong>eventos empresariales</strong> (cada operación ejecutada, agregada en flujo comprador/vendedor).</li>
-<li><strong>Consumo:</strong> un solo tablero Grafana con estado, señales, pronósticos, evaluación de modelos, observabilidad y costos.</li>
-</ul>
+<div class="hero-links">
+<p><a class="cp-button" href="instalacion/">Levantar el sistema</a>
+<a class="cp-button secondary" href="proyecto-sello/">Proyecto Sello</a>
+<a class="cp-button secondary" href="https://github.com/Milagros-hp/BigData-BTC-SOL">Repositorio</a></p>
+</div>
+</div>
+<div class="kpi-grid">
+<div class="kpi"><span class="kpi-number">4 993 757</span><span class="kpi-label">velas históricas válidas (2022–2026)</span></div>
+<div class="kpi"><span class="kpi-number">2 flujos</span><span class="kpi-label">en Kafka: velas y operaciones ejecutadas</span></div>
+<div class="kpi"><span class="kpi-number">7 / min</span><span class="kpi-label">pronósticos en vivo, uno por serie</span></div>
+<div class="kpi"><span class="kpi-number">4 de 4</span><span class="kpi-label">modelos que superan su referencia en 2026</span></div>
+</div>
+<h2 id="cuatro-dimensiones-un-solo-tablero">Cuatro dimensiones, un solo tablero<a class="headerlink" href="#cuatro-dimensiones-un-solo-tablero" title="Permanent link">&para;</a></h2>
+<div class="dimension-grid">
+<div class="dimension-card">
+<p><span class="cp-tag">15 MIN · RANDOM FOREST</span></p>
+<h3 id="volatilidad">Volatilidad<a class="headerlink" href="#volatilidad" title="Permanent link">&para;</a></h3>
+<p>¿Cuánto se va a mover el precio? Error 14 % menor que la referencia.</p>
+<p><strong>Franck Albertson Coaquira Justo</strong></p>
+</div>
+<div class="dimension-card">
+<p><span class="cp-tag">30 MIN · LOGÍSTICA</span></p>
+<h3 id="caidas-fuertes">Caídas fuertes<a class="headerlink" href="#caidas-fuertes" title="Permanent link">&para;</a></h3>
+<p>¿Qué probabilidad hay de una caída dentro del 5 % de peores históricas? AUC-PR 3 veces la referencia.</p>
+<p><strong>Julmer Quispe Apaza</strong></p>
+</div>
+<div class="dimension-card">
+<p><span class="cp-tag">5 MIN · LOGÍSTICA</span></p>
+<h3 id="actividad-anomala">Actividad anómala<a class="headerlink" href="#actividad-anomala" title="Permanent link">&para;</a></h3>
+<p>¿Se viene volumen inusual para esa hora del día? AUC-PR 9 veces la referencia.</p>
+<p><strong>Abdul Quispe Condori</strong></p>
+</div>
+<div class="dimension-card">
+<p><span class="cp-tag">15 MIN · RIDGE</span></p>
+<h3 id="divergencia-btcsol">Divergencia BTC–SOL<a class="headerlink" href="#divergencia-btcsol" title="Permanent link">&para;</a></h3>
+<p>¿Cuánto se van a separar SOL y BTC? Error 25 % menor que la referencia.</p>
+<p><strong>Luz Milagros Huanca Pacco</strong></p>
+</div>
+</div>
+<h2 id="arquitectura-lambda">Arquitectura Lambda<a class="headerlink" href="#arquitectura-lambda" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
     H[Binance histórico&lt;br/&gt;ZIP mensuales] --&gt; Q[PySpark&lt;br/&gt;calidad] --&gt; P[Parquet&lt;br/&gt;symbol/año/mes] --&gt; M[MLlib&lt;br/&gt;4 modelos]
-    W[Binance WebSocket] --&gt; K[Kafka] --&gt; S[Spark Structured&lt;br/&gt;Streaming] --&gt; DB[(PostgreSQL)]
+    W1[WebSocket&lt;br/&gt;velas] --&gt; K[Kafka]
+    W2[WebSocket&lt;br/&gt;operaciones] --&gt; K
+    K --&gt; S[Spark Structured&lt;br/&gt;Streaming] --&gt; DB[(PostgreSQL)]
     M --&gt; I[Inferencia&lt;br/&gt;cada minuto] --&gt; DB
     S --&gt; I
     DB --&gt; G[Grafana]
     S --&gt; PR[Prometheus] --&gt; G</code></pre>
-<h2 id="valor-para-la-decision">Valor para la decisión<a class="headerlink" href="#valor-para-la-decision" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Dimensión</th>
-<th>Pregunta que responde</th>
-<th>Horizonte</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Volatilidad</td>
-<td>¿Cuánto se va a mover el precio?</td>
-<td>15 min</td>
-</tr>
-<tr>
-<td>Caídas</td>
-<td>¿Qué probabilidad hay de una caída fuerte?</td>
-<td>30 min</td>
-</tr>
-<tr>
-<td>Actividad anómala</td>
-<td>¿Se viene un pico de volumen u operaciones?</td>
-<td>5 min</td>
-</tr>
-<tr>
-<td>Divergencia</td>
-<td>¿Cuánto se van a separar SOL y BTC?</td>
-<td>15 min</td>
-</tr>
-</tbody>
-</table>
-<p>El sistema no ejecuta órdenes ni da recomendaciones de inversión: entrega señales para revisar el mercado.</p>
+<div class="info-grid">
+<div class="info-card">
+<h3 id="capa-batch">Capa batch<a class="headerlink" href="#capa-batch" title="Permanent link">&para;</a></h3>
+<p>4,99 millones de velas de Binance → calidad con PySpark → Parquet particionado → cuatro modelos Spark MLlib validados en el tiempo.</p>
+</div>
+<div class="info-card">
+<h3 id="capa-de-velocidad">Capa de velocidad<a class="headerlink" href="#capa-de-velocidad" title="Permanent link">&para;</a></h3>
+<p>Velas y operaciones en vivo → Kafka → Spark Structured Streaming con ventanas, watermark y checkpoints → inferencia en cada cierre de minuto.</p>
+</div>
+</div>
+<div class="cp-callout">
+<p>El sistema no ejecuta órdenes ni da recomendaciones de inversión: entrega <strong>señales de vigilancia y alerta</strong> para saber cuándo revisar el mercado.</p>
+</div>
 <h2 id="por-donde-empezar">Por dónde empezar<a class="headerlink" href="#por-donde-empezar" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="instalacion/">Instalación y ejecución</a>: levantar todo desde cero.</li>
-<li><a href="proyecto-sello/brief/">Brief técnico-analítico</a>: pregunta central, dimensiones y fichas por integrante.</li>
-<li><a href="notebooks-u1/">Notebooks U1</a>: el análisis batch de cada integrante.</li>
-<li><a href="PRODUCTO_FINAL/">Uso del tablero</a>: cómo leer Grafana.</li>
-<li><a href="hardening/">Pruebas y hardening</a>: qué se verificó y cómo.</li>
-</ul>
+<div class="info-grid">
+<div class="info-card">
+<h3 id="instalacion-y-ejecucion"><a href="instalacion/">Instalación y ejecución</a><a class="headerlink" href="#instalacion-y-ejecucion" title="Permanent link">&para;</a></h3>
+<p>Levantar todo desde cero con un comando.</p>
+</div>
+<div class="info-card">
+<h3 id="brief-tecnico-analitico"><a href="proyecto-sello/brief/">Brief técnico-analítico</a><a class="headerlink" href="#brief-tecnico-analitico" title="Permanent link">&para;</a></h3>
+<p>Pregunta central, dimensiones y fichas por integrante.</p>
+</div>
+<div class="info-card">
+<h3 id="notebooks-u1"><a href="notebooks-u1/">Notebooks U1</a><a class="headerlink" href="#notebooks-u1" title="Permanent link">&para;</a></h3>
+<p>El análisis batch y el modelo de cada integrante.</p>
+</div>
+<div class="info-card">
+<h3 id="uso-del-tablero"><a href="PRODUCTO_FINAL/">Uso del tablero</a><a class="headerlink" href="#uso-del-tablero" title="Permanent link">&para;</a></h3>
+<p>Cómo leer Grafana: estado, señales y pronósticos.</p>
+</div>
+</div>
 
 
 
@@ -1066,8 +1545,13 @@
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -1076,6 +1560,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1092,6 +1578,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 · CryptoPulse · Grupo 3 · Big Data UPeU
+    </div>
   
   
     Made with
@@ -1111,7 +1601,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
     
     
       <script src="assets/javascripts/bundle.525ec568.min.js"></script>
