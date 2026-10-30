@@ -1485,6 +1485,11 @@
 <td>El arranque ya los respalda solo; si ocurre manualmente, mover <code>pyspark/sesiones/_runtime/checkpoints</code> a <code>backups/</code></td>
 </tr>
 <tr>
+<td>El estado queda en rojo y el streaming se reinicia con <code>MALFORMED_LOG_FILE</code></td>
+<td>Apagado brusco con Spark escribiendo</td>
+<td>Se corrige solo al reiniciar el streaming; para evitarlo, apaga siempre con <code>detener_producto.ps1</code> antes de cerrar Docker</td>
+</tr>
+<tr>
 <td>La verificación falla en <code>batch_rows</code></td>
 <td>Base de datos nueva sin KPIs históricos</td>
 <td>Volver a ejecutar <code>iniciar_producto.ps1</code> (los publica solo)</td>

@@ -1379,8 +1379,8 @@
 </thead>
 <tbody>
 <tr>
-<td>Unitarias (ingesta, contratos de velas y operaciones, señales, salud, calibración)</td>
-<td>44</td>
+<td>Unitarias (ingesta, contratos de velas y operaciones, señales, salud, calibración, reparación de checkpoints)</td>
+<td>45</td>
 <td><code>docker compose -f platform.yml run --rm --no-deps tools python -m unittest cryptopulse.test_trades cryptopulse.test_health cryptopulse.test_signals cryptopulse.test_stream_contract cryptopulse.test_training_calibration cryptopulse.test_ingestion</code></td>
 </tr>
 <tr>
@@ -1445,6 +1445,10 @@
 <tr>
 <td>Rutas fijas <code>D:\bigdata</code> en la documentación</td>
 <td>Rutas relativas al repositorio</td>
+</tr>
+<tr>
+<td>Un apagado brusco dejó checkpoints de Spark llenos de ceros y el streaming se reiniciaba en bucle (30 de octubre)</td>
+<td>Al arrancar, <code>stream.py</code> detecta archivos corruptos, los respalda en <code>_runtime/backups/</code> y continúa con checkpoints nuevos</td>
 </tr>
 <tr>
 <td>El modelo de divergencia no superaba a la referencia</td>
